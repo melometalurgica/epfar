@@ -29,18 +29,22 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-dark);
-      /* Fondo general inspirado en la textura blanca con líneas diagonales suaves (image_6.png / image_7.png) */
-      background-color: #f7f8fa;
+      /* Fondo blanco texturizado idéntico al de la foto2 y la publicación de Copa Fair Play */
+      background-color: #f9f9fb;
       background-image: 
-         url('image_6.png'),
+        /* Intenta cargar tu foto del fondo si está subida */
+        url('fondo.png'),
+        /* Recreación exacta de los paneles blancos diagonales y micro-líneas sutiles de la foto 2 */
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(242, 243, 247, 0.4) 48%, rgba(230, 232, 238, 0.7) 48.3%, rgba(252, 252, 254, 0.95) 100%),
+        linear-gradient(45deg, transparent 60%, rgba(232, 234, 240, 0.6) 60.2%, rgba(248, 249, 252, 0.8) 100%),
         repeating-linear-gradient(
           -45deg,
-          rgba(255, 255, 255, 0.85) 0px,
-          rgba(255, 255, 255, 0.85) 14px,
-          rgba(235, 238, 244, 0.75) 14px,
-          rgba(235, 238, 244, 0.75) 28px
+          #fbfbfc 0px,
+          #fbfbfc 4px,
+          #f3f4f7 4px,
+          #f3f4f7 8px
         );
-      background-size: cover, auto;
+      background-size: cover, 100% 100%, 100% 100%, auto;
       background-attachment: fixed;
       min-height: 100vh;
     }
@@ -65,6 +69,7 @@
       padding: 4px 10px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      text-decoration: none;
     }
 
     .navbar-logo img {
@@ -111,27 +116,27 @@
     .hero-strip {
       position: relative;
       width: 100%;
-      padding: 28px 18px 46px;
-      /* Negro translúcido con difuminado gradual hacia el fondo blanco texturizado */
+      padding: 28px 18px 52px;
+      /* Negro con difuminado suave hacia el blanco texturizado original de atrás */
       background: linear-gradient(
         180deg,
-        rgba(10, 14, 22, 0.94) 0%,
-        rgba(15, 20, 30, 0.86) 65%,
-        rgba(20, 26, 38, 0.45) 88%,
-        rgba(247, 248, 250, 0) 100%
+        rgba(8, 11, 18, 0.96) 0%,
+        rgba(12, 16, 24, 0.88) 58%,
+        rgba(18, 23, 34, 0.42) 84%,
+        rgba(249, 249, 251, 0) 100%
       );
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
     .hero-container {
       max-width: 980px;
       margin: 0 auto;
       display: flex;
-       flex-direction: row;
+      flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
     }
 
     .hero-text-side {
@@ -147,9 +152,9 @@
       border: 1px solid rgba(255, 255, 255, 0.16);
       padding: 4px 10px;
       border-radius: 999px;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       color: var(--orange-accent);
       text-transform: uppercase;
       margin-bottom: 8px;
@@ -160,27 +165,28 @@
       height: 6px;
       background-color: var(--orange-accent);
       border-radius: 50%;
+      flex-shrink: 0;
     }
 
-    /* Título EPFAR en Clash Display reducido para entrar cómodo junto al logo */
+    /* Título EPFAR en Clash Display */
     .hero-title {
       font-family: 'Clash Display', sans-serif;
       font-weight: 700;
-      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      font-size: clamp(1.75rem, 5vw, 2.65rem);
       color: #ffffff;
       letter-spacing: 0.02em;
       line-height: 1.05;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    /* Subtítulo descriptivo compacto */
+    /* Subtítulo descriptivo */
     .hero-subtitle {
       border-left: 3px solid var(--orange-accent);
       padding-left: 10px;
-      font-size: clamp(0.78rem, 2.4vw, 0.95rem);
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.9);
-      max-width: 520px;
+      font-size: clamp(0.75rem, 2.3vw, 0.92rem);
+      line-height: 1.42;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 500px;
     }
 
     .hero-subtitle strong {
@@ -193,7 +199,7 @@
       font-weight: 600;
     }
 
-    /* Costado derecho: Logo de EPFAR con sombra pronunciada */
+    /* Costado derecho: Logo de EPFAR con sombra */
     .hero-logo-side {
       flex-shrink: 0;
       display: flex;
@@ -203,21 +209,15 @@
 
     .hero-logo-card {
       background: #ffffff;
-      padding: 10px 12px;
+      padding: 8px 10px;
       border-radius: 14px;
-      /* Sombra pronunciada destacada */
       box-shadow: 
-        0 14px 30px rgba(0, 0, 0, 0.65),
-        0 0 20px rgba(242, 101, 34, 0.28);
-      transition: transform 0.25s ease;
-    }
-
-    .hero-logo-card:hover {
-      transform: scale(1.03);
+        0 14px 28px rgba(0, 0, 0, 0.65),
+        0 0 18px rgba(242, 101, 34, 0.25);
     }
 
     .hero-logo-card img {
-      width: clamp(105px, 26vw, 195px);
+      width: clamp(100px, 26vw, 185px);
       height: auto;
       display: block;
       object-fit: contain;
@@ -227,7 +227,7 @@
     .main-content {
       max-width: 980px;
       margin: 0 auto;
-      padding: 18px 18px 60px;
+      padding: 12px 18px 60px;
     }
 
     .section-header {
@@ -265,17 +265,16 @@
       text-decoration: none;
       background: linear-gradient(135deg, #092c66 0%, var(--blue-card) 60%, #114ca8 100%);
       color: #ffffff;
-      padding: 16px 20px;
+      padding: 16px 18px;
       border-radius: 16px;
-      box-shadow: 0 12px 26px rgba(9, 44, 102, 0.28);
+      box-shadow: 0 12px 26px rgba(9, 44, 102, 0.22);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
 
     .participation-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px rgba(9, 44, 102, 0.38);
-      background: linear-gradient(135deg, #0b3478 0%, var(--blue-card-hover) 60%, #1557bd 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(9, 44, 102, 0.32);
     }
 
     .card-left {
@@ -310,10 +309,10 @@
     }
 
     .card-tag {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       color: #ffd166;
     }
 
@@ -326,8 +325,8 @@
     }
 
     .card-sub {
-      font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.85);
     }
 
     .card-arrow {
@@ -338,28 +337,20 @@
       width: 42px;
       height: 42px;
       border-radius: 12px;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       flex-shrink: 0;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .participation-card:hover .card-arrow {
-      transform: translateX(4px);
-      background: rgba(255, 255, 255, 0.25);
     }
   </style>
 </head>
 <body>
 
-  <!-- CABECERA DE PÁGINA EN AZUL MARINO FIJA AL DESLIZAR -->
+  <!-- CABECERA DE PÁGINA EN AZUL MARINO -->
   <header class="navbar">
     <a href="#" class="navbar-logo" aria-label="Inicio EPFAR">
-      <!-- Usa la foto del logo de EPFAR que enviaste -->
-      <img src="image_4.png" alt="Logo EPFAR" />
+      <img src="logo-epfar.png" alt="Logo EPFAR" />
     </a>
 
     <div class="navbar-actions">
-      <!-- Botón Lupa de Búsqueda -->
       <button class="icon-btn" type="button" aria-label="Buscar">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
@@ -367,7 +358,6 @@
         </svg>
       </button>
 
-      <!-- Botón Tres Barritas (Menú) -->
       <button class="icon-btn" type="button" aria-label="Menú">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -378,7 +368,7 @@
     </div>
   </header>
 
-  <!-- TIRA DE INGRESO NEGRA DIFUMINADA CON TÍTULO + SUBTÍTULO A UN COSTADO Y LOGO CON SOMBRA AL OTRO -->
+  <!-- TIRA DE INGRESO NEGRA DIFUMINADA -->
   <section class="hero-strip">
     <div class="hero-container">
       <div class="hero-text-side">
@@ -394,23 +384,22 @@
 
       <div class="hero-logo-side">
         <div class="hero-logo-card">
-          <img src="image_4.png" alt="EPFAR Entrenamiento de Alto Rendimiento" />
+          <img src="logo-epfar.png" alt="EPFAR Entrenamiento de Alto Rendimiento" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN PARTICIPACIONES SOBRE EL FONDO BLANCO TEXTURIZADO -->
+  <!-- SECCIÓN PARTICIPACIONES -->
   <main class="main-content">
     <div class="section-header">
       <h2 class="section-title">PARTICIPACIONES</h2>
     </div>
 
-    <!-- Rectángulo azul que redirige a la futura página del torneo en GitHub -->
     <a href="copa-fair-play-2026.html" class="participation-card">
       <div class="card-left">
         <div class="cup-logo-wrapper">
-          <img src="image.png" alt="Logo Copa Fair Play 2026" />
+          <img src="copa.png" alt="Logo Copa Fair Play 2026" />
         </div>
         <div class="card-info">
           <span class="card-tag">Torneo Internacional • Florianópolis, SC</span>
