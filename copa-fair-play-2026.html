@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copa Fair Play 2026 Brasil | EPFAR</title>
+  
+  <!-- Tipografías: Clash Display, Space Grotesk e Inter -->
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy-header: #071936;
+      --blue-card: #093170;
+      --blue-card-hover: #0d3e8c;
+      --orange-accent: #f26522;
+      --text-dark: #111827;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background-color: #f9f9fb;
+      background-image: 
+        url('image_6.png.PNG'),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(242, 243, 247, 0.4) 48%, rgba(230, 232, 238, 0.7) 48.3%, rgba(252, 252, 254, 0.95) 100%),
+        repeating-linear-gradient(-45deg, #fbfbfc 0px, #fbfbfc 4px, #f3f4f7 4px, #f3f4f7 8px);
+      background-size: cover, 100% 100%, auto;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* CABECERA SUPERIOR EN AZUL MARINO (IGUAL A LA ANTERIOR) */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--navy-header);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .navbar-title {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 600;
+      font-size: clamp(0.95rem, 2.8vw, 1.2rem);
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .icon-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-content {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 18px 50px;
+      flex: 1;
+    }
+
+    /* BOTÓN VOLVER AL INICIO */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--blue-card);
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      background: rgba(9, 49, 112, 0.08);
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(9, 49, 112, 0.15);
+    }
+
+    /* TÍTULOS DE SECCIÓN */
+    .section-header {
+      margin-bottom: 14px;
+      margin-top: 26px;
+    }
+
+    .section-header:first-of-type {
+      margin-top: 4px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 4vw, 1.65rem);
+      color: #0b1933;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 48%;
+      height: 4px;
+      background: var(--orange-accent);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    /* ---------------------------------------------------- */
+    /* 1. SECCIÓN FOTOS (CARRUSEL AL COMIENZO)              */
+    /* ---------------------------------------------------- */
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0d1526;
+      border: 3px solid #ffffff;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.35s ease-in-out;
+      width: 100%;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      aspect-ratio: 16 / 10;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111c33;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Controles del carrusel */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(7, 25, 54, 0.75);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 5px 10px;
+      border-radius: 99px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .dot.active {
+      background: var(--orange-accent);
+      transform: scale(1.2);
+    }
+
+    /* ---------------------------------------------------- */
+    /* 2. PLANTILLAS SUB15 Y SUB17 (RECTÁNGULOS AZULES)     */
+    /* ---------------------------------------------------- */
+    .squads-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .squad-box {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(9, 49, 112, 0.18);
+      background: #ffffff;
+      border: 1px solid rgba(9, 49, 112, 0.12);
+    }
+
+    .squad-trigger {
+      width: 100%;
+      background: linear-gradient(135deg, #092c66 0%, var(--blue-card) 60%, #114ca8 100%);
+      color: #ffffff;
+      border: none;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.92rem, 3.2vw, 1.15rem);
+      letter-spacing: 0.02em;
+      transition: background 0.2s ease;
+    }
+
+    .squad-trigger:hover {
+      background: linear-gradient(135deg, #0b357a 0%, var(--blue-card-hover) 60%, #1558bf 100%);
+    }
+
+    .squad-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .squad-box.open .squad-arrow {
+      transform: rotate(180deg);
+    }
+
+    .squad-list-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      background: #ffffff;
+    }
+
+    .squad-box.open .squad-list-wrapper {
+      max-height: 1200px;
+    }
+
+    .squad-list {
+      list-style: none;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .squad-list li {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #f4f6fa;
+      border-left: 4px solid var(--blue-card);
+      font-size: clamp(0.8rem, 2.7vw, 0.92rem);
+      font-weight: 600;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .player-name {
+      color: #0b1933;
+      font-weight: 700;
+    }
+
+    .player-country {
+      color: #4b5563;
+      font-weight: 500;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    /* ---------------------------------------------------- */
+    /* 3. CANALES DE TRANSMISIÓN EN VIVO                    */
+    /* ---------------------------------------------------- */
+    .channels-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .channel-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .channel-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Rectángulo con los colores oficiales de Instagram */
+    .channel-instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* Rectángulo en color rojo para YouTube */
+    .channel-youtube {
+      background: linear-gradient(135deg, #e52d27 0%, #b31217 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .channel-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .channel-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .channel-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: #ffffff;
+    }
+
+    .channel-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .channel-label-small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .channel-arrow {
+      background: rgba(255, 255, 255, 0.2);
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    /* ---------------------------------------------------- */
+    /* PIE DE PÁGINA (IDÉNTICO A LA PÁGINA ANTERIOR)        */
+    /* ---------------------------------------------------- */
+    .footer {
+      background-color: #061326;
+      padding: 26px 16px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-line-1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    .footer-brand {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+      color: #ffffff;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-dot {
+      color: #8c9bb5;
+      font-size: 0.85rem;
+    }
+
+    .footer-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(0.72rem, 3.1vw, 0.9rem);
+      color: #9ba8bf;
+    }
+
+    .footer-line-2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(0.7rem, 2.9vw, 0.84rem);
+      color: #8c9bb5;
+      line-height: 1.45;
+      width: 100%;
+    }
+
+    .footer-lanzawebs-row {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 6px;
+      margin-top: -4px;
+      margin-bottom: 4px;
+    }
+
+    .lanzawebs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.92;
+    }
+
+    .lanzawebs-text {
+      display: inline-flex;
+      align-items: baseline;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+    }
+
+    .lanzawebs-by {
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-right: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .lanzawebs-main {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .lanzawebs-icon {
+      width: 22px;
+      height: 22px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .footer-copyright {
+      width: 100%;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(155, 168, 191, 0.75);
+      letter-spacing: 0.01em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABECERA IDÉNTICA A LA PÁGINA ANTERIOR -->
+  <header class="navbar">
+    <a href="index.html" class="navbar-title">
+      Pagina Oficial EPFAR
+    </a>
+    <div class="navbar-actions">
+      <button class="icon-btn" type="button" aria-label="Buscar"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <button class="icon-btn" type="button" aria-label="Menú"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Botón rápido para regresar al inicio -->
+    <a href="index.html" class="back-link">⬅ Volver al inicio</a>
+
+    <!-- 1. SECCIÓN FOTOS (CARRUSEL AL COMIENZO DE LA PÁGINA) -->
+    <div class="section-header">
+      <h2 class="section-title">SECCIÓN FOTOS</h2>
+    </div>
+
+    <div class="carousel-wrapper" id="photoCarousel">
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Foto 1 (Podés cambiar el src por tus fotos del torneo a medida que las subas) -->
+        <div class="carousel-slide">
+          <img src="image.png.JPG" alt="Copa Fair Play 2026 - Foto 1" style="object-fit: contain; padding: 14px; background: #ffffff;" />
+        </div>
+        <!-- Foto 2 -->
+        <div class="carousel-slide">
+          <img src="image_4.png.jpg" alt="EPFAR Delegación - Foto 2" style="object-fit: contain; padding: 14px; background: #ffffff;" />
+        </div>
+        <!-- Foto 3 (Lista para que pongas otra foto cuando quieras) -->
+        <div class="carousel-slide">
+          <img src="foto3.jpg" onerror="this.src='image.png.JPG'; this.style.objectFit='contain'; this.style.background='#ffffff';" alt="Foto 3" />
+        </div>
+      </div>
+
+      <button class="carousel-btn prev" type="button" onclick="moveSlide(-1)" aria-label="Foto anterior">❮</button>
+      <button class="carousel-btn next" type="button" onclick="moveSlide(1)" aria-label="Siguiente foto">❯</button>
+
+      <div class="carousel-dots" id="carouselDots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+      </div>
+    </div>
+
+    <!-- 2. PLANTILLAS EPFAR SELECCIONADO SUB15 Y SUB17 -->
+    <div class="squads-container">
+
+      <!-- RECTÁNGULO AZUL SUB 15 -->
+      <div class="squad-box" id="sub15Box">
+        <button class="squad-trigger" type="button" onclick="toggleSquad('sub15Box')">
+          <span>PLANTILLA EPFAR SELECCIONADO SUB15:</span>
+          <span class="squad-arrow">⬇️</span>
+        </button>
+        <div class="squad-list-wrapper">
+          <ol class="squad-list">
+            <li><span class="player-name">1. SANTINO PEREZ</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">2. BENJAMIN SOSA</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">3. ALEXIS MARTIN</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">4. FERMIN NICOLAS GALLEGO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">5. FACUNDO CARDINI</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">6. JOAQUIN JAVIER TORRES</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">7. GUIDO DANIA</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">8. THIAGO CHIAPELLO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">9. SANTINO COGNINI</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">10. FELIPE BASSAROTTO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">11. MATEO FERMIN BERTON</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">12. THIAGO BENITEZ SOSA</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">13. FRANCISCO RAVEL</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">14. GIOVANNI ROSSI</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">15. JUAN MANUEL MARTINEZ</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">16. FABIAN SOSA</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">17. SANTINO NICOLAS SANCHEZ</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">18. BAUTISTA EZEQUIEL GARRAZA PASTEN</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">19. RENZO MONS SURBANO</span> <span class="player-country">— Argentino</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- RECTÁNGULO AZUL SUB 17 -->
+      <div class="squad-box" id="sub17Box">
+        <button class="squad-trigger" type="button" onclick="toggleSquad('sub17Box')">
+          <span>PLANTILLA EPFAR SELECCIONADO SUB17:</span>
+          <span class="squad-arrow">⬇️</span>
+        </button>
+        <div class="squad-list-wrapper">
+          <ol class="squad-list">
+            <li><span class="player-name">1. ENZO URIEL CANO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">2. BENJAMIN ALVAREZ</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">3. ISAIAS IGNACIO MEDINA</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">4. MARTIN ANDRES TOVO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">5. RODRIGO ALEJO ROMAN ANDINO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">6. AUGUSTO TIRONE PROLA</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">7. RODRIGO DANIEL DE ARMAS</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">8. SANTIAGO BENJAMIN MEDERO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">9. JAVIER GAVOTTI</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">10. AGUSTIN BAEZ</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">11. EZEQUIEL CASAS</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">12. EZEQUIEL GIUDICI DOMINGO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">13. AXEL RAUL REPOLLO</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">14. SANTIAGO OSCAR PEREZ CHARIANI</span> <span class="player-country">— Argentino</span></li>
+            <li><span class="player-name">15. CARLOS LEONARDO GIANFRANCESCO</span> <span class="player-country">— Argentino</span></li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. CANALES DE TRANSMISIÓN EN VIVO -->
+    <div class="section-header">
+      <h2 class="section-title">CANALES DE TRANSMISION EN VIVO:</h2>
+    </div>
+
+    <div class="channels-list">
+
+      <!-- INSTAGRAM: lospibes.enbrasil -->
+      <a href="https://www.instagram.com/lospibesen.brasil?psln=ZHZ4d245dXFpNXVn" target="_blank" rel="noopener noreferrer" class="channel-btn channel-instagram">
+        <div class="channel-left">
+          <div class="channel-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          <div class="channel-text">
+            <span class="channel-label-small">Transmisión en Vivo</span>
+            <span>lospibes.enbrasil (mas probable) (INSTAGRAM)</span>
+          </div>
+        </div>
+        <div class="channel-arrow">➔</div>
+      </a>
+
+      <!-- YOUTUBE: TV FAIR PLAY -->
+      <a href="https://youtube.com/@tvfairplayfloripa?si=66rHUwE2Rk7Tknwe" target="_blank" rel="noopener noreferrer" class="channel-btn channel-youtube">
+        <div class="channel-left">
+          <div class="channel-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <div class="channel-text">
+            <span class="channel-label-small">Canal Oficial del Torneo</span>
+            <span>TV FAIR PLAY (YOUTUBE)</span>
+          </div>
+        </div>
+        <div class="channel-arrow">➔</div>
+      </a>
+
+    </div>
+
+  </main>
+
+  <!-- PIE DE PÁGINA IDÉNTICO A LA PÁGINA ANTERIOR -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-line-1">
+        <span class="footer-brand">EPFAR</span>
+        <span class="footer-dot">•</span>
+        <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
+      </div>
+      <div class="footer-line-2">
+        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe |<br>
+        Dir. Hernán Ojeda
+      </div>
+
+      <!-- Logo byLanzaWebs sin fondo blanco ubicado al costado derecho -->
+      <div class="footer-lanzawebs-row">
+        <div class="lanzawebs-badge" aria-label="byLanzaWebs">
+          <span class="lanzawebs-text">
+            <span class="lanzawebs-by">by</span><span class="lanzawebs-main">LanzaWebs</span>
+          </span>
+          <svg class="lanzawebs-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.8" />
+            <line x1="6.8" y1="28.2" x2="21.5" y2="14.5" stroke="currentColor" stroke-width="2" />
+            <polygon points="26.2,10.2 16.5,13.2 22.8,19.8" fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Derechos reservados debajo de todo -->
+      <div class="footer-copyright">
+        EPFAR © 2026 Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS PARA EL CARRUSEL DE FOTOS Y LOS DESPLEGABLES DE PLANTILLAS -->
+  <script>
+    // Desplegable de Plantillas Sub15 y Sub17
+    function toggleSquad(boxId) {
+      const box = document.getElementById(boxId);
+      box.classList.toggle('open');
+    }
+
+    // Carrusel de Fotos
+    let currentSlide = 0;
+    const track = document.getElementById('carouselTrack');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = dots.length;
+
+    function updateCarousel() {
+      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+    }
+
+    function moveSlide(direction) {
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+
+    // Soporte para deslizar con el dedo en celulares
+    let startX = 0;
+    const carousel = document.getElementById('photoCarousel');
+    carousel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+    carousel.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 40) moveSlide(1);
+      if (endX - startX > 40) moveSlide(-1);
+    });
+  </script>
+
+</body>
+</html>
