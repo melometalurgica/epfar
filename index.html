@@ -14,8 +14,8 @@
   <style>
     :root {
       --navy-header: #071936;
-      --blue-card: #0c3b87;
-      --blue-card-hover: #0f48a6;
+      --blue-card: #093170;
+      --blue-card-hover: #0b3b85;
       --orange-accent: #f26522;
       --text-dark: #111827;
     }
@@ -29,27 +29,18 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-dark);
-      /* Fondo blanco texturizado idéntico al de la foto2 y la publicación de Copa Fair Play */
       background-color: #f9f9fb;
+      /* FONDO BLANCO: Carga el nombre exacto de tu archivo en GitHub */
       background-image: 
-        /* Intenta cargar tu foto del fondo si está subida */
         url('image_6.png.PNG'),
-        /* Recreación exacta de los paneles blancos diagonales y micro-líneas sutiles de la foto 2 */
         linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(242, 243, 247, 0.4) 48%, rgba(230, 232, 238, 0.7) 48.3%, rgba(252, 252, 254, 0.95) 100%),
-        linear-gradient(45deg, transparent 60%, rgba(232, 234, 240, 0.6) 60.2%, rgba(248, 249, 252, 0.8) 100%),
-        repeating-linear-gradient(
-          -45deg,
-          #fbfbfc 0px,
-          #fbfbfc 4px,
-          #f3f4f7 4px,
-          #f3f4f7 8px
-        );
-      background-size: cover, 100% 100%, 100% 100%, auto;
+        repeating-linear-gradient(-45deg, #fbfbfc 0px, #fbfbfc 4px, #f3f4f7 4px, #f3f4f7 8px);
+      background-size: cover, 100% 100%, auto;
       background-attachment: fixed;
       min-height: 100vh;
     }
 
-    /* CABECERA SUPERIOR EN AZUL MARINO (STICKY EN TODO EL MOVIMIENTO) */
+    /* CABECERA SUPERIOR EN AZUL MARINO */
     .navbar {
       position: sticky;
       top: 0;
@@ -96,35 +87,14 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: background 0.2s ease, transform 0.15s ease;
     }
 
-    .icon-btn:hover {
-      background: rgba(255, 255, 255, 0.18);
-      transform: translateY(-1px);
-    }
-
-    .icon-btn svg {
-      width: 20px;
-      height: 20px;
-      stroke: currentColor;
-      stroke-width: 2.2;
-      fill: none;
-    }
-
-    /* TIRA DE INGRESO NEGRA CON FONDO DIFUMINADO QUE DEJA VER EL BLANCO DE ATRÁS */
+    /* TIRA DE INGRESO NEGRA DIFUMINADA */
     .hero-strip {
       position: relative;
       width: 100%;
       padding: 28px 18px 52px;
-      /* Negro con difuminado suave hacia el blanco texturizado original de atrás */
-      background: linear-gradient(
-        180deg,
-        rgba(8, 11, 18, 0.96) 0%,
-        rgba(12, 16, 24, 0.88) 58%,
-        rgba(18, 23, 34, 0.42) 84%,
-        rgba(249, 249, 251, 0) 100%
-      );
+      background: linear-gradient(180deg, rgba(8, 11, 18, 0.96) 0%, rgba(12, 16, 24, 0.88) 58%, rgba(18, 23, 34, 0.42) 84%, rgba(249, 249, 251, 0) 100%);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
@@ -154,7 +124,6 @@
       border-radius: 999px;
       font-size: 0.62rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
       color: var(--orange-accent);
       text-transform: uppercase;
       margin-bottom: 8px;
@@ -165,87 +134,57 @@
       height: 6px;
       background-color: var(--orange-accent);
       border-radius: 50%;
-      flex-shrink: 0;
     }
 
-    /* Título EPFAR en Clash Display */
     .hero-title {
       font-family: 'Clash Display', sans-serif;
       font-weight: 700;
       font-size: clamp(1.75rem, 5vw, 2.65rem);
       color: #ffffff;
-      letter-spacing: 0.02em;
       line-height: 1.05;
       margin-bottom: 8px;
     }
 
-    /* Subtítulo descriptivo */
     .hero-subtitle {
       border-left: 3px solid var(--orange-accent);
       padding-left: 10px;
       font-size: clamp(0.75rem, 2.3vw, 0.92rem);
       line-height: 1.42;
       color: rgba(255, 255, 255, 0.92);
-      max-width: 500px;
     }
 
-    .hero-subtitle strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
+    .hero-subtitle strong { color: #ffffff; font-weight: 600; }
+    .hero-subtitle .director-highlight { color: var(--orange-accent); font-weight: 600; }
 
-    .hero-subtitle .director-highlight {
-      color: var(--orange-accent);
-      font-weight: 600;
-    }
-
-    /* Costado derecho: Logo de EPFAR con sombra */
-    .hero-logo-side {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
+    .hero-logo-side { flex-shrink: 0; }
     .hero-logo-card {
       background: #ffffff;
       padding: 8px 10px;
       border-radius: 14px;
-      box-shadow: 
-        0 14px 28px rgba(0, 0, 0, 0.65),
-        0 0 18px rgba(242, 101, 34, 0.25);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.65), 0 0 18px rgba(242,101,34,0.25);
     }
-
     .hero-logo-card img {
       width: clamp(100px, 26vw, 185px);
       height: auto;
       display: block;
-      object-fit: contain;
     }
 
-    /* SECCIÓN DEBAJO DEL INGRESO: PARTICIPACIONES */
+    /* SECCIÓN PARTICIPACIONES */
     .main-content {
       max-width: 980px;
       margin: 0 auto;
       padding: 12px 18px 60px;
     }
 
-    .section-header {
-      margin-bottom: 16px;
-    }
-
-    /* "Participaciones" en Space Grotesk Bold */
+    .section-header { margin-bottom: 20px; }
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: clamp(1.35rem, 4vw, 1.85rem);
       color: #0b1933;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
       display: inline-block;
-      position: relative;
     }
-
     .section-title::after {
       content: "";
       display: block;
@@ -256,161 +195,198 @@
       margin-top: 4px;
     }
 
-    /* RECTÁNGULO AZUL INTERACTIVO PARA COPA FAIR PLAY 2026 BRASIL */
-    .participation-card {
+    /* NUEVO DISEÑO VERTICAL DE LA TARJETA (FOTO 2) */
+    .participation-card-vertical {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      flex-direction: column;
+      background: var(--blue-card);
+      border-radius: 20px;
+      padding: 24px;
       text-decoration: none;
-      background: linear-gradient(135deg, #092c66 0%, var(--blue-card) 60%, #114ca8 100%);
-      color: #ffffff;
-      padding: 16px 18px;
-      border-radius: 16px;
-      box-shadow: 0 12px 26px rgba(9, 44, 102, 0.22);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      box-shadow: 0 16px 36px rgba(9, 44, 102, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s ease;
+    }
+    .participation-card-vertical:hover {
+      transform: translateY(-3px);
+      background: var(--blue-card-hover);
     }
 
-    .participation-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 32px rgba(9, 44, 102, 0.32);
-    }
-
-    .card-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .cup-logo-wrapper {
-      width: 62px;
-      height: 62px;
+    /* Cuadradito blanco del logo */
+    .card-logo-box {
       background: #ffffff;
-      border-radius: 12px;
-      padding: 4px;
+      width: 86px;
+      height: 86px;
+      border-radius: 18px;
+      padding: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      margin-bottom: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
-
-    .cup-logo-wrapper img {
+    .card-logo-box img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
 
-    .card-info {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .card-tag {
-      font-size: 0.68rem;
+    /* Etiqueta Sede Brasil */
+    .card-location-pill {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 0.7rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
       color: #ffd166;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      align-self: flex-start;
     }
 
-    .card-title {
+    /* Título Copa Fair Play */
+    .card-main-title {
       font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
       font-weight: 700;
-      font-size: clamp(1rem, 3.4vw, 1.35rem);
       color: #ffffff;
-      line-height: 1.2;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      text-align: left;
     }
 
-    .card-sub {
-      font-size: 0.76rem;
-      color: rgba(255, 255, 255, 0.85);
+    /* Cuadrícula de botones 2x2 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .grid-btn {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 10px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.75rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .grid-btn.live {
+      background: rgba(239, 35, 60, 0.15);
+      border-color: rgba(239, 35, 60, 0.3);
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #ef233c;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #ef233c;
     }
 
-    .card-arrow {
+    /* Botón blanco Ingresar al Torneo */
+    .btn-ingresar {
+      background: #ffffff;
+      color: var(--blue-card);
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.14);
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      flex-shrink: 0;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .btn-icon {
+      background: #a3bced;
+      color: var(--blue-card);
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- CABECERA DE PÁGINA EN AZUL MARINO -->
+  <!-- CABECERA -->
   <header class="navbar">
     <a href="#" class="navbar-logo" aria-label="Inicio EPFAR">
-      <img src="logo-epfar.png" alt="Logo EPFAR" />
+      <!-- Nombre exacto del logo EPFAR -->
+      <img src="image_4.png.jpg" alt="Logo EPFAR" />
     </a>
-
     <div class="navbar-actions">
-      <button class="icon-btn" type="button" aria-label="Buscar">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </button>
-
-      <button class="icon-btn" type="button" aria-label="Menú">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
+      <button class="icon-btn" type="button"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <button class="icon-btn" type="button"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
     </div>
   </header>
 
-  <!-- TIRA DE INGRESO NEGRA DIFUMINADA -->
+  <!-- INGRESO -->
   <section class="hero-strip">
     <div class="hero-container">
       <div class="hero-text-side">
-        <div class="badge-ligas">
-          <span class="badge-dot"></span>
-          LIGAS REGIONALES ARGENTINAS
-        </div>
+        <div class="badge-ligas"><span class="badge-dot"></span>LIGAS REGIONALES ARGENTINAS</div>
         <h1 class="hero-title">EPFAR</h1>
         <p class="hero-subtitle">
-          <strong>EPFAR</strong> es un Centro de Entrenamiento de Alto Rendimiento que se encuentra ubicado en el <strong>Partido de Gral. Villegas, en Santa Regina</strong>, y tiene conexión con <strong>Rosario, Santa Fe</strong>. Es dirigida por <span class="director-highlight">Hernán Ojeda</span>.
+          <strong>EPFAR</strong> es un Centro de Entrenamiento de Alto Rendimiento ubicado en el <strong>Partido de Gral. Villegas, Santa Regina</strong>, con conexión en <strong>Rosario, Santa Fe</strong>. Dirigida por <span class="director-highlight">Hernán Ojeda</span>.
         </p>
       </div>
-
       <div class="hero-logo-side">
         <div class="hero-logo-card">
-          <img src="logo-epfar.png" alt="EPFAR Entrenamiento de Alto Rendimiento" />
+          <!-- Nombre exacto del logo EPFAR -->
+          <img src="image_4.png.jpg" alt="EPFAR" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN PARTICIPACIONES -->
+  <!-- PARTICIPACIONES (DISEÑO FOTO 2) -->
   <main class="main-content">
     <div class="section-header">
       <h2 class="section-title">PARTICIPACIONES</h2>
     </div>
 
-    <a href="copa-fair-play-2026.html" class="participation-card">
-      <div class="card-left">
-        <div class="cup-logo-wrapper">
-          <img src="copa.png" alt="Logo Copa Fair Play 2026" />
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Torneo Internacional • Florianópolis, SC</span>
-          <span class="card-title">COPA FAIR PLAY 2026 BRASIL</span>
-          <span class="card-sub">Plantel EPFAR • Fixture • Partidos • Transmisión en vivo</span>
-        </div>
+    <!-- TARJETA VERTICAL COPA FAIR PLAY -->
+    <a href="copa-fair-play-2026.html" class="participation-card-vertical">
+      
+      <!-- Logo de la Copa -->
+      <div class="card-logo-box">
+        <!-- Nombre exacto del logo Copa Fair Play -->
+        <img src="image.png.JPG" alt="Copa Fair Play 2026" />
       </div>
 
-      <div class="card-arrow" aria-hidden="true">
-        ➡️
+      <!-- Etiqueta Sede -->
+      <div class="card-location-pill">
+        🇧🇷 SEDE BRASIL • TORNEO INTERNACIONAL
       </div>
+
+      <!-- Título Principal -->
+      <h3 class="card-main-title">COPA FAIR PLAY 2026<br>BRASIL</h3>
+
+      <!-- Cuadrícula de características 2x2 -->
+      <div class="card-grid">
+        <div class="grid-btn">👥 Jugadores EPFAR</div>
+        <div class="grid-btn">📅 Fixture Completo</div>
+        <div class="grid-btn">⚽ Partidos a Jugar</div>
+        <div class="grid-btn live"><span class="live-dot"></span> Transmisión en Vivo</div>
+      </div>
+
+      <!-- Botón de Ingreso -->
+      <div class="btn-ingresar">
+        INGRESAR AL TORNEO 
+        <div class="btn-icon">➔</div>
+      </div>
+
     </a>
   </main>
 
