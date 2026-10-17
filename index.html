@@ -46,28 +46,34 @@
       top: 0;
       z-index: 1000;
       background-color: var(--navy-header);
-      padding: 10px 18px;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     }
 
-    .navbar-logo {
+    /* TEXTO EN LA CABECERA: "Pagina Oficial EPFAR" */
+    .navbar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.9rem, 2.8vw, 1.15rem);
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
-      background: #ffffff;
-      padding: 4px 10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-      text-decoration: none;
+      gap: 8px;
     }
 
-    .navbar-logo img {
-      height: 34px;
-      width: auto;
-      object-fit: contain;
-      display: block;
+    .navbar-title::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: var(--orange-accent);
+      border-radius: 50%;
     }
 
     .navbar-actions {
@@ -169,11 +175,36 @@
       display: block;
     }
 
+    /* SECCIÓN VIDEO EXPLICATIVO */
+    .video-section {
+      max-width: 980px;
+      margin: 15px auto 0;
+      padding: 0 18px;
+    }
+
+    .video-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #000000;
+      border: 3px solid #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .promo-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     /* SECCIÓN PARTICIPACIONES */
     .main-content {
       max-width: 980px;
       margin: 0 auto;
-      padding: 12px 18px 60px;
+      padding: 30px 18px 60px;
     }
 
     .section-header { margin-bottom: 20px; }
@@ -195,7 +226,7 @@
       margin-top: 4px;
     }
 
-    /* NUEVO DISEÑO VERTICAL DE LA TARJETA (FOTO 2) */
+    /* TARJETA VERTICAL DE COPA FAIR PLAY */
     .participation-card-vertical {
       display: flex;
       flex-direction: column;
@@ -212,7 +243,6 @@
       background: var(--blue-card-hover);
     }
 
-    /* Cuadradito blanco del logo */
     .card-logo-box {
       background: #ffffff;
       width: 86px;
@@ -231,7 +261,6 @@
       object-fit: contain;
     }
 
-    /* Etiqueta Sede Brasil */
     .card-location-pill {
       display: inline-flex;
       align-items: center;
@@ -247,7 +276,6 @@
       align-self: flex-start;
     }
 
-    /* Título Copa Fair Play */
     .card-main-title {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.6rem;
@@ -258,7 +286,6 @@
       text-align: left;
     }
 
-    /* Cuadrícula de botones 2x2 */
     .card-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -289,7 +316,6 @@
       box-shadow: 0 0 8px #ef233c;
     }
 
-    /* Botón blanco Ingresar al Torneo */
     .btn-ingresar {
       background: #ffffff;
       color: var(--blue-card);
@@ -319,11 +345,10 @@
 </head>
 <body>
 
-  <!-- CABECERA -->
+  <!-- CABECERA CON TEXTO "PAGINA OFICIAL EPFAR" -->
   <header class="navbar">
-    <a href="#" class="navbar-logo" aria-label="Inicio EPFAR">
-      <!-- Nombre exacto del logo EPFAR -->
-      <img src="image_4.png.jpg" alt="Logo EPFAR" />
+    <a href="#" class="navbar-title">
+      Pagina Oficial EPFAR
     </a>
     <div class="navbar-actions">
       <button class="icon-btn" type="button"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
@@ -343,14 +368,23 @@
       </div>
       <div class="hero-logo-side">
         <div class="hero-logo-card">
-          <!-- Nombre exacto del logo EPFAR -->
           <img src="image_4.png.jpg" alt="EPFAR" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PARTICIPACIONES (DISEÑO FOTO 2) -->
+  <!-- ESPACIO DE VIDEO EXPLICATIVO -->
+  <section class="video-section">
+    <div class="video-container">
+      <video controls class="promo-video">
+        <source src="tu-video-aqui.mp4" type="video/mp4">
+        Tu navegador no soporta el formato de video.
+      </video>
+    </div>
+  </section>
+
+  <!-- PARTICIPACIONES -->
   <main class="main-content">
     <div class="section-header">
       <h2 class="section-title">PARTICIPACIONES</h2>
@@ -359,21 +393,16 @@
     <!-- TARJETA VERTICAL COPA FAIR PLAY -->
     <a href="copa-fair-play-2026.html" class="participation-card-vertical">
       
-      <!-- Logo de la Copa -->
       <div class="card-logo-box">
-        <!-- Nombre exacto del logo Copa Fair Play -->
         <img src="image.png.JPG" alt="Copa Fair Play 2026" />
       </div>
 
-      <!-- Etiqueta Sede -->
       <div class="card-location-pill">
         🇧🇷 SEDE BRASIL • TORNEO INTERNACIONAL
       </div>
 
-      <!-- Título Principal -->
       <h3 class="card-main-title">COPA FAIR PLAY 2026<br>BRASIL</h3>
 
-      <!-- Cuadrícula de características 2x2 -->
       <div class="card-grid">
         <div class="grid-btn">👥 Jugadores EPFAR</div>
         <div class="grid-btn">📅 Fixture Completo</div>
@@ -381,7 +410,6 @@
         <div class="grid-btn live"><span class="live-dot"></span> Transmisión en Vivo</div>
       </div>
 
-      <!-- Botón de Ingreso -->
       <div class="btn-ingresar">
         INGRESAR AL TORNEO 
         <div class="btn-icon">➔</div>
