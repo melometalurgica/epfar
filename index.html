@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EPFAR | Centro de Entrenamiento de Alto Rendimiento</title>
   
-  <!-- Tipografías: Clash Display y Space Grotesk -->
+  <!-- Tipografías: Clash Display, Space Grotesk e Inter -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -338,11 +338,11 @@
     }
 
     /* ---------------------------------------------------- */
-    /* PIE DE PÁGINA IDÉNTICO A LA FOTO 2 (IMAGEN 20)       */
+    /* PIE DE PÁGINA CON LOGO byLanzaWebs Y COPYRIGHT       */
     /* ---------------------------------------------------- */
     .footer {
       background-color: #061326;
-      padding: 26px 14px 32px;
+      padding: 26px 16px 24px;
       text-align: center;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       margin-top: auto;
@@ -354,10 +354,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    /* Primera fila en un solo renglón: EPFAR • Centro de Entrenamiento de Alto Rendimiento */
+    /* Primera fila: EPFAR • Centro de Entrenamiento de Alto Rendimiento */
     .footer-line-1 {
       display: flex;
       align-items: center;
@@ -387,13 +387,78 @@
       color: #9ba8bf;
     }
 
-    /* Segunda fila centrada en dos líneas */
+    /* Segunda fila centrada */
     .footer-line-2 {
       font-family: 'Inter', sans-serif;
       font-weight: 400;
       font-size: clamp(0.7rem, 2.9vw, 0.84rem);
       color: #8c9bb5;
       line-height: 1.45;
+      width: 100%;
+    }
+
+    /* Contenedor para ubicar byLanzaWebs al costado derecho (donde marcaste en verde) */
+    .footer-lanzawebs-row {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 6px;
+      margin-top: -4px;
+      margin-bottom: 4px;
+    }
+
+    /* Recreación transparente exacta del logo by LanzaWebs */
+    .lanzawebs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.92;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .lanzawebs-badge:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .lanzawebs-text {
+      display: inline-flex;
+      align-items: baseline;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+    }
+
+    .lanzawebs-by {
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-right: 3px;
+      letter-spacing: -0.01em;
+    }
+
+    .lanzawebs-main {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .lanzawebs-icon {
+      width: 22px;
+      height: 22px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    /* Línea final de derechos reservados */
+    .footer-copyright {
+      width: 100%;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(155, 168, 191, 0.75);
+      letter-spacing: 0.01em;
     }
   </style>
 </head>
@@ -472,16 +537,36 @@
     </a>
   </main>
 
-  <!-- PIE DE PÁGINA IDÉNTICO A LA FOTO 2 -->
+  <!-- PIE DE PÁGINA -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-line-1">
         <span class="footer-brand">EPFAR</span>
+        <span class="footer-dot">•</span>
         <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
       </div>
       <div class="footer-line-2">
         Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe |<br>
         Dir. Hernán Ojeda
+      </div>
+
+      <!-- Logo byLanzaWebs sin fondo blanco ubicado al costado derecho -->
+      <div class="footer-lanzawebs-row">
+        <div class="lanzawebs-badge" aria-label="by LanzaWebs">
+          <span class="lanzawebs-text">
+            <span class="lanzawebs-by">by</span><span class="lanzawebs-main">LanzaWebs</span>
+          </span>
+          <svg class="lanzawebs-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.8" />
+            <line x1="6.8" y1="28.2" x2="21.5" y2="14.5" stroke="currentColor" stroke-width="2" />
+            <polygon points="26.2,10.2 16.5,13.2 22.8,19.8" fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Derechos reservados debajo de todo -->
+      <div class="footer-copyright">
+        EPFAR © 2026 Todos los derechos reservados.
       </div>
     </div>
   </footer>
