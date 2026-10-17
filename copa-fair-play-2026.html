@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Copa Fair Play 2026 Brasil | EPFAR</title>
   
-  <!-- Tipografías: Clash Display, Space Grotesk e Inter -->
+  <!-- Tipografías: Clash Display, Geist, Space Grotesk e Inter -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -41,7 +41,7 @@
       flex-direction: column;
     }
 
-    /* CABECERA SUPERIOR EN AZUL MARINO (IGUAL A LA ANTERIOR) */
+    /* CABECERA SUPERIOR EN AZUL MARINO */
     .navbar {
       position: sticky;
       top: 0;
@@ -100,24 +100,58 @@
       flex: 1;
     }
 
+    /* ESTILO DE FLECHA PERSONALIZADA (IGUAL A LA FOTO ENVIADA) */
+    .custom-arrow-box {
+      background-color: #a3bced;
+      color: #07255c;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, background-color 0.2s ease;
+    }
+
+    .custom-arrow-box svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+      display: block;
+    }
+
+    /* Variaciones de dirección de la flecha */
+    .arrow-left svg {
+      transform: rotate(180deg);
+    }
+
+    .arrow-down svg {
+      transform: rotate(90deg);
+      transition: transform 0.3s ease;
+    }
+
     /* BOTÓN VOLVER AL INICIO */
     .back-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 10px;
       text-decoration: none;
       color: var(--blue-card);
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       margin-bottom: 16px;
-      background: rgba(9, 49, 112, 0.08);
-      padding: 8px 14px;
-      border-radius: 10px;
-      transition: background 0.2s ease;
+      background: #ffffff;
+      padding: 6px 14px 6px 6px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(9, 49, 112, 0.08);
+      border: 1px solid rgba(9, 49, 112, 0.12);
+      transition: transform 0.2s ease;
     }
 
     .back-link:hover {
-      background: rgba(9, 49, 112, 0.15);
+      transform: translateX(-2px);
     }
 
     /* TÍTULOS DE SECCIÓN */
@@ -150,7 +184,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* 1. SECCIÓN FOTOS (CARRUSEL AL COMIENZO)              */
+    /* 1. SECCIÓN FOTOS (CARRUSEL DE 5 FOTOS)               */
     /* ---------------------------------------------------- */
     .carousel-wrapper {
       position: relative;
@@ -216,7 +250,7 @@
       display: flex;
       gap: 6px;
       z-index: 10;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.45);
       padding: 5px 10px;
       border-radius: 99px;
     }
@@ -236,7 +270,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* 2. PLANTILLAS SUB15 Y SUB17 (RECTÁNGULOS AZULES)     */
+    /* 2. PLANTILLAS SUB15 Y SUB17 (GEIST SEMIBOLD)         */
     /* ---------------------------------------------------- */
     .squads-container {
       display: flex;
@@ -253,22 +287,23 @@
       border: 1px solid rgba(9, 49, 112, 0.12);
     }
 
+    /* Fuente GEIST Semibold (Sans Neogrotesca) */
     .squad-trigger {
       width: 100%;
       background: linear-gradient(135deg, #092c66 0%, var(--blue-card) 60%, #114ca8 100%);
       color: #ffffff;
       border: none;
-      padding: 18px 20px;
+      padding: 16px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       cursor: pointer;
       text-align: left;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: clamp(0.92rem, 3.2vw, 1.15rem);
-      letter-spacing: 0.02em;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(0.9rem, 3.1vw, 1.12rem);
+      letter-spacing: -0.01em;
       transition: background 0.2s ease;
     }
 
@@ -276,21 +311,9 @@
       background: linear-gradient(135deg, #0b357a 0%, var(--blue-card-hover) 60%, #1558bf 100%);
     }
 
-    .squad-arrow {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.15);
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      font-size: 1rem;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
-
-    .squad-box.open .squad-arrow {
-      transform: rotate(180deg);
+    /* Gira la flecha hacia arriba cuando la lista está desplegada */
+    .squad-box.open .arrow-down svg {
+      transform: rotate(-90deg);
     }
 
     .squad-list-wrapper {
@@ -317,6 +340,7 @@
       border-radius: 10px;
       background: #f4f6fa;
       border-left: 4px solid var(--blue-card);
+      font-family: 'Geist', sans-serif;
       font-size: clamp(0.8rem, 2.7vw, 0.92rem);
       font-weight: 600;
       color: #111827;
@@ -328,7 +352,7 @@
 
     .player-name {
       color: #0b1933;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .player-country {
@@ -353,13 +377,13 @@
       align-items: center;
       justify-content: space-between;
       gap: 14px;
-      padding: 18px 20px;
+      padding: 16px 18px;
       border-radius: 16px;
       text-decoration: none;
       color: #ffffff;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(0.95rem, 3.2vw, 1.12rem);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -369,7 +393,7 @@
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
     }
 
-    /* Rectángulo con los colores oficiales de Instagram */
+    /* Rectángulo con los colores de Instagram */
     .channel-instagram {
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
       border: 1px solid rgba(255, 255, 255, 0.25);
@@ -413,22 +437,10 @@
     .channel-label-small {
       font-family: 'Inter', sans-serif;
       font-size: 0.68rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: rgba(255, 255, 255, 0.88);
-    }
-
-    .channel-arrow {
-      background: rgba(255, 255, 255, 0.2);
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     /* ---------------------------------------------------- */
@@ -560,27 +572,40 @@
 
   <main class="main-content">
 
-    <!-- Botón rápido para regresar al inicio -->
-    <a href="index.html" class="back-link">⬅ Volver al inicio</a>
+    <!-- Botón rápido para regresar al inicio con la flecha original -->
+    <a href="index.html" class="back-link">
+      <span class="custom-arrow-box arrow-left">
+        <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+      </span>
+      <span>Volver al inicio</span>
+    </a>
 
-    <!-- 1. SECCIÓN FOTOS (CARRUSEL AL COMIENZO DE LA PÁGINA) -->
+    <!-- 1. SECCIÓN FOTOS (CARRUSEL CON LAS 5 FOTOS EN ORDEN) -->
     <div class="section-header">
       <h2 class="section-title">SECCIÓN FOTOS</h2>
     </div>
 
     <div class="carousel-wrapper" id="photoCarousel">
       <div class="carousel-track" id="carouselTrack">
-        <!-- Foto 1 (Podés cambiar el src por tus fotos del torneo a medida que las subas) -->
+        <!-- 1. SUB17.jpg -->
         <div class="carousel-slide">
-          <img src="image.png.JPG" alt="Copa Fair Play 2026 - Foto 1" style="object-fit: contain; padding: 14px; background: #ffffff;" />
+          <img src="SUB17.jpg" alt="Seleccionado Sub 17 EPFAR" />
         </div>
-        <!-- Foto 2 -->
+        <!-- 2. SUB15.jpg -->
         <div class="carousel-slide">
-          <img src="image_4.png.jpg" alt="EPFAR Delegación - Foto 2" style="object-fit: contain; padding: 14px; background: #ffffff;" />
+          <img src="SUB15.jpg" alt="Seleccionado Sub 15 EPFAR" />
         </div>
-        <!-- Foto 3 (Lista para que pongas otra foto cuando quieras) -->
+        <!-- 3. FOTO10.JPG -->
         <div class="carousel-slide">
-          <img src="foto3.jpg" onerror="this.src='image.png.JPG'; this.style.objectFit='contain'; this.style.background='#ffffff';" alt="Foto 3" />
+          <img src="FOTO10.JPG" alt="Copa Fair Play - Foto 10" />
+        </div>
+        <!-- 4. FOTO11.jpg -->
+        <div class="carousel-slide">
+          <img src="FOTO11.jpg" alt="Copa Fair Play - Foto 11" />
+        </div>
+        <!-- 5. FOTO12.JPG -->
+        <div class="carousel-slide">
+          <img src="FOTO12.JPG" alt="Copa Fair Play - Foto 12" />
         </div>
       </div>
 
@@ -591,6 +616,8 @@
         <span class="dot active" onclick="goToSlide(0)"></span>
         <span class="dot" onclick="goToSlide(1)"></span>
         <span class="dot" onclick="goToSlide(2)"></span>
+        <span class="dot" onclick="goToSlide(3)"></span>
+        <span class="dot" onclick="goToSlide(4)"></span>
       </div>
     </div>
 
@@ -600,8 +627,10 @@
       <!-- RECTÁNGULO AZUL SUB 15 -->
       <div class="squad-box" id="sub15Box">
         <button class="squad-trigger" type="button" onclick="toggleSquad('sub15Box')">
-          <span>PLANTILLA EPFAR SELECCIONADO SUB15:</span>
-          <span class="squad-arrow">⬇️</span>
+          <span>PLANTILLA EPFAR SELECCIONADO SUB15🇦🇷:</span>
+          <span class="custom-arrow-box arrow-down">
+            <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+          </span>
         </button>
         <div class="squad-list-wrapper">
           <ol class="squad-list">
@@ -631,8 +660,10 @@
       <!-- RECTÁNGULO AZUL SUB 17 -->
       <div class="squad-box" id="sub17Box">
         <button class="squad-trigger" type="button" onclick="toggleSquad('sub17Box')">
-          <span>PLANTILLA EPFAR SELECCIONADO SUB17:</span>
-          <span class="squad-arrow">⬇️</span>
+          <span>PLANTILLA EPFAR SELECCIONADO SUB17🇦🇷:</span>
+          <span class="custom-arrow-box arrow-down">
+            <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+          </span>
         </button>
         <div class="squad-list-wrapper">
           <ol class="squad-list">
@@ -673,11 +704,13 @@
             </svg>
           </div>
           <div class="channel-text">
-            <span class="channel-label-small">Transmisión en Vivo</span>
-            <span>lospibes.enbrasil (mas probable) (INSTAGRAM)</span>
+            <span class="channel-label-small">INSTAGRAM</span>
+            <span>lospibes.enbrasil</span>
           </div>
         </div>
-        <div class="channel-arrow">➔</div>
+        <span class="custom-arrow-box">
+          <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+        </span>
       </a>
 
       <!-- YOUTUBE: TV FAIR PLAY -->
@@ -693,7 +726,9 @@
             <span>TV FAIR PLAY (YOUTUBE)</span>
           </div>
         </div>
-        <div class="channel-arrow">➔</div>
+        <span class="custom-arrow-box">
+          <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+        </span>
       </a>
 
     </div>
