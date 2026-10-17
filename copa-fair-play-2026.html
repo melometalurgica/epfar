@@ -68,6 +68,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      position: relative;
     }
 
     .icon-btn {
@@ -91,6 +92,51 @@
       fill: none;
     }
 
+    /* MENÚ DESPLEGABLE DE LAS 3 RAYITAS */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background-color: var(--navy-header);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      width: 215px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 2000;
+    }
+
+    .dropdown-menu.open {
+      display: flex;
+    }
+
+    .dropdown-item {
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+      background-color: var(--blue-card);
+      color: #ffd166;
+    }
+
     /* CONTENEDOR PRINCIPAL */
     .main-content {
       max-width: 980px;
@@ -100,7 +146,6 @@
       flex: 1;
     }
 
-    /* ESTILO DE FLECHA PERSONALIZADA (IGUAL A LA FOTO ENVIADA) */
     .custom-arrow-box {
       background-color: #a3bced;
       color: #07255c;
@@ -121,17 +166,9 @@
       display: block;
     }
 
-    /* Variaciones de dirección de la flecha */
-    .arrow-left svg {
-      transform: rotate(180deg);
-    }
+    .arrow-left svg { transform: rotate(180deg); }
+    .arrow-down svg { transform: rotate(90deg); transition: transform 0.3s ease; }
 
-    .arrow-down svg {
-      transform: rotate(90deg);
-      transition: transform 0.3s ease;
-    }
-
-    /* BOTÓN VOLVER AL INICIO */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -147,22 +184,14 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(9, 49, 112, 0.08);
       border: 1px solid rgba(9, 49, 112, 0.12);
-      transition: transform 0.2s ease;
     }
 
-    .back-link:hover {
-      transform: translateX(-2px);
-    }
-
-    /* TÍTULOS DE SECCIÓN */
     .section-header {
       margin-bottom: 14px;
       margin-top: 26px;
     }
 
-    .section-header:first-of-type {
-      margin-top: 4px;
-    }
+    .section-header:first-of-type { margin-top: 4px; }
 
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
@@ -183,9 +212,7 @@
       margin-top: 4px;
     }
 
-    /* ---------------------------------------------------- */
-    /* 1. SECCIÓN FOTOS (CARRUSEL DE 5 FOTOS)               */
-    /* ---------------------------------------------------- */
+    /* CARRUSEL */
     .carousel-wrapper {
       position: relative;
       width: 100%;
@@ -219,7 +246,6 @@
       display: block;
     }
 
-    /* Controles del carrusel */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -269,9 +295,7 @@
       transform: scale(1.2);
     }
 
-    /* ---------------------------------------------------- */
-    /* 2. PLANTILLAS SUB15 Y SUB17 (GEIST SEMIBOLD)         */
-    /* ---------------------------------------------------- */
+    /* PLANTILLAS SUB15 Y SUB17 */
     .squads-container {
       display: flex;
       flex-direction: column;
@@ -287,7 +311,6 @@
       border: 1px solid rgba(9, 49, 112, 0.12);
     }
 
-    /* Fuente GEIST Semibold (Sans Neogrotesca) */
     .squad-trigger {
       width: 100%;
       background: linear-gradient(135deg, #092c66 0%, var(--blue-card) 60%, #114ca8 100%);
@@ -304,17 +327,9 @@
       font-weight: 600;
       font-size: clamp(0.9rem, 3.1vw, 1.12rem);
       letter-spacing: -0.01em;
-      transition: background 0.2s ease;
     }
 
-    .squad-trigger:hover {
-      background: linear-gradient(135deg, #0b357a 0%, var(--blue-card-hover) 60%, #1558bf 100%);
-    }
-
-    /* Gira la flecha hacia arriba cuando la lista está desplegada */
-    .squad-box.open .arrow-down svg {
-      transform: rotate(-90deg);
-    }
+    .squad-box.open .arrow-down svg { transform: rotate(-90deg); }
 
     .squad-list-wrapper {
       max-height: 0;
@@ -323,9 +338,7 @@
       background: #ffffff;
     }
 
-    .squad-box.open .squad-list-wrapper {
-      max-height: 1200px;
-    }
+    .squad-box.open .squad-list-wrapper { max-height: 1200px; }
 
     .squad-list {
       list-style: none;
@@ -350,21 +363,10 @@
       gap: 8px;
     }
 
-    .player-name {
-      color: #0b1933;
-      font-weight: 600;
-    }
+    .player-name { color: #0b1933; font-weight: 600; }
+    .player-country { color: #4b5563; font-weight: 500; font-size: 0.8rem; white-space: nowrap; }
 
-    .player-country {
-      color: #4b5563;
-      font-weight: 500;
-      font-size: 0.8rem;
-      white-space: nowrap;
-    }
-
-    /* ---------------------------------------------------- */
-    /* 3. CANALES DE TRANSMISIÓN EN VIVO                    */
-    /* ---------------------------------------------------- */
+    /* CANALES DE TRANSMISIÓN */
     .channels-list {
       display: flex;
       flex-direction: column;
@@ -385,32 +387,19 @@
       font-weight: 600;
       font-size: clamp(0.95rem, 3.2vw, 1.12rem);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .channel-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
-    }
-
-    /* Rectángulo con los colores de Instagram */
     .channel-instagram {
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
       border: 1px solid rgba(255, 255, 255, 0.25);
     }
 
-    /* Rectángulo en color rojo para YouTube */
     .channel-youtube {
       background: linear-gradient(135deg, #e52d27 0%, #b31217 100%);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .channel-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .channel-left { display: flex; align-items: center; gap: 12px; }
     .channel-icon {
       width: 38px;
       height: 38px;
@@ -421,19 +410,8 @@
       justify-content: center;
       flex-shrink: 0;
     }
-
-    .channel-icon svg {
-      width: 22px;
-      height: 22px;
-      fill: #ffffff;
-    }
-
-    .channel-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
+    .channel-icon svg { width: 22px; height: 22px; fill: #ffffff; }
+    .channel-text { display: flex; flex-direction: column; gap: 2px; }
     .channel-label-small {
       font-family: 'Inter', sans-serif;
       font-size: 0.68rem;
@@ -443,9 +421,7 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
-    /* ---------------------------------------------------- */
-    /* PIE DE PÁGINA (IDÉNTICO A LA PÁGINA ANTERIOR)        */
-    /* ---------------------------------------------------- */
+    /* PIE DE PÁGINA */
     .footer {
       background-color: #061326;
       padding: 26px 16px 24px;
@@ -480,11 +456,7 @@
       letter-spacing: 0.03em;
     }
 
-    .footer-dot {
-      color: #8c9bb5;
-      font-size: 0.85rem;
-    }
-
+    .footer-dot { color: #8c9bb5; font-size: 0.85rem; }
     .footer-desc {
       font-family: 'Inter', sans-serif;
       font-weight: 400;
@@ -519,32 +491,10 @@
       opacity: 0.92;
     }
 
-    .lanzawebs-text {
-      display: inline-flex;
-      align-items: baseline;
-      font-family: 'Inter', sans-serif;
-      line-height: 1;
-    }
-
-    .lanzawebs-by {
-      font-size: 0.65rem;
-      font-weight: 700;
-      margin-right: 0;
-      letter-spacing: -0.02em;
-    }
-
-    .lanzawebs-main {
-      font-size: 0.95rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-
-    .lanzawebs-icon {
-      width: 22px;
-      height: 22px;
-      display: block;
-      flex-shrink: 0;
-    }
+    .lanzawebs-text { display: inline-flex; align-items: baseline; font-family: 'Inter', sans-serif; line-height: 1; }
+    .lanzawebs-by { font-size: 0.65rem; font-weight: 700; margin-right: 0; letter-spacing: -0.02em; }
+    .lanzawebs-main { font-size: 0.95rem; font-weight: 800; letter-spacing: -0.04em; }
+    .lanzawebs-icon { width: 22px; height: 22px; display: block; flex-shrink: 0; }
 
     .footer-copyright {
       width: 100%;
@@ -559,20 +509,30 @@
 </head>
 <body>
 
-  <!-- CABECERA IDÉNTICA A LA PÁGINA ANTERIOR -->
+  <!-- CABECERA SIN LUPA Y CON MENÚ EN LAS 3 RAYITAS -->
   <header class="navbar">
     <a href="index.html" class="navbar-title">
       Pagina Oficial EPFAR
     </a>
     <div class="navbar-actions">
-      <button class="icon-btn" type="button" aria-label="Buscar"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
-      <button class="icon-btn" type="button" aria-label="Menú"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <button class="icon-btn" type="button" aria-label="Menú" onclick="toggleMenu(event)">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <a class="dropdown-item" href="index.html">INICIO</a>
+        <a class="dropdown-item" href="copa-fair-play-2026.html">TORNEOS</a>
+        <a class="dropdown-item" href="index.html#que-es-epfar">QUE ES EPFAR</a>
+      </nav>
     </div>
   </header>
 
   <main class="main-content">
 
-    <!-- Botón rápido para regresar al inicio con la flecha original -->
     <a href="index.html" class="back-link">
       <span class="custom-arrow-box arrow-left">
         <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
@@ -580,33 +540,17 @@
       <span>Volver al inicio</span>
     </a>
 
-    <!-- 1. SECCIÓN FOTOS (CARRUSEL CON LAS 5 FOTOS EN ORDEN) -->
     <div class="section-header">
       <h2 class="section-title">SECCIÓN FOTOS</h2>
     </div>
 
     <div class="carousel-wrapper" id="photoCarousel">
       <div class="carousel-track" id="carouselTrack">
-        <!-- 1. SUB17.jpg -->
-        <div class="carousel-slide">
-          <img src="SUB17.jpg" alt="Seleccionado Sub 17 EPFAR" />
-        </div>
-        <!-- 2. SUB15.jpg -->
-        <div class="carousel-slide">
-          <img src="SUB15.jpg" alt="Seleccionado Sub 15 EPFAR" />
-        </div>
-        <!-- 3. FOTO10.JPG -->
-        <div class="carousel-slide">
-          <img src="FOTO10.JPG" alt="Copa Fair Play - Foto 10" />
-        </div>
-        <!-- 4. FOTO11.jpg -->
-        <div class="carousel-slide">
-          <img src="FOTO11.jpg" alt="Copa Fair Play - Foto 11" />
-        </div>
-        <!-- 5. FOTO12.JPG -->
-        <div class="carousel-slide">
-          <img src="FOTO12.JPG" alt="Copa Fair Play - Foto 12" />
-        </div>
+        <div class="carousel-slide"><img src="SUB17.jpg" alt="Seleccionado Sub 17 EPFAR" /></div>
+        <div class="carousel-slide"><img src="SUB15.jpg" alt="Seleccionado Sub 15 EPFAR" /></div>
+        <div class="carousel-slide"><img src="FOTO10.JPG" alt="Copa Fair Play - Foto 10" /></div>
+        <div class="carousel-slide"><img src="FOTO11.jpg" alt="Copa Fair Play - Foto 11" /></div>
+        <div class="carousel-slide"><img src="FOTO12.JPG" alt="Copa Fair Play - Foto 12" /></div>
       </div>
 
       <button class="carousel-btn prev" type="button" onclick="moveSlide(-1)" aria-label="Foto anterior">❮</button>
@@ -621,10 +565,9 @@
       </div>
     </div>
 
-    <!-- 2. PLANTILLAS EPFAR SELECCIONADO SUB15 Y SUB17 -->
     <div class="squads-container">
 
-      <!-- RECTÁNGULO AZUL SUB 15 -->
+      <!-- SUB 15 -->
       <div class="squad-box" id="sub15Box">
         <button class="squad-trigger" type="button" onclick="toggleSquad('sub15Box')">
           <span>PLANTILLA EPFAR SELECCIONADO SUB15🇦🇷:</span>
@@ -657,7 +600,7 @@
         </div>
       </div>
 
-      <!-- RECTÁNGULO AZUL SUB 17 -->
+      <!-- SUB 17 -->
       <div class="squad-box" id="sub17Box">
         <button class="squad-trigger" type="button" onclick="toggleSquad('sub17Box')">
           <span>PLANTILLA EPFAR SELECCIONADO SUB17🇦🇷:</span>
@@ -688,20 +631,15 @@
 
     </div>
 
-    <!-- 3. CANALES DE TRANSMISIÓN EN VIVO -->
     <div class="section-header">
       <h2 class="section-title">CANALES DE TRANSMISION EN VIVO:</h2>
     </div>
 
     <div class="channels-list">
-
-      <!-- INSTAGRAM: lospibes.enbrasil -->
       <a href="https://www.instagram.com/lospibesen.brasil?psln=ZHZ4d245dXFpNXVn" target="_blank" rel="noopener noreferrer" class="channel-btn channel-instagram">
         <div class="channel-left">
           <div class="channel-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </div>
           <div class="channel-text">
             <span class="channel-label-small">INSTAGRAM</span>
@@ -713,13 +651,10 @@
         </span>
       </a>
 
-      <!-- YOUTUBE: TV FAIR PLAY -->
       <a href="https://youtube.com/@tvfairplayfloripa?si=66rHUwE2Rk7Tknwe" target="_blank" rel="noopener noreferrer" class="channel-btn channel-youtube">
         <div class="channel-left">
           <div class="channel-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </div>
           <div class="channel-text">
             <span class="channel-label-small">Canal Oficial del Torneo</span>
@@ -730,12 +665,10 @@
           <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
         </span>
       </a>
-
     </div>
 
   </main>
 
-  <!-- PIE DE PÁGINA IDÉNTICO A LA PÁGINA ANTERIOR -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-line-1">
@@ -747,7 +680,6 @@
         Dir. Hernán Ojeda
       </div>
 
-      <!-- Logo byLanzaWebs sin fondo blanco ubicado al costado derecho -->
       <div class="footer-lanzawebs-row">
         <div class="lanzawebs-badge" aria-label="byLanzaWebs">
           <span class="lanzawebs-text">
@@ -761,22 +693,27 @@
         </div>
       </div>
 
-      <!-- Derechos reservados debajo de todo -->
       <div class="footer-copyright">
         EPFAR © 2026 Todos los derechos reservados.
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS PARA EL CARRUSEL DE FOTOS Y LOS DESPLEGABLES DE PLANTILLAS -->
   <script>
-    // Desplegable de Plantillas Sub15 y Sub17
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    function toggleMenu(event) {
+      event.stopPropagation();
+      dropdownMenu.classList.toggle('open');
+    }
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('open');
+    });
+
     function toggleSquad(boxId) {
       const box = document.getElementById(boxId);
       box.classList.toggle('open');
     }
 
-    // Carrusel de Fotos
     let currentSlide = 0;
     const track = document.getElementById('carouselTrack');
     const dots = document.querySelectorAll('.dot');
@@ -799,12 +736,9 @@
       updateCarousel();
     }
 
-    // Soporte para deslizar con el dedo en celulares
     let startX = 0;
     const carousel = document.getElementById('photoCarousel');
-    carousel.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
+    carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
     carousel.addEventListener('touchend', (e) => {
       const endX = e.changedTouches[0].clientX;
       if (startX - endX > 40) moveSlide(1);
