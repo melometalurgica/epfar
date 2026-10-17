@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EPFAR | Centro de Entrenamiento de Alto Rendimiento</title>
   
-  <!-- Tipografías: Clash Display, Space Grotesk e Inter -->
+  <!-- Tipografías: Clash Display, Geist, Space Grotesk e Inter -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -41,6 +41,30 @@
       flex-direction: column;
     }
 
+    /* FONDO AZUL CON DISEÑO DE RAYITAS CUANDO SE ACTIVA "QUE ES EPFAR" */
+    body.modo-que-es {
+      background-color: #2b65d9;
+      background-image: 
+        url('fondo-azul.jpg'),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(255, 255, 255, 0.08) 0px,
+          rgba(255, 255, 255, 0.08) 2px,
+          transparent 2px,
+          transparent 7px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          rgba(10, 38, 99, 0.18) 0px,
+          rgba(10, 38, 99, 0.18) 2px,
+          transparent 2px,
+          transparent 90px
+        ),
+        linear-gradient(135deg, #4b85f5 0%, #2962d4 50%, #1744a6 100%);
+      background-size: cover, auto, auto, 100% 100%;
+      background-attachment: fixed;
+    }
+
     /* CABECERA SUPERIOR EN AZUL MARINO */
     .navbar {
       position: sticky;
@@ -54,7 +78,6 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     }
 
-    /* TEXTO EN LA CABECERA EN CLASH DISPLAY SEMIBOLD */
     .navbar-title {
       font-family: 'Clash Display', sans-serif;
       font-weight: 600;
@@ -63,12 +86,14 @@
       text-decoration: none;
       letter-spacing: 0.03em;
       text-transform: uppercase;
+      cursor: pointer;
     }
 
     .navbar-actions {
       display: flex;
       align-items: center;
       gap: 10px;
+      position: relative;
     }
 
     .icon-btn {
@@ -82,6 +107,11 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
     }
 
     .icon-btn svg {
@@ -90,6 +120,52 @@
       stroke: currentColor;
       stroke-width: 2.2;
       fill: none;
+    }
+
+    /* MENÚ DESPLEGABLE DE LAS 3 RAYITAS */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background-color: var(--navy-header);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      width: 215px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 2000;
+    }
+
+    .dropdown-menu.open {
+      display: flex;
+    }
+
+    .dropdown-item {
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s ease, color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+      background-color: var(--blue-card);
+      color: #ffd166;
     }
 
     /* TIRA DE INGRESO NEGRA DIFUMINADA */
@@ -165,7 +241,7 @@
       display: block;
     }
 
-    /* SECCIÓN DE FOTO DESTACADA (RECTÁNGULO CON BORDES) */
+    /* SECCIÓN DE FOTO DESTACADA */
     .video-section {
       max-width: 980px;
       width: 100%;
@@ -337,7 +413,74 @@
       font-size: 0.8rem;
     }
 
-    /* PIE DE PÁGINA CON LOGO byLanzaWebs Y COPYRIGHT */
+    /* ---------------------------------------------------- */
+    /* SECCIÓN "¿QUÉ ES EPFAR?" (RECTÁNGULO BLANCO AMPLIO)  */
+    /* ---------------------------------------------------- */
+    #vista-que-es {
+      display: none;
+      width: 100%;
+      flex: 1;
+      padding: 12px 10px 24px; /* Deja apenitas espacio para ver el fondo azul detrás */
+      box-sizing: border-box;
+    }
+
+    .que-es-card {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 26px 20px 32px;
+      box-shadow: 0 18px 42px rgba(4, 18, 48, 0.38);
+      color: #111827;
+    }
+
+    .que-es-logo-top {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .que-es-logo-top img {
+      width: clamp(140px, 42vw, 220px);
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .que-es-content p {
+      font-size: 0.95rem;
+      line-height: 1.62;
+      color: #1f2937;
+      margin-bottom: 16px;
+    }
+
+    .que-es-content h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--blue-card);
+      margin-top: 22px;
+      margin-bottom: 10px;
+      border-left: 4px solid var(--orange-accent);
+      padding-left: 10px;
+    }
+
+    .que-es-content ul {
+      list-style: disc;
+      padding-left: 22px;
+      margin-bottom: 16px;
+    }
+
+    .que-es-content li {
+      font-size: 0.94rem;
+      line-height: 1.58;
+      color: #1f2937;
+      margin-bottom: 8px;
+    }
+
+    /* PIE DE PÁGINA */
     .footer {
       background-color: #061326;
       padding: 26px 16px 24px;
@@ -457,77 +600,123 @@
 </head>
 <body>
 
-  <!-- CABECERA -->
+  <!-- CABECERA (SIN LUPA, SOLO LAS 3 RAYITAS CON EL MENÚ) -->
   <header class="navbar">
-    <a href="#" class="navbar-title">
+    <a onclick="mostrarInicio()" class="navbar-title">
       Pagina Oficial EPFAR
     </a>
     <div class="navbar-actions">
-      <button class="icon-btn" type="button" aria-label="Buscar"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
-      <button class="icon-btn" type="button" aria-label="Menú"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Menú" onclick="toggleMenu(event)">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- MENÚ DESPLEGABLE -->
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <a class="dropdown-item" onclick="mostrarInicio()">INICIO</a>
+        <a class="dropdown-item" href="copa-fair-play-2026.html">TORNEOS</a>
+        <a class="dropdown-item" onclick="mostrarQueEs()">QUE ES EPFAR</a>
+      </nav>
     </div>
   </header>
 
-  <!-- INGRESO -->
-  <section class="hero-strip">
-    <div class="hero-container">
-      <div class="hero-text-side">
-        <div class="badge-ligas">LIGAS REGIONALES ARGENTINAS</div>
-        <h1 class="hero-title">EPFAR</h1>
-        <p class="hero-subtitle">
-          <strong>EPFAR</strong> es un Centro de Entrenamiento de Alto Rendimiento ubicado en el <strong>Partido de Gral. Villegas, Santa Regina</strong>, con conexión en <strong>Rosario, Santa Fe</strong>. Dirigida por <span class="director-highlight">Hernán Ojeda</span>.
-        </p>
-      </div>
-      <div class="hero-logo-side">
-        <div class="hero-logo-card">
-          <img src="image_4.png.jpg" alt="EPFAR" />
+  <!-- ==================================================== -->
+  <!-- VISTA 1: PORTADA DE INICIO                           -->
+  <!-- ==================================================== -->
+  <div id="vista-inicio">
+    <section class="hero-strip">
+      <div class="hero-container">
+        <div class="hero-text-side">
+          <div class="badge-ligas">LIGAS REGIONALES ARGENTINAS</div>
+          <h1 class="hero-title">EPFAR</h1>
+          <p class="hero-subtitle">
+            <strong>EPFAR</strong> es un Centro de Entrenamiento de Alto Rendimiento ubicado en el <strong>Partido de Gral. Villegas, Santa Regina</strong>, con conexión en <strong>Rosario, Santa Fe</strong>. Dirigida por <span class="director-highlight">Hernán Ojeda</span>.
+          </p>
+        </div>
+        <div class="hero-logo-side">
+          <div class="hero-logo-card">
+            <img src="image_4.png.jpg" alt="EPFAR" />
+          </div>
         </div>
       </div>
+    </section>
+
+    <section class="video-section">
+      <div class="video-container">
+        <img src="FOTO11.jpg" alt="EPFAR Entrenamiento de Alto Rendimiento" class="promo-photo" />
+      </div>
+    </section>
+
+    <main class="main-content">
+      <div class="section-header">
+        <h2 class="section-title">PARTICIPACIONES</h2>
+      </div>
+
+      <a href="copa-fair-play-2026.html" class="participation-card-vertical">
+        <div class="card-logo-box">
+          <img src="image.png.JPG" alt="Copa Fair Play 2026" />
+        </div>
+
+        <div class="card-location-pill">
+          🇧🇷 SEDE BRASIL • TORNEO INTERNACIONAL
+        </div>
+
+        <h3 class="card-main-title">COPA FAIR PLAY 2026<br>BRASIL</h3>
+
+        <div class="card-grid">
+          <div class="grid-btn">👥 Jugadores EPFAR</div>
+          <div class="grid-btn">📅 Fixture Completo</div>
+          <div class="grid-btn">⚽ Partidos a Jugar</div>
+          <div class="grid-btn live"><span class="live-dot"></span> Transmisión en Vivo</div>
+        </div>
+
+        <div class="btn-ingresar">
+          INGRESAR AL TORNEO 
+          <div class="btn-icon">➔</div>
+        </div>
+      </a>
+    </main>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- VISTA 2: ¿QUÉ ES EPFAR? (FONDO AZUL + CAJA BLANCA)   -->
+  <!-- ==================================================== -->
+  <div id="vista-que-es">
+    <div class="que-es-card">
+      <!-- Logo arriba de todo dentro del rectángulo blanco -->
+      <div class="que-es-logo-top">
+        <img src="image_4.png.jpg" alt="Logo EPFAR" />
+      </div>
+
+      <!-- Texto institucional completo -->
+      <div class="que-es-content">
+        <p><strong>EPFAR</strong> es un proyecto de formación y entrenamiento futbolístico dirigido por el profesor <strong>Hernán Ojeda</strong>, orientado al desarrollo de jugadores juveniles de la región de General Villegas y localidades cercanas.</p>
+
+        <h2>¿Qué hace EPFAR?</h2>
+        <p><strong>Formación de jugadores:</strong> trabaja con futbolistas juveniles para potenciar sus capacidades técnicas, tácticas y físicas.</p>
+        <p><strong>Categorías:</strong> SUB-15, SUB-17 y SUB-20.</p>
+        <p><strong>Entrenamientos regionales:</strong> reúne jugadores de distintas localidades de la región, brindándoles la oportunidad de desarrollarse deportivamente.</p>
+        <p><strong>Experiencia competitiva internacional:</strong> participa en torneos que permiten a los futbolistas medirse con equipos de otros países y adquirir experiencia en el ámbito competitivo.</p>
+
+        <h2>Competencias internacionales</h2>
+        <ul>
+          <li><strong>AFB Latin-Bangla Super Cup 2025 — Bangladesh:</strong> participación en una competencia internacional que vincula al fútbol latinoamericano con el de Bangladesh.</li>
+          <li><strong>Copa Fair Play 2026 — Brasil:</strong> participación de los selectivos juveniles regionales en este torneo internacional, disputado en octubre de 2026.</li>
+        </ul>
+
+        <h2>¿Quién lo dirige?</h2>
+        <p>El profesor <strong>Hernán Ojeda</strong>, referente y responsable del proyecto de formación y de los selectivos juveniles.</p>
+
+        <h2>¿Cuál es su objetivo?</h2>
+        <p>EPFAR busca potenciar el talento de los futbolistas juveniles, ofrecer oportunidades de crecimiento deportivo y facilitar su participación en competencias nacionales e internacionales.</p>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ESPACIO RECTANGULAR CON FOTO11.jpg -->
-  <section class="video-section">
-    <div class="video-container">
-      <img src="FOTO11.jpg" alt="EPFAR Entrenamiento de Alto Rendimiento" class="promo-photo" />
-    </div>
-  </section>
-
-  <!-- PARTICIPACIONES -->
-  <main class="main-content">
-    <div class="section-header">
-      <h2 class="section-title">PARTICIPACIONES</h2>
-    </div>
-
-    <!-- TARJETA VERTICAL COPA FAIR PLAY -->
-    <a href="copa-fair-play-2026.html" class="participation-card-vertical">
-      
-      <div class="card-logo-box">
-        <img src="image.png.JPG" alt="Copa Fair Play 2026" />
-      </div>
-
-      <div class="card-location-pill">
-        🇧🇷 SEDE BRASIL • TORNEO INTERNACIONAL
-      </div>
-
-      <h3 class="card-main-title">COPA FAIR PLAY 2026<br>BRASIL</h3>
-
-      <div class="card-grid">
-        <div class="grid-btn">👥 Jugadores EPFAR</div>
-        <div class="grid-btn">📅 Fixture Completo</div>
-        <div class="grid-btn">⚽ Partidos a Jugar</div>
-        <div class="grid-btn live"><span class="live-dot"></span> Transmisión en Vivo</div>
-      </div>
-
-      <div class="btn-ingresar">
-        INGRESAR AL TORNEO 
-        <div class="btn-icon">➔</div>
-      </div>
-
-    </a>
-  </main>
-
-  <!-- PIE DE PÁGINA -->
+  <!-- PIE DE PÁGINA IGUAL SIN CAMBIAR NADA -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-line-1">
@@ -536,10 +725,9 @@
       </div>
       <div class="footer-line-2">
         Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe |<br>
-        Dir. Hernan Ojeda
+        Dir. Hernán Ojeda
       </div>
 
-      <!-- Logo byLanzaWebs sin fondo blanco ubicado al costado derecho -->
       <div class="footer-lanzawebs-row">
         <div class="lanzawebs-badge" aria-label="byLanzaWebs">
           <span class="lanzawebs-text">
@@ -553,12 +741,48 @@
         </div>
       </div>
 
-      <!-- Derechos reservados debajo de todo -->
       <div class="footer-copyright">
         EPFAR © 2026 Todos los derechos reservados.
       </div>
     </div>
   </footer>
+
+  <script>
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const vistaInicio = document.getElementById('vista-inicio');
+    const vistaQueEs = document.getElementById('vista-que-es');
+
+    function toggleMenu(event) {
+      event.stopPropagation();
+      dropdownMenu.classList.toggle('open');
+    }
+
+    function mostrarInicio() {
+      vistaQueEs.style.display = 'none';
+      vistaInicio.style.display = 'block';
+      document.body.classList.remove('modo-que-es');
+      dropdownMenu.classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function mostrarQueEs() {
+      vistaInicio.style.display = 'none';
+      vistaQueEs.style.display = 'block';
+      document.body.classList.add('modo-que-es');
+      dropdownMenu.classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Si viene desde la página de torneos tocando "QUE ES EPFAR"
+    if (window.location.hash === '#que-es-epfar') {
+      mostrarQueEs();
+    }
+
+    // Cerrar menú al tocar afuera
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('open');
+    });
+  </script>
 
 </body>
 </html>
