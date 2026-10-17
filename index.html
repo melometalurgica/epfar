@@ -54,7 +54,7 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     }
 
-    /* TEXTO EN LA CABECERA EN CLASH DISPLAY SEMIBOLD (SIN PUNTO NARANJA) */
+    /* TEXTO EN LA CABECERA EN CLASH DISPLAY SEMIBOLD */
     .navbar-title {
       font-family: 'Clash Display', sans-serif;
       font-weight: 600;
@@ -117,7 +117,6 @@
       min-width: 0;
     }
 
-    /* ETIQUETA SIN PUNTO NARANJA */
     .badge-ligas {
       display: inline-flex;
       align-items: center;
@@ -338,15 +337,14 @@
       font-size: 0.8rem;
     }
 
-    /* -------------------------------------- */
-    /* PIE DE PÁGINA (FOTO 2 / IMAGEN 18)     */
-    /* -------------------------------------- */
+    /* ---------------------------------------------------- */
+    /* PIE DE PÁGINA IDÉNTICO A LA FOTO 2 (IMAGEN 20)       */
+    /* ---------------------------------------------------- */
     .footer {
-      background-color: var(--navy-header);
-      color: rgba(255, 255, 255, 0.85);
-      padding: 30px 18px;
+      background-color: #061326;
+      padding: 26px 14px 32px;
       text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       margin-top: auto;
     }
 
@@ -355,37 +353,53 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .footer-line-1 {
-      font-family: 'Clash Display', sans-serif;
-      font-weight: 600;
-      font-size: 1.05rem;
-      color: #ffffff;
-      display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .footer-dot {
-      color: var(--orange-accent);
-      font-size: 1.2rem;
-      line-height: 0;
+    /* Primera fila en un solo renglón: EPFAR • Centro de Entrenamiento de Alto Rendimiento */
+    .footer-line-1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      white-space: nowrap;
+      width: 100%;
     }
 
+    .footer-brand {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+      color: #ffffff;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-dot {
+      color: #8c9bb5;
+      font-size: 0.85rem;
+    }
+
+    .footer-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(0.72rem, 3.1vw, 0.9rem);
+      color: #9ba8bf;
+    }
+
+    /* Segunda fila centrada en dos líneas */
     .footer-line-2 {
-      font-size: 0.82rem;
-      color: rgba(255, 255, 255, 0.7);
-      letter-spacing: 0.02em;
-      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(0.7rem, 2.9vw, 0.84rem);
+      color: #8c9bb5;
+      line-height: 1.45;
     }
   </style>
 </head>
 <body>
 
-  <!-- CABECERA CON TEXTO CLASH DISPLAY SEMIBOLD -->
+  <!-- CABECERA -->
   <header class="navbar">
     <a href="#" class="navbar-title">
       Pagina Oficial EPFAR
@@ -458,14 +472,16 @@
     </a>
   </main>
 
-  <!-- PIE DE PÁGINA (FOTO 2 / IMAGEN 18) -->
+  <!-- PIE DE PÁGINA IDÉNTICO A LA FOTO 2 -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-line-1">
-        EPFAR <span class="footer-dot">•</span> Centro de Entrenamiento de Alto Rendimiento
+        <span class="footer-brand">EPFAR</span>
+        <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
       </div>
       <div class="footer-line-2">
-        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe | Dir. Hernán Ojeda
+        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe |<br>
+        Dir. Hernán Ojeda
       </div>
     </div>
   </footer>
