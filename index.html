@@ -16,6 +16,8 @@
       --navy-header: #071936;
       --blue-card: #093170;
       --blue-card-hover: #0b3b85;
+      --red-card: #9e1b24;
+      --red-card-dark: #6e1017;
       --orange-accent: #f26522;
       --text-dark: #111827;
     }
@@ -24,6 +26,11 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -39,9 +46,10 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
-    /* FONDO AZUL CON DISEÑO DE RAYITAS CUANDO SE ACTIVA "QUE ES EPFAR" */
+    /* FONDO AZUL DE RAYITAS PARA "QUE ES EPFAR" */
     body.modo-que-es {
       background-color: #2b65d9;
       background-image: 
@@ -65,6 +73,27 @@
       background-attachment: fixed;
     }
 
+    /* MICRO-INTERACCIONES EN BOTONES Y ENLACES INTERACTIVOS */
+    button, .btn-interactive, .participation-card-vertical, .news-card, .fullscreen-link, .contact-chip {
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    button:active, .btn-interactive:active, .participation-card-vertical:active, .news-card:active, .fullscreen-link:active, .contact-chip:active {
+      transform: scale(0.96) !important;
+    }
+
+    /* ANIMACIÓN SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* CABECERA SUPERIOR EN AZUL MARINO */
     .navbar {
       position: sticky;
@@ -81,7 +110,7 @@
     .navbar-title {
       font-family: 'Clash Display', sans-serif;
       font-weight: 600;
-      font-size: clamp(0.95rem, 2.8vw, 1.2rem);
+      font-size: clamp(0.95rem, 2.8vw, 1.25rem);
       color: #ffffff;
       text-decoration: none;
       letter-spacing: 0.03em;
@@ -93,21 +122,19 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      position: relative;
     }
 
     .icon-btn {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.18);
       color: #ffffff;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: background 0.2s ease;
     }
 
     .icon-btn:hover {
@@ -115,60 +142,113 @@
     }
 
     .icon-btn svg {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       stroke: currentColor;
       stroke-width: 2.2;
       fill: none;
     }
 
-    /* MENÚ DESPLEGABLE DE LAS 3 RAYITAS */
-    .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 10px);
-      right: 0;
-      background-color: var(--navy-header);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 14px;
-      width: 215px;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 2000;
-    }
-
-    .dropdown-menu.open {
+    /* ==================================================== */
+    /* MENÚ DE PANTALLA COMPLETA (FULLSCREEN OVERLAY)       */
+    /* ==================================================== */
+    .fullscreen-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: radial-gradient(circle at top right, #0e2d63 0%, #061326 65%, #040b18 100%);
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 24px 36px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
     }
 
-    .dropdown-item {
-      font-family: 'Geist', sans-serif;
-      font-weight: 600;
-      font-size: 0.92rem;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 14px 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+    .fullscreen-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .fullscreen-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.2s ease, color 0.2s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 14px;
+    }
+
+    .fullscreen-brand {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+    }
+
+    .close-menu-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
       cursor: pointer;
     }
 
-    .dropdown-item:last-child {
-      border-bottom: none;
+    .fullscreen-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 540px;
+      width: 100%;
+      margin: auto;
     }
 
-    .dropdown-item:hover {
-      background-color: var(--blue-card);
+    .fullscreen-link {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 16px 20px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+
+    .fullscreen-link:hover {
+      background: rgba(242, 101, 34, 0.18);
+      border-color: var(--orange-accent);
       color: #ffd166;
     }
 
-    /* TIRA DE INGRESO NEGRA DIFUMINADA */
+    .fullscreen-link span.arrow {
+      font-size: 1.1rem;
+      color: var(--orange-accent);
+    }
+
+    .fullscreen-footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.8rem;
+    }
+
+    /* ==================================================== */
+    /* TIRA DE INGRESO NEGRA DIFUMINADA                     */
+    /* ==================================================== */
     .hero-strip {
       position: relative;
       width: 100%;
@@ -179,13 +259,13 @@
     }
 
     .hero-container {
-      max-width: 980px;
+      max-width: 1120px;
       margin: 0 auto;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 16px;
     }
 
     .hero-text-side {
@@ -193,36 +273,33 @@
       min-width: 0;
     }
 
-    .badge-ligas {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.62rem;
-      font-weight: 600;
+    /* TEXTO LIMPIO SIN BORDES ALREDEDOR DE LIGAS REGIONALES ARGENTINAS */
+    .badge-ligas-plain {
+      display: block;
+      font-size: clamp(0.68rem, 2vw, 0.82rem);
+      font-weight: 700;
       color: var(--orange-accent);
       text-transform: uppercase;
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      letter-spacing: 0.08em;
     }
 
     .hero-title {
       font-family: 'Clash Display', sans-serif;
       font-weight: 700;
-      font-size: clamp(1.75rem, 5vw, 2.65rem);
+      font-size: clamp(1.85rem, 5.5vw, 3rem);
       color: #ffffff;
       line-height: 1.05;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .hero-subtitle {
       border-left: 3px solid var(--orange-accent);
-      padding-left: 10px;
-      font-size: clamp(0.75rem, 2.3vw, 0.92rem);
-      line-height: 1.42;
+      padding-left: 12px;
+      font-size: clamp(0.78rem, 2.3vw, 1rem);
+      line-height: 1.48;
       color: rgba(255, 255, 255, 0.92);
+      max-width: 640px;
     }
 
     .hero-subtitle strong { color: #ffffff; font-weight: 600; }
@@ -236,18 +313,17 @@
       box-shadow: 0 14px 28px rgba(0,0,0,0.65), 0 0 18px rgba(242,101,34,0.25);
     }
     .hero-logo-card img {
-      width: clamp(100px, 26vw, 185px);
+      width: clamp(105px, 25vw, 195px);
       height: auto;
       display: block;
     }
 
-    /* SECCIÓN DE FOTO DESTACADA */
+    /* SECCIÓN FOTO PRINCIPAL */
     .video-section {
-      max-width: 980px;
+      max-width: 1120px;
       width: 100%;
       margin: 15px auto 0;
       padding: 0 18px;
-      box-sizing: border-box;
     }
 
     .video-container {
@@ -255,8 +331,8 @@
       aspect-ratio: 16 / 9;
       background-color: #0d1526;
       border: 3px solid #ffffff;
-      border-radius: 18px;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      border-radius: 20px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
       overflow: hidden;
       position: relative;
     }
@@ -268,25 +344,33 @@
       display: block;
     }
 
-    /* SECCIÓN PARTICIPACIONES */
+    /* CONTENEDOR GENERAL DE SECCIONES */
     .main-content {
-      max-width: 980px;
+      max-width: 1120px;
       width: 100%;
       margin: 0 auto;
-      padding: 30px 18px 50px;
-      box-sizing: border-box;
+      padding: 32px 18px 56px;
       flex: 1;
     }
 
-    .section-header { margin-bottom: 20px; }
+    .section-header {
+      margin-bottom: 18px;
+      margin-top: 36px;
+    }
+
+    .section-header:first-of-type {
+      margin-top: 6px;
+    }
+
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: clamp(1.35rem, 4vw, 1.85rem);
+      font-size: clamp(1.38rem, 4vw, 1.95rem);
       color: #0b1933;
       text-transform: uppercase;
       display: inline-block;
     }
+
     .section-title::after {
       content: "";
       display: block;
@@ -297,33 +381,296 @@
       margin-top: 4px;
     }
 
-    /* TARJETA VERTICAL DE COPA FAIR PLAY */
-    .participation-card-vertical {
+    .swipe-hint {
+      font-size: 0.78rem;
+      color: #4b5563;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ==================================================== */
+    /* SECCIÓN ENTRENADORES (TARJETAS 3D CON BORDE BRILLANTE)*/
+    /* ==================================================== */
+    .coaches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 18px;
+      perspective: 1000px;
+    }
+
+    @media (max-width: 520px) {
+      .coaches-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      /* La primera ficha (Hernán Ojeda) ocupa las 2 columnas en celular para destacar */
+      .coaches-grid .coach-card:first-child {
+        grid-column: span 2;
+      }
+    }
+
+    .coach-card {
+      position: relative;
+      border-radius: 18px;
+      padding: 2px; /* Espacio para el borde brillante */
+      background: linear-gradient(135deg, rgba(242, 101, 34, 0.85), rgba(9, 49, 112, 0.4), rgba(56, 189, 248, 0.85));
+      background-size: 200% 200%;
+      animation: borderGlow 4s ease infinite;
+      box-shadow: 0 10px 24px rgba(7, 25, 54, 0.14);
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    @keyframes borderGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .coach-card:hover,
+    .coach-card.touch-active {
+      box-shadow: 0 16px 32px rgba(242, 101, 34, 0.28), 0 0 18px rgba(56, 189, 248, 0.45);
+    }
+
+    .coach-card-inner {
+      background: linear-gradient(180deg, #0b224a 0%, #071630 100%);
+      border-radius: 16px;
+      height: 100%;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
+    }
+
+    .coach-photo-box {
+      width: 100%;
+      aspect-ratio: 4 / 4.2;
+      background: radial-gradient(circle at center, #1b3a70 0%, #091936 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Si es la primera tarjeta en móvil, proporción más panorámica */
+    @media (max-width: 520px) {
+      .coaches-grid .coach-card:first-child .coach-photo-box {
+        aspect-ratio: 16 / 10;
+      }
+    }
+
+    .coach-photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .coach-card:hover .coach-photo-box img {
+      transform: scale(1.04);
+    }
+
+    .coach-Avatar-fallback {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--orange-accent);
+      color: #ffffff;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coach-info {
+      padding: 14px 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .coach-location {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--orange-accent);
+    }
+
+    .coach-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(0.95rem, 2.5vw, 1.12rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .coach-role {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* ==================================================== */
+    /* CARRUSEL HORIZONTAL EN PARTICIPACIONES               */
+    /* ==================================================== */
+    .participations-slider {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 6px 4px 18px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--blue-card) rgba(0,0,0,0.08);
+    }
+
+    .participations-slider::-webkit-scrollbar {
+      height: 6px;
+    }
+    .participations-slider::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.06);
+      border-radius: 99px;
+    }
+    .participations-slider::-webkit-scrollbar-thumb {
       background: var(--blue-card);
-      border-radius: 20px;
+      border-radius: 99px;
+    }
+
+    .participation-card-vertical {
+      flex: 0 0 88%;
+      max-width: 370px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 22px;
       padding: 24px;
       text-decoration: none;
-      box-shadow: 0 16px 36px rgba(9, 44, 102, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      min-height: 390px;
     }
-    .participation-card-vertical:hover {
-      transform: translateY(-3px);
-      background: var(--blue-card-hover);
+
+    @media (min-width: 768px) {
+      .participation-card-vertical {
+        flex: 0 0 340px;
+      }
+    }
+
+    /* 1. VENTANA BLANCA: MADRID ESPAÑA */
+    .card-white-madrid {
+      background: #ffffff;
+      border: 2px solid rgba(9, 49, 112, 0.14);
+      box-shadow: 0 16px 34px rgba(7, 25, 54, 0.1);
+      color: var(--navy-header);
+    }
+
+    .madrid-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(242, 101, 34, 0.12);
+      color: var(--orange-accent);
+      border: 1px solid rgba(242, 101, 34, 0.3);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      align-self: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .madrid-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--navy-header);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .madrid-soon {
+      display: inline-block;
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--orange-accent) 0%, #d9460f 100%);
+      padding: 8px 16px;
+      border-radius: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      align-self: flex-start;
+      box-shadow: 0 6px 16px rgba(242, 101, 34, 0.3);
+    }
+
+    .madrid-desc {
+      font-size: 0.86rem;
+      color: #4b5563;
+      line-height: 1.5;
+      margin-top: 14px;
+    }
+
+    .madrid-bottom-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 28px;
+      padding-top: 14px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .madrid-bottom-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .madrid-mini-logo {
+      width: 68px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* 2. VENTANA AZUL: COPA FAIR PLAY 2026 */
+    .card-blue-fairplay {
+      background: var(--blue-card);
+      box-shadow: 0 16px 36px rgba(9, 44, 102, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* 3. VENTANA ROJA: AFB LATIN-BANGLA SUPER CUP 2025 */
+    .card-red-bangla {
+      background: linear-gradient(145deg, var(--red-card) 0%, var(--red-card-dark) 100%);
+      box-shadow: 0 16px 36px rgba(158, 27, 36, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.16);
     }
 
     .card-logo-box {
       background: #ffffff;
-      width: 86px;
-      height: 86px;
+      width: 82px;
+      height: 82px;
       border-radius: 18px;
       padding: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
     .card-logo-box img {
@@ -335,8 +682,8 @@
     .card-location-pill {
       display: inline-flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 99px;
       padding: 6px 14px;
       font-size: 0.7rem;
@@ -349,35 +696,35 @@
 
     .card-main-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #ffffff;
       line-height: 1.15;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       text-align: left;
     }
 
     .card-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 24px;
+      gap: 9px;
+      margin-bottom: 20px;
     }
     .grid-btn {
       background: rgba(0, 0, 0, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
-      padding: 10px;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 0.75rem;
+      padding: 9px 10px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.73rem;
       font-weight: 500;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
     .grid-btn.live {
-      background: rgba(239, 35, 60, 0.15);
-      border-color: rgba(239, 35, 60, 0.3);
+      background: rgba(239, 35, 60, 0.18);
+      border-color: rgba(239, 35, 60, 0.35);
     }
     .live-dot {
       width: 8px;
@@ -391,16 +738,22 @@
       background: #ffffff;
       color: var(--blue-card);
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       border-radius: 14px;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin-top: auto;
     }
+
+    .card-red-bangla .btn-ingresar {
+      color: var(--red-card-dark);
+    }
+
     .btn-icon {
       background: #a3bced;
       color: var(--blue-card);
@@ -413,14 +766,127 @@
       font-size: 0.8rem;
     }
 
-    /* ---------------------------------------------------- */
-    /* SECCIÓN "¿QUÉ ES EPFAR?" (RECTÁNGULO BLANCO AMPLIO)  */
-    /* ---------------------------------------------------- */
+    /* ==================================================== */
+    /* SECCIÓN NOTICIAS (DESLIZABLE HORIZONTAL)             */
+    /* ==================================================== */
+    .news-slider {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 6px 4px 18px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--orange-accent) rgba(0,0,0,0.08);
+    }
+
+    .news-slider::-webkit-scrollbar {
+      height: 6px;
+    }
+    .news-slider::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.06);
+      border-radius: 99px;
+    }
+    .news-slider::-webkit-scrollbar-thumb {
+      background: var(--orange-accent);
+      border-radius: 99px;
+    }
+
+    .news-card {
+      flex: 0 0 82%;
+      max-width: 310px;
+      scroll-snap-align: start;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--text-dark);
+      box-shadow: 0 10px 24px rgba(7, 25, 54, 0.1);
+      border: 1px solid rgba(9, 49, 112, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .news-card {
+        flex: 0 0 280px;
+      }
+    }
+
+    .news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(7, 25, 54, 0.16);
+    }
+
+    .news-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #0d1b36;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .news-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .news-card:hover .news-thumb img {
+      transform: scale(1.05);
+    }
+
+    .news-source-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(7, 25, 54, 0.85);
+      color: #ffffff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 99px;
+      letter-spacing: 0.04em;
+      backdrop-filter: blur(4px);
+    }
+
+    .news-body {
+      padding: 14px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      gap: 10px;
+    }
+
+    .news-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0b1933;
+      line-height: 1.32;
+    }
+
+    .news-read-more {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--orange-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ==================================================== */
+    /* SECCIÓN "¿QUÉ ES EPFAR?" MEJORADA                    */
+    /* ==================================================== */
     #vista-que-es {
       display: none;
       width: 100%;
       flex: 1;
-      padding: 12px 10px 24px; /* Deja apenitas espacio para ver el fondo azul detrás */
+      padding: 16px 12px 32px;
       box-sizing: border-box;
     }
 
@@ -428,74 +894,180 @@
       max-width: 960px;
       margin: 0 auto;
       background: #ffffff;
-      border-radius: 22px;
-      padding: 26px 20px 32px;
-      box-shadow: 0 18px 42px rgba(4, 18, 48, 0.38);
+      border-radius: 24px;
+      padding: clamp(24px, 5vw, 44px);
+      box-shadow: 0 20px 48px rgba(4, 18, 48, 0.42);
       color: #111827;
     }
 
     .que-es-logo-top {
       display: flex;
       justify-content: center;
-      margin-bottom: 22px;
-      padding-bottom: 16px;
+      margin-bottom: 26px;
+      padding-bottom: 20px;
       border-bottom: 2px solid #f1f5f9;
     }
 
     .que-es-logo-top img {
-      width: clamp(140px, 42vw, 220px);
+      width: clamp(140px, 38vw, 210px);
       height: auto;
       object-fit: contain;
       display: block;
     }
 
-    .que-es-content p {
-      font-size: 0.95rem;
-      line-height: 1.62;
-      color: #1f2937;
-      margin-bottom: 16px;
+    .que-es-lead {
+      font-size: clamp(0.98rem, 2.5vw, 1.1rem);
+      line-height: 1.68;
+      color: #1e293b;
+      background: #f8fafc;
+      border-left: 4px solid var(--blue-card);
+      padding: 16px 18px;
+      border-radius: 0 14px 14px 0;
+      margin-bottom: 26px;
     }
 
     .que-es-content h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.22rem;
+      font-size: clamp(1.18rem, 3vw, 1.38rem);
       font-weight: 700;
       color: var(--blue-card);
-      margin-top: 22px;
-      margin-bottom: 10px;
-      border-left: 4px solid var(--orange-accent);
-      padding-left: 10px;
+      margin-top: 28px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .que-es-content h2::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 22px;
+      background: var(--orange-accent);
+      border-radius: 4px;
+    }
+
+    .que-es-pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .pillar-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 0.93rem;
+      line-height: 1.58;
+      color: #1f2937;
+    }
+
+    .pillar-item strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--navy-header);
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .que-es-content p {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: #1f2937;
+      margin-bottom: 14px;
     }
 
     .que-es-content ul {
-      list-style: disc;
-      padding-left: 22px;
-      margin-bottom: 16px;
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
     }
 
     .que-es-content li {
+      background: #f8fafc;
+      border-left: 4px solid var(--orange-accent);
+      padding: 12px 16px;
+      border-radius: 0 12px 12px 0;
       font-size: 0.94rem;
       line-height: 1.58;
       color: #1f2937;
-      margin-bottom: 8px;
     }
 
-    /* PIE DE PÁGINA */
+    /* ==================================================== */
+    /* PIE DE PÁGINA CON CONTACTO DE HERNÁN OJEDA           */
+    /* ==================================================== */
     .footer {
       background-color: #061326;
-      padding: 26px 16px 24px;
+      padding: 30px 16px 24px;
       text-align: center;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       margin-top: auto;
     }
 
     .footer-content {
-      max-width: 980px;
+      max-width: 1120px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 10px;
+    }
+
+    /* Bloque de Contacto en el Pie de Página */
+    .footer-contact-box {
+      width: 100%;
+      max-width: 680px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-contact-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--orange-accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 9px 14px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .contact-chip:hover {
+      background: var(--blue-card);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .footer-line-1 {
@@ -541,7 +1113,7 @@
       display: flex;
       justify-content: flex-end;
       padding-right: 6px;
-      margin-top: -4px;
+      margin-top: -2px;
       margin-bottom: 4px;
     }
 
@@ -552,12 +1124,6 @@
       color: #ffffff;
       text-decoration: none;
       opacity: 0.92;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .lanzawebs-badge:hover {
-      opacity: 1;
-      transform: translateY(-1px);
     }
 
     .lanzawebs-text {
@@ -600,37 +1166,68 @@
 </head>
 <body>
 
-  <!-- CABECERA (SIN LUPA, SOLO LAS 3 RAYITAS CON EL MENÚ) -->
+  <!-- CABECERA SUPERIOR -->
   <header class="navbar">
-    <a onclick="mostrarInicio()" class="navbar-title">
+    <a onclick="irAInicio()" class="navbar-title">
       Pagina Oficial EPFAR
     </a>
     <div class="navbar-actions">
-      <button class="icon-btn" id="menuBtn" type="button" aria-label="Menú" onclick="toggleMenu(event)">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Abrir Menú" onclick="abrirMenu()">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
-
-      <!-- MENÚ DESPLEGABLE -->
-      <nav class="dropdown-menu" id="dropdownMenu">
-        <a class="dropdown-item" onclick="mostrarInicio()">INICIO</a>
-        <a class="dropdown-item" href="copa-fair-play-2026.html">TORNEOS</a>
-        <a class="dropdown-item" onclick="mostrarQueEs()">QUE ES EPFAR</a>
-      </nav>
     </div>
   </header>
+
+  <!-- MENÚ DE PANTALLA COMPLETA AL TOCAR LAS 3 RAYITAS -->
+  <div class="fullscreen-menu" id="fullscreenMenu">
+    <div class="fullscreen-header">
+      <span class="fullscreen-brand">MENÚ EPFAR</span>
+      <button class="close-menu-btn" type="button" aria-label="Cerrar Menú" onclick="cerrarMenu()">✕</button>
+    </div>
+
+    <nav class="fullscreen-nav">
+      <a class="fullscreen-link" onclick="irAInicio()">
+        <span>INICIO</span>
+        <span class="arrow">➔</span>
+      </a>
+      <a class="fullscreen-link" onclick="irAEntrenadores()">
+        <span>ENTRENADORES EPFAR</span>
+        <span class="arrow">➔</span>
+      </a>
+      <a class="fullscreen-link" onclick="irAEntrenadores()">
+        <span>TORNEOS PARTICIPADOS</span>
+        <span class="arrow">➔</span>
+      </a>
+      <a class="fullscreen-link" onclick="irAQueEs()">
+        <span>QUE ES EPFAR</span>
+        <span class="arrow">➔</span>
+      </a>
+      <a class="fullscreen-link" onclick="irAContacto()">
+        <span>CONTACTO</span>
+        <span class="arrow">➔</span>
+      </a>
+    </nav>
+
+    <div class="fullscreen-footer">
+      EPFAR • Centro de Entrenamiento de Alto Rendimiento
+    </div>
+  </div>
 
   <!-- ==================================================== -->
   <!-- VISTA 1: PORTADA DE INICIO                           -->
   <!-- ==================================================== -->
   <div id="vista-inicio">
+    
+    <!-- Tira superior oscura -->
     <section class="hero-strip">
       <div class="hero-container">
         <div class="hero-text-side">
-          <div class="badge-ligas">LIGAS REGIONALES ARGENTINAS</div>
+          <!-- Texto directo sin bordes alrededor -->
+          <span class="badge-ligas-plain">LIGAS REGIONALES ARGENTINAS</span>
           <h1 class="hero-title">EPFAR</h1>
           <p class="hero-subtitle">
             <strong>EPFAR</strong> es un Centro de Entrenamiento de Alto Rendimiento ubicado en el <strong>Partido de Gral. Villegas, Santa Regina</strong>, con conexión en <strong>Rosario, Santa Fe</strong>. Dirigida por <span class="director-highlight">Hernán Ojeda</span>.
@@ -644,62 +1241,283 @@
       </div>
     </section>
 
-    <section class="video-section">
+    <!-- Foto de todos con la bandera de EPFAR -->
+    <section class="video-section reveal">
       <div class="video-container">
-        <img src="FOTO11.jpg" alt="EPFAR Entrenamiento de Alto Rendimiento" class="promo-photo" />
+        <img src="FOTO11.jpg" alt="Plantel EPFAR con bandera" class="promo-photo" />
       </div>
     </section>
 
     <main class="main-content">
-      <div class="section-header">
-        <h2 class="section-title">PARTICIPACIONES</h2>
-      </div>
 
-      <a href="copa-fair-play-2026.html" class="participation-card-vertical">
-        <div class="card-logo-box">
-          <img src="image.png.JPG" alt="Copa Fair Play 2026" />
+      <!-- ============================================== -->
+      <!-- SECCIÓN ENTRENADORES (5 FICHAS CON EFECTO 3D)  -->
+      <!-- ============================================== -->
+      <section id="seccion-entrenadores" class="reveal">
+        <div class="section-header">
+          <h2 class="section-title">ENTRENADORES</h2>
         </div>
 
-        <div class="card-location-pill">
-          🇧🇷 SEDE BRASIL • TORNEO INTERNACIONAL
+        <div class="coaches-grid">
+          <!-- Ficha 1 -->
+          <div class="coach-card" data-tilt>
+            <div class="coach-card-inner">
+              <div class="coach-photo-box">
+                <img src="fotoo1.PNG" alt="Hernán Ojeda" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="coach-Avatar-fallback">HO</div>
+              </div>
+              <div class="coach-info">
+                <span class="coach-location">📍 Santa Regina</span>
+                <h3 class="coach-name">Hernán Ojeda</h3>
+                <p class="coach-role">Director Técnico - Coordinador general</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha 2 -->
+          <div class="coach-card" data-tilt>
+            <div class="coach-card-inner">
+              <div class="coach-photo-box">
+                <img src="fotoo2.PNG" alt="Cristian Martínez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="coach-Avatar-fallback">CM</div>
+              </div>
+              <div class="coach-info">
+                <span class="coach-location">📍 C. Charlone</span>
+                <h3 class="coach-name">Cristian Martínez</h3>
+                <p class="coach-role">DT</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha 3 -->
+          <div class="coach-card" data-tilt>
+            <div class="coach-card-inner">
+              <div class="coach-photo-box">
+                <img src="fotoo3.PNG" alt="Fabián Millarez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="coach-Avatar-fallback">FM</div>
+              </div>
+              <div class="coach-info">
+                <span class="coach-location">📍 C. Charlone</span>
+                <h3 class="coach-name">Fabián Millarez</h3>
+                <p class="coach-role">DT</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha 4 -->
+          <div class="coach-card" data-tilt>
+            <div class="coach-card-inner">
+              <div class="coach-photo-box">
+                <img src="fotoo4.PNG" alt="Gastón Jara" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="coach-Avatar-fallback">GJ</div>
+              </div>
+              <div class="coach-info">
+                <span class="coach-location">📍 Rosario</span>
+                <h3 class="coach-name">Gastón Jara</h3>
+                <p class="coach-role">DT</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha 5 -->
+          <div class="coach-card" data-tilt>
+            <div class="coach-card-inner">
+              <div class="coach-photo-box">
+                <img src="fotoo5.PNG" alt="Alex Corvalán" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="coach-Avatar-fallback">AC</div>
+              </div>
+              <div class="coach-info">
+                <span class="coach-location">📍 Rosario</span>
+                <h3 class="coach-name">Alex Corvalán</h3>
+                <p class="coach-role">Cuerpo Técnico EPFAR</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- SECCIÓN PARTICIPACIONES (DESLIZABLE DERECHA)   -->
+      <!-- ============================================== -->
+      <section id="seccion-participaciones" class="reveal">
+        <div class="section-header">
+          <h2 class="section-title">PARTICIPACIONES</h2>
+          <p class="swipe-hint">Deslizá hacia la derecha para ver todos los torneos ➔</p>
         </div>
 
-        <h3 class="card-main-title">COPA FAIR PLAY 2026<br>BRASIL</h3>
+        <div class="participations-slider">
 
-        <div class="card-grid">
-          <div class="grid-btn">👥 Jugadores EPFAR</div>
-          <div class="grid-btn">📅 Fixture Completo</div>
-          <div class="grid-btn">⚽ Partidos a Jugar</div>
-          <div class="grid-btn live"><span class="live-dot"></span> Transmisión en Vivo</div>
+          <!-- 1. PRIMERA VENTANA BLANCA: TORNEO EN MADRID, ESPAÑA -->
+          <div class="participation-card-vertical card-white-madrid">
+            <div>
+              <div class="madrid-badge">🇪🇸 EUROPA • INTERNACIONAL</div>
+              <h3 class="madrid-title">TORNEO EN MADRID,<br>ESPAÑA.</h3>
+              <span class="madrid-soon">PRÓXIMAMENTE</span>
+              <p class="madrid-desc">
+                Nueva experiencia internacional proyectada para los selectivos juveniles de alto rendimiento de EPFAR en España.
+              </p>
+            </div>
+            <div class="madrid-bottom-row">
+              <span class="madrid-bottom-text">Proyecto Internacional</span>
+              <img src="image_4.png.jpg" alt="Logo EPFAR" class="madrid-mini-logo" />
+            </div>
+          </div>
+
+          <!-- 2. VENTANA AZUL: COPA FAIR PLAY 2026 BRASIL -->
+          <a href="copa-fair-play-2026.html" class="participation-card-vertical card-blue-fairplay">
+            <div>
+              <div class="card-logo-box">
+                <img src="image.png.JPG" alt="Copa Fair Play 2026" />
+              </div>
+
+              <div class="card-location-pill">
+                🇧🇷 SEDE BRASIL • TORNEO INTERNACIONAL
+              </div>
+
+              <h3 class="card-main-title">COPA FAIR PLAY 2026<br>BRASIL</h3>
+
+              <div class="card-grid">
+                <div class="grid-btn">👥 Jugadores EPFAR</div>
+                <div class="grid-btn">📅 Fixture Completo</div>
+                <div class="grid-btn">⚽ Partidos a Jugar</div>
+                <div class="grid-btn live"><span class="live-dot"></span> Transmisión en Vivo</div>
+              </div>
+            </div>
+
+            <div class="btn-ingresar">
+              INGRESAR AL TORNEO 
+              <div class="btn-icon">➔</div>
+            </div>
+          </a>
+
+          <!-- 3. VENTANA ROJA: AFB LATIN-BANGLA SUPER CUP 2025 -->
+          <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/?amp=1" target="_blank" rel="noopener noreferrer" class="participation-card-vertical card-red-bangla">
+            <div>
+              <div class="card-logo-box">
+                <img src="image_4.png.jpg" alt="AFB Latin-Bangla Super Cup 2025" />
+              </div>
+
+              <div class="card-location-pill">
+                🇧🇩 SEDE BANGLADESH • SUB-20
+              </div>
+
+              <h3 class="card-main-title">AFB LATIN-BANGLA<br>SUPER CUP 2025</h3>
+
+              <div class="card-grid">
+                <div class="grid-btn">🇦🇷 Representación</div>
+                <div class="grid-btn">🌏 Torneo Asiático</div>
+                <div class="grid-btn">⚽ Categoría Sub-20</div>
+                <div class="grid-btn">🏆 Roce Internacional</div>
+              </div>
+            </div>
+
+            <div class="btn-ingresar">
+              VER PARTICIPACIÓN 
+              <div class="btn-icon">➔</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- SECTOR NOTICIAS (EN HORIZONTAL CADA UNA)       -->
+      <!-- ============================================== -->
+      <section id="seccion-noticias" class="reveal">
+        <div class="section-header">
+          <h2 class="section-title">NOTICIAS</h2>
+          <p class="swipe-hint">Tocá cualquier noticia para leer la nota completa ➔</p>
         </div>
 
-        <div class="btn-ingresar">
-          INGRESAR AL TORNEO 
-          <div class="btn-icon">➔</div>
+        <div class="news-slider">
+
+          <!-- Noticia 1 -->
+          <a href="https://www.distritointerior.com.ar/hoy/218911/el-combinado-de-nuestra-zona-se-consagro-campeon-en-brasil" target="_blank" rel="noopener noreferrer" class="news-card">
+            <div class="news-thumb">
+              <img src="SUB17.jpg" alt="Campeón en Brasil" onerror="this.src='FOTO11.jpg'" />
+              <span class="news-source-tag">Distrito Interior</span>
+            </div>
+            <div class="news-body">
+              <h3 class="news-headline">El combinado de nuestra zona se consagró campeón en Brasil</h3>
+              <span class="news-read-more">Leer noticia completa ➔</span>
+            </div>
+          </a>
+
+          <!-- Noticia 2 -->
+          <a href="https://www.instagram.com/p/DepWBk1Fh--/?cplk=b3pxaThkbGd6emFh" target="_blank" rel="noopener noreferrer" class="news-card">
+            <div class="news-thumb">
+              <img src="FOTO10.JPG" alt="Publicación Oficial EPFAR" onerror="this.src='FOTO11.jpg'" />
+              <span class="news-source-tag">Instagram</span>
+            </div>
+            <div class="news-body">
+              <h3 class="news-headline">Cobertura y actualidad de nuestros selectivos regionales EPFAR</h3>
+              <span class="news-read-more">Ver en Instagram ➔</span>
+            </div>
+          </a>
+
+          <!-- Noticia 3 -->
+          <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/?amp=1" target="_blank" rel="noopener noreferrer" class="news-card">
+            <div class="news-thumb">
+              <img src="FOTO12.JPG" alt="Rumbo a Bangladesh" onerror="this.src='FOTO11.jpg'" />
+              <span class="news-source-tag">Diario Actualidad</span>
+            </div>
+            <div class="news-body">
+              <h3 class="news-headline">Rumbo a Bangladesh: representará a la Argentina en un torneo internacional Sub-20</h3>
+              <span class="news-read-more">Leer noticia completa ➔</span>
+            </div>
+          </a>
+
+          <!-- Noticia 4 -->
+          <a href="https://www.distritointerior.com.ar/deportes/218808/esta-madrugada-partieron-desde-villegas-los-selectivos-que-participaran-en-brasil-de-la-copa-fair-play" target="_blank" rel="noopener noreferrer" class="news-card">
+            <div class="news-thumb">
+              <img src="SUB15.jpg" alt="Partida desde Villegas a Brasil" onerror="this.src='FOTO11.jpg'" />
+              <span class="news-source-tag">Distrito Interior</span>
+            </div>
+            <div class="news-body">
+              <h3 class="news-headline">Esta madrugada partieron desde Villegas los selectivos que participarán en Brasil de la Copa Fair Play</h3>
+              <span class="news-read-more">Leer noticia completa ➔</span>
+            </div>
+          </a>
+
         </div>
-      </a>
+      </section>
+
     </main>
   </div>
 
   <!-- ==================================================== -->
-  <!-- VISTA 2: ¿QUÉ ES EPFAR? (FONDO AZUL + CAJA BLANCA)   -->
+  <!-- VISTA 2: ¿QUÉ ES EPFAR? (MEJORADA Y ALINEADA)        -->
   <!-- ==================================================== -->
   <div id="vista-que-es">
     <div class="que-es-card">
-      <!-- Logo arriba de todo dentro del rectángulo blanco -->
       <div class="que-es-logo-top">
         <img src="image_4.png.jpg" alt="Logo EPFAR" />
       </div>
 
-      <!-- Texto institucional completo -->
       <div class="que-es-content">
-        <p><strong>EPFAR</strong> es un proyecto de formación y entrenamiento futbolístico dirigido por el profesor <strong>Hernán Ojeda</strong>, orientado al desarrollo de jugadores juveniles de la región de General Villegas y localidades cercanas.</p>
+        <div class="que-es-lead">
+          <strong>EPFAR</strong> es un proyecto de formación y entrenamiento futbolístico dirigido por el profesor <strong>Hernán Ojeda</strong>, orientado al desarrollo de jugadores juveniles de la región de General Villegas y localidades cercanas.
+        </div>
 
         <h2>¿Qué hace EPFAR?</h2>
-        <p><strong>Formación de jugadores:</strong> trabaja con futbolistas juveniles para potenciar sus capacidades técnicas, tácticas y físicas.</p>
-        <p><strong>Categorías:</strong> SUB-15, SUB-17 y SUB-20.</p>
-        <p><strong>Entrenamientos regionales:</strong> reúne jugadores de distintas localidades de la región, brindándoles la oportunidad de desarrollarse deportivamente.</p>
-        <p><strong>Experiencia competitiva internacional:</strong> participa en torneos que permiten a los futbolistas medirse con equipos de otros países y adquirir experiencia en el ámbito competitivo.</p>
+        <div class="que-es-pillars">
+          <div class="pillar-item">
+            <strong>FORMACIÓN POR CAPTACIÓN:</strong>
+            Captación de futbolistas y entrenamientos adaptados para el alto rendimiento, en simultáneo al desarrollo deportivo de los futbolistas en sus respectivas instituciones.
+          </div>
+          <div class="pillar-item">
+            <strong>CATEGORÍAS:</strong>
+            Trabajo estructurado y selectivo en las divisiones SUB-15, SUB-17 y SUB-20.
+          </div>
+          <div class="pillar-item">
+            <strong>ENTRENAMIENTOS REGIONALES:</strong>
+            Reúne jugadores de distintas localidades de la región, brindándoles la oportunidad de desarrollarse deportivamente.
+          </div>
+          <div class="pillar-item">
+            <strong>EXPERIENCIA COMPETITIVA INTERNACIONAL:</strong>
+            Participa en torneos que permiten a los futbolistas medirse con equipos de otros países y adquirir experiencia en el ámbito competitivo.
+          </div>
+        </div>
 
         <h2>Competencias internacionales</h2>
         <ul>
@@ -716,11 +1534,28 @@
     </div>
   </div>
 
-  <!-- PIE DE PÁGINA IGUAL SIN CAMBIAR NADA -->
-  <footer class="footer">
+  <!-- ==================================================== -->
+  <!-- PIE DE PÁGINA CON CONTACTO Y BYLANZAWEBS             -->
+  <!-- ==================================================== -->
+  <footer class="footer" id="contacto-footer">
     <div class="footer-content">
+
+      <!-- Sección de Contacto en el Pie de Página -->
+      <div class="footer-contact-box">
+        <span class="footer-contact-title">CONTACTO OFICIAL — HERNÁN OJEDA</span>
+        <div class="footer-contact-links">
+          <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="contact-chip">
+            📞 +54 9 3415 99-9728
+          </a>
+          <a href="mailto:epfarfutbol@gmail.com" class="contact-chip">
+            ✉️ epfarfutbol@gmail.com
+          </a>
+        </div>
+      </div>
+
       <div class="footer-line-1">
         <span class="footer-brand">EPFAR</span>
+        <span class="footer-dot">•</span>
         <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
       </div>
       <div class="footer-line-2">
@@ -747,40 +1582,117 @@
     </div>
   </footer>
 
+  <!-- SCRIPTS: MENÚ PANTALLA COMPLETA, SCROLL REVEAL E INCLINACIÓN 3D -->
   <script>
-    const dropdownMenu = document.getElementById('dropdownMenu');
+    const fullscreenMenu = document.getElementById('fullscreenMenu');
     const vistaInicio = document.getElementById('vista-inicio');
     const vistaQueEs = document.getElementById('vista-que-es');
 
-    function toggleMenu(event) {
-      event.stopPropagation();
-      dropdownMenu.classList.toggle('open');
+    function abrirMenu() {
+      fullscreenMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
 
-    function mostrarInicio() {
+    function cerrarMenu() {
+      fullscreenMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function irAInicio() {
+      cerrarMenu();
       vistaQueEs.style.display = 'none';
       vistaInicio.style.display = 'block';
       document.body.classList.remove('modo-que-es');
-      dropdownMenu.classList.remove('open');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function mostrarQueEs() {
+    function irAEntrenadores() {
+      cerrarMenu();
+      vistaQueEs.style.display = 'none';
+      vistaInicio.style.display = 'block';
+      document.body.classList.remove('modo-que-es');
+      setTimeout(() => {
+        const el = document.getElementById('seccion-entrenadores');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+
+    function irAQueEs() {
+      cerrarMenu();
       vistaInicio.style.display = 'none';
       vistaQueEs.style.display = 'block';
       document.body.classList.add('modo-que-es');
-      dropdownMenu.classList.remove('open');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Si viene desde la página de torneos tocando "QUE ES EPFAR"
-    if (window.location.hash === '#que-es-epfar') {
-      mostrarQueEs();
+    function irAContacto() {
+      cerrarMenu();
+      setTimeout(() => {
+        const footer = document.getElementById('contacto-footer');
+        if (footer) footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
     }
 
-    // Cerrar menú al tocar afuera
-    document.addEventListener('click', () => {
-      dropdownMenu.classList.remove('open');
+    // Soporte para enlaces directos con hash desde la página del torneo
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#que-es-epfar') {
+        irAQueEs();
+      } else if (window.location.hash === '#entrenadores') {
+        irAEntrenadores();
+      } else if (window.location.hash === '#contacto-footer') {
+        irAContacto();
+      }
+    });
+
+    // EFECTO SCROLL REVEAL AL BAJAR POR LA PÁGINA
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // EFECTO DE INCLINACIÓN 3D (TILT) AL PASAR EL DEDO O EL MOUSE EN LAS 5 FICHAS
+    const tiltCards = document.querySelectorAll('[data-tilt]');
+
+    tiltCards.forEach(card => {
+      const handleMove = (clientX, clientY) => {
+        const rect = card.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -9;
+        const rotateY = ((x - centerX) / centerX) * 9;
+        card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      };
+
+      const resetTilt = () => {
+        card.classList.remove('touch-active');
+        card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)';
+      };
+
+      // Mouse (PC)
+      card.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY));
+      card.addEventListener('mouseleave', resetTilt);
+
+      // Táctil (Celulares y Tablets)
+      card.addEventListener('touchstart', (e) => {
+        card.classList.add('touch-active');
+        const touch = e.touches[0];
+        handleMove(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      card.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        handleMove(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      card.addEventListener('touchend', resetTilt);
     });
   </script>
 
