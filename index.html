@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EPFAR | Centro de Entrenamiento de Alto Rendimiento</title>
   
-  <!-- Tipografías: Clash Display, Geist, Space Grotesk e Inter -->
+  <!-- Únicamente 2 tipografías para jerarquía limpia: Clash Display (Títulos) e Inter (Texto) -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -20,6 +20,8 @@
       --red-card-dark: #6e1017;
       --orange-accent: #f26522;
       --text-dark: #111827;
+      --font-title: 'Clash Display', sans-serif;
+      --font-body: 'Inter', sans-serif;
     }
 
     * {
@@ -34,7 +36,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-body);
       color: var(--text-dark);
       background-color: #f9f9fb;
       background-image: 
@@ -47,6 +49,16 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+    }
+
+    /* LIENZO DE PARTÍCULAS DIMINUTAS EN PRIMER PLANO (POR DELANTE) */
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2500;
     }
 
     /* FONDO AZUL DE RAYITAS PARA "QUE ES EPFAR" */
@@ -73,12 +85,12 @@
       background-attachment: fixed;
     }
 
-    /* MICRO-INTERACCIONES EN BOTONES Y ENLACES INTERACTIVOS */
-    button, .btn-interactive, .participation-card-vertical, .news-card, .fullscreen-link, .contact-chip {
+    /* MICRO-INTERACCIONES AL PULSAR BOTONES */
+    button, .btn-interactive, .participation-card-vertical, .news-card, .fullscreen-link {
       transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, opacity 0.2s ease;
     }
 
-    button:active, .btn-interactive:active, .participation-card-vertical:active, .news-card:active, .fullscreen-link:active, .contact-chip:active {
+    button:active, .btn-interactive:active, .participation-card-vertical:active, .news-card:active, .fullscreen-link:active {
       transform: scale(0.96) !important;
     }
 
@@ -108,7 +120,7 @@
     }
 
     .navbar-title {
-      font-family: 'Clash Display', sans-serif;
+      font-family: var(--font-title);
       font-weight: 600;
       font-size: clamp(0.95rem, 2.8vw, 1.25rem);
       color: #ffffff;
@@ -150,7 +162,7 @@
     }
 
     /* ==================================================== */
-    /* MENÚ DE PANTALLA COMPLETA (FULLSCREEN OVERLAY)       */
+    /* MENÚ DE PANTALLA COMPLETA CON CLASH DISPLAY          */
     /* ==================================================== */
     .fullscreen-menu {
       position: fixed;
@@ -182,8 +194,8 @@
     }
 
     .fullscreen-brand {
-      font-family: 'Clash Display', sans-serif;
-      font-weight: 700;
+      font-family: var(--font-title);
+      font-weight: 600;
       font-size: 1.2rem;
       color: #ffffff;
       letter-spacing: 0.04em;
@@ -213,9 +225,9 @@
     }
 
     .fullscreen-link {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+      font-family: var(--font-title);
+      font-weight: 600;
+      font-size: clamp(1.15rem, 4.2vw, 1.65rem);
       color: #ffffff;
       text-decoration: none;
       padding: 16px 20px;
@@ -226,7 +238,8 @@
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
     }
 
     .fullscreen-link:hover {
@@ -273,7 +286,6 @@
       min-width: 0;
     }
 
-    /* TEXTO LIMPIO SIN BORDES ALREDEDOR DE LIGAS REGIONALES ARGENTINAS */
     .badge-ligas-plain {
       display: block;
       font-size: clamp(0.68rem, 2vw, 0.82rem);
@@ -285,7 +297,7 @@
     }
 
     .hero-title {
-      font-family: 'Clash Display', sans-serif;
+      font-family: var(--font-title);
       font-weight: 700;
       font-size: clamp(1.85rem, 5.5vw, 3rem);
       color: #ffffff;
@@ -362,12 +374,14 @@
       margin-top: 6px;
     }
 
+    /* TÍTULOS CON CLASH DISPLAY (IGUAL A PAGINA OFICIAL EPFAR) */
     .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.38rem, 4vw, 1.95rem);
+      font-family: var(--font-title);
+      font-weight: 600;
+      font-size: clamp(1.35rem, 4vw, 1.9rem);
       color: #0b1933;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
       display: inline-block;
     }
 
@@ -389,38 +403,53 @@
     }
 
     /* ==================================================== */
-    /* SECCIÓN ENTRENADORES (TARJETAS 3D CON BORDE BRILLANTE)*/
+    /* SECCIÓN ENTRENADORES (DESLIZABLE A LA DERECHA)       */
     /* ==================================================== */
-    .coaches-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 18px;
+    .coaches-slider {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 8px 4px 20px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--orange-accent) rgba(0,0,0,0.08);
       perspective: 1000px;
     }
 
-    @media (max-width: 520px) {
-      .coaches-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-      /* La primera ficha (Hernán Ojeda) ocupa las 2 columnas en celular para destacar */
-      .coaches-grid .coach-card:first-child {
-        grid-column: span 2;
-      }
+    .coaches-slider::-webkit-scrollbar {
+      height: 6px;
+    }
+    .coaches-slider::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.06);
+      border-radius: 99px;
+    }
+    .coaches-slider::-webkit-scrollbar-thumb {
+      background: var(--orange-accent);
+      border-radius: 99px;
     }
 
     .coach-card {
+      flex: 0 0 74%;
+      max-width: 265px;
+      scroll-snap-align: start;
       position: relative;
-      border-radius: 18px;
-      padding: 2px; /* Espacio para el borde brillante */
-      background: linear-gradient(135deg, rgba(242, 101, 34, 0.85), rgba(9, 49, 112, 0.4), rgba(56, 189, 248, 0.85));
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, rgba(242, 101, 34, 0.9), rgba(9, 49, 112, 0.45), rgba(56, 189, 248, 0.9));
       background-size: 200% 200%;
       animation: borderGlow 4s ease infinite;
-      box-shadow: 0 10px 24px rgba(7, 25, 54, 0.14);
+      box-shadow: 0 12px 26px rgba(7, 25, 54, 0.16);
       transform-style: preserve-3d;
       transition: transform 0.15s ease-out, box-shadow 0.25s ease;
       cursor: pointer;
       user-select: none;
+    }
+
+    @media (min-width: 640px) {
+      .coach-card {
+        flex: 0 0 240px;
+      }
     }
 
     @keyframes borderGlow {
@@ -435,66 +464,88 @@
     }
 
     .coach-card-inner {
-      background: linear-gradient(180deg, #0b224a 0%, #071630 100%);
-      border-radius: 16px;
+      background: linear-gradient(180deg, #0b224a 0%, #061329 100%);
+      border-radius: 18px;
       height: 100%;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px 14px 18px;
     }
 
-    .coach-photo-box {
+    /* RETRATO CENTRADO EN EL MEDIO DEL RECUADRO */
+    .coach-photo-stage {
       width: 100%;
-      aspect-ratio: 4 / 4.2;
-      background: radial-gradient(circle at center, #1b3a70 0%, #091936 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
+      margin-bottom: 14px;
+    }
+
+    .coach-photo-stage::before {
+      content: "";
+      position: absolute;
+      width: 148px;
+      height: 148px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(242, 101, 34, 0.28) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .coach-photo-frame {
+      width: 138px;
+      height: 138px;
+      border-radius: 24px;
+      padding: 3px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--orange-accent) 100%);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
       overflow: hidden;
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* Si es la primera tarjeta en móvil, proporción más panorámica */
-    @media (max-width: 520px) {
-      .coaches-grid .coach-card:first-child .coach-photo-box {
-        aspect-ratio: 16 / 10;
-      }
-    }
-
-    .coach-photo-box img {
+    .coach-photo-frame img {
       width: 100%;
       height: 100%;
+      border-radius: 21px;
       object-fit: cover;
-      object-position: top center;
+      object-position: center 18%;
+      background-color: #0d1f40;
       display: block;
       transition: transform 0.35s ease;
     }
 
-    .coach-card:hover .coach-photo-box img {
-      transform: scale(1.04);
+    .coach-card:hover .coach-photo-frame img {
+      transform: scale(1.05);
     }
 
     .coach-Avatar-fallback {
-      width: 74px;
-      height: 74px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid var(--orange-accent);
+      width: 100%;
+      height: 100%;
+      border-radius: 21px;
+      background: radial-gradient(circle at center, #1b3a70 0%, #091936 100%);
       color: #ffffff;
-      font-family: 'Clash Display', sans-serif;
+      font-family: var(--font-title);
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 2rem;
       display: none;
       align-items: center;
       justify-content: center;
     }
 
     .coach-info {
-      padding: 14px 12px 16px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      align-items: center;
+      gap: 5px;
       flex: 1;
+      width: 100%;
     }
 
     .coach-location {
@@ -503,21 +554,27 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--orange-accent);
+      background: rgba(242, 101, 34, 0.12);
+      padding: 4px 10px;
+      border-radius: 99px;
     }
 
+    /* NOMBRES DE ENTRENADORES CON CLASH DISPLAY */
     .coach-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(0.95rem, 2.5vw, 1.12rem);
-      font-weight: 700;
+      font-family: var(--font-title);
+      font-size: 1.12rem;
+      font-weight: 600;
       color: #ffffff;
+      letter-spacing: 0.02em;
       line-height: 1.2;
+      margin-top: 2px;
     }
 
     .coach-role {
-      font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
       font-weight: 500;
-      margin-top: 2px;
+      line-height: 1.35;
     }
 
     /* ==================================================== */
@@ -567,7 +624,7 @@
       }
     }
 
-    /* 1. VENTANA BLANCA: MADRID ESPAÑA */
+    /* 1. VENTANA BLANCA: TORNEO EN EL RESTO DEL MUNDO */
     .card-white-madrid {
       background: #ffffff;
       border: 2px solid rgba(9, 49, 112, 0.14);
@@ -593,33 +650,35 @@
     }
 
     .madrid-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.65rem;
-      font-weight: 700;
+      font-family: var(--font-title);
+      font-size: 1.55rem;
+      font-weight: 600;
       color: var(--navy-header);
       line-height: 1.15;
+      letter-spacing: 0.02em;
       margin-bottom: 12px;
+      text-transform: uppercase;
     }
 
     .madrid-soon {
       display: inline-block;
-      font-family: 'Clash Display', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 600;
       color: #ffffff;
       background: linear-gradient(135deg, var(--orange-accent) 0%, #d9460f 100%);
       padding: 8px 16px;
       border-radius: 12px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       align-self: flex-start;
       box-shadow: 0 6px 16px rgba(242, 101, 34, 0.3);
     }
 
     .madrid-desc {
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       color: #4b5563;
-      line-height: 1.5;
+      line-height: 1.55;
       margin-top: 14px;
     }
 
@@ -694,14 +753,17 @@
       align-self: flex-start;
     }
 
+    /* TÍTULOS DE TORNEOS CON CLASH DISPLAY */
     .card-main-title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-title);
       font-size: 1.5rem;
-      font-weight: 700;
+      font-weight: 600;
       color: #ffffff;
       line-height: 1.15;
+      letter-spacing: 0.02em;
       margin-bottom: 18px;
       text-align: left;
+      text-transform: uppercase;
     }
 
     .card-grid {
@@ -863,11 +925,12 @@
     }
 
     .news-headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.98rem;
-      font-weight: 700;
+      font-family: var(--font-title);
+      font-size: 1rem;
+      font-weight: 600;
       color: #0b1933;
-      line-height: 1.32;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
     }
 
     .news-read-more {
@@ -880,7 +943,7 @@
     }
 
     /* ==================================================== */
-    /* SECCIÓN "¿QUÉ ES EPFAR?" MEJORADA                    */
+    /* SECCIÓN "¿QUÉ ES EPFAR?" CON CLASH DISPLAY           */
     /* ==================================================== */
     #vista-que-es {
       display: none;
@@ -927,10 +990,12 @@
     }
 
     .que-es-content h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-title);
       font-size: clamp(1.18rem, 3vw, 1.38rem);
-      font-weight: 700;
+      font-weight: 600;
       color: var(--blue-card);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
       margin-top: 28px;
       margin-bottom: 14px;
       display: flex;
@@ -966,9 +1031,11 @@
 
     .pillar-item strong {
       display: block;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-title);
+      font-weight: 600;
       color: var(--navy-header);
       font-size: 0.98rem;
+      letter-spacing: 0.02em;
       margin-bottom: 4px;
       text-transform: uppercase;
     }
@@ -1000,11 +1067,11 @@
     }
 
     /* ==================================================== */
-    /* PIE DE PÁGINA CON CONTACTO DE HERNÁN OJEDA           */
+    /* PIE DE PÁGINA CON CONTACTO SENCILLO E IGUAL AL RESTO */
     /* ==================================================== */
     .footer {
       background-color: #061326;
-      padding: 30px 16px 24px;
+      padding: 26px 16px 24px;
       text-align: center;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       margin-top: auto;
@@ -1016,58 +1083,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
-    }
-
-    /* Bloque de Contacto en el Pie de Página */
-    .footer-contact-box {
-      width: 100%;
-      max-width: 680px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 16px 18px;
-      margin-bottom: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-contact-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--orange-accent);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .footer-contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-    }
-
-    .contact-chip {
-      display: inline-flex;
-      align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: #ffffff;
-      text-decoration: none;
-      padding: 9px 14px;
-      border-radius: 12px;
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-
-    .contact-chip:hover {
-      background: var(--blue-card);
-      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .footer-line-1 {
@@ -1080,7 +1096,7 @@
     }
 
     .footer-brand {
-      font-family: 'Clash Display', sans-serif;
+      font-family: var(--font-title);
       font-weight: 700;
       font-size: clamp(0.95rem, 3.8vw, 1.15rem);
       color: #ffffff;
@@ -1093,19 +1109,30 @@
     }
 
     .footer-desc {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-body);
       font-weight: 400;
       font-size: clamp(0.72rem, 3.1vw, 0.9rem);
       color: #9ba8bf;
     }
 
-    .footer-line-2 {
-      font-family: 'Inter', sans-serif;
+    .footer-line-2,
+    .footer-contact-plain {
+      font-family: var(--font-body);
       font-weight: 400;
       font-size: clamp(0.7rem, 2.9vw, 0.84rem);
       color: #8c9bb5;
-      line-height: 1.45;
+      line-height: 1.5;
       width: 100%;
+    }
+
+    .footer-contact-plain a {
+      color: #8c9bb5;
+      text-decoration: none;
+    }
+
+    .footer-contact-plain a:hover {
+      color: #ffffff;
+      text-decoration: underline;
     }
 
     .footer-lanzawebs-row {
@@ -1129,7 +1156,7 @@
     .lanzawebs-text {
       display: inline-flex;
       align-items: baseline;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-body);
       line-height: 1;
     }
 
@@ -1157,7 +1184,7 @@
       width: 100%;
       padding-top: 10px;
       border-top: 1px solid rgba(255, 255, 255, 0.07);
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-body);
       font-size: 0.7rem;
       color: rgba(155, 168, 191, 0.75);
       letter-spacing: 0.01em;
@@ -1165,6 +1192,9 @@
   </style>
 </head>
 <body>
+
+  <!-- PARTÍCULAS DIMINUTAS MOVIÉNDOSE POR DELANTE -->
+  <canvas id="particles-canvas"></canvas>
 
   <!-- CABECERA SUPERIOR -->
   <header class="navbar">
@@ -1182,7 +1212,7 @@
     </div>
   </header>
 
-  <!-- MENÚ DE PANTALLA COMPLETA AL TOCAR LAS 3 RAYITAS -->
+  <!-- MENÚ DE PANTALLA COMPLETA -->
   <div class="fullscreen-menu" id="fullscreenMenu">
     <div class="fullscreen-header">
       <span class="fullscreen-brand">MENÚ EPFAR</span>
@@ -1226,7 +1256,6 @@
     <section class="hero-strip">
       <div class="hero-container">
         <div class="hero-text-side">
-          <!-- Texto directo sin bordes alrededor -->
           <span class="badge-ligas-plain">LIGAS REGIONALES ARGENTINAS</span>
           <h1 class="hero-title">EPFAR</h1>
           <p class="hero-subtitle">
@@ -1251,25 +1280,28 @@
     <main class="main-content">
 
       <!-- ============================================== -->
-      <!-- SECCIÓN ENTRENADORES (5 FICHAS CON EFECTO 3D)  -->
+      <!-- SECCIÓN ENTRENADORES (DESLIZABLE HORIZONTAL)   -->
       <!-- ============================================== -->
       <section id="seccion-entrenadores" class="reveal">
         <div class="section-header">
           <h2 class="section-title">ENTRENADORES</h2>
+          <p class="swipe-hint">Deslizá hacia la derecha para ver a todos los DT ➔</p>
         </div>
 
-        <div class="coaches-grid">
+        <div class="coaches-slider">
           <!-- Ficha 1 -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
-              <div class="coach-photo-box">
-                <img src="fotoo1.PNG" alt="Hernán Ojeda" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                <div class="coach-Avatar-fallback">HO</div>
+              <div class="coach-photo-stage">
+                <div class="coach-photo-frame">
+                  <img src="fotoo1.PNG" alt="Hernán Ojeda" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="coach-Avatar-fallback">HO</div>
+                </div>
               </div>
               <div class="coach-info">
                 <span class="coach-location">📍 Santa Regina</span>
                 <h3 class="coach-name">Hernán Ojeda</h3>
-                <p class="coach-role">Director Técnico - Coordinador general</p>
+                <p class="coach-role">Director Técnico - Coordinador General.</p>
               </div>
             </div>
           </div>
@@ -1277,14 +1309,16 @@
           <!-- Ficha 2 -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
-              <div class="coach-photo-box">
-                <img src="fotoo2.PNG" alt="Cristian Martínez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                <div class="coach-Avatar-fallback">CM</div>
+              <div class="coach-photo-stage">
+                <div class="coach-photo-frame">
+                  <img src="fotoo2.PNG" alt="Cristian Martínez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="coach-Avatar-fallback">CM</div>
+                </div>
               </div>
               <div class="coach-info">
                 <span class="coach-location">📍 C. Charlone</span>
                 <h3 class="coach-name">Cristian Martínez</h3>
-                <p class="coach-role">DT</p>
+                <p class="coach-role">DT.</p>
               </div>
             </div>
           </div>
@@ -1292,14 +1326,16 @@
           <!-- Ficha 3 -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
-              <div class="coach-photo-box">
-                <img src="fotoo3.PNG" alt="Fabián Millarez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                <div class="coach-Avatar-fallback">FM</div>
+              <div class="coach-photo-stage">
+                <div class="coach-photo-frame">
+                  <img src="fotoo3.PNG" alt="Fabián Millarez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="coach-Avatar-fallback">FM</div>
+                </div>
               </div>
               <div class="coach-info">
                 <span class="coach-location">📍 C. Charlone</span>
                 <h3 class="coach-name">Fabián Millarez</h3>
-                <p class="coach-role">DT</p>
+                <p class="coach-role">DT.</p>
               </div>
             </div>
           </div>
@@ -1307,9 +1343,11 @@
           <!-- Ficha 4 -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
-              <div class="coach-photo-box">
-                <img src="fotoo4.PNG" alt="Gastón Jara" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                <div class="coach-Avatar-fallback">GJ</div>
+              <div class="coach-photo-stage">
+                <div class="coach-photo-frame">
+                  <img src="fotoo4.PNG" alt="Gastón Jara" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="coach-Avatar-fallback">GJ</div>
+                </div>
               </div>
               <div class="coach-info">
                 <span class="coach-location">📍 Rosario</span>
@@ -1322,14 +1360,16 @@
           <!-- Ficha 5 -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
-              <div class="coach-photo-box">
-                <img src="fotoo5.PNG" alt="Alex Corvalán" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                <div class="coach-Avatar-fallback">AC</div>
+              <div class="coach-photo-stage">
+                <div class="coach-photo-frame">
+                  <img src="fotoo5.PNG" alt="Alex Corvalán" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="coach-Avatar-fallback">AC</div>
+                </div>
               </div>
               <div class="coach-info">
                 <span class="coach-location">📍 Rosario</span>
                 <h3 class="coach-name">Alex Corvalán</h3>
-                <p class="coach-role">Cuerpo Técnico EPFAR</p>
+                <p class="coach-role">DT</p>
               </div>
             </div>
           </div>
@@ -1347,14 +1387,14 @@
 
         <div class="participations-slider">
 
-          <!-- 1. PRIMERA VENTANA BLANCA: TORNEO EN MADRID, ESPAÑA -->
+          <!-- 1. PRIMERA VENTANA BLANCA: TORNEO EN EL RESTO DEL MUNDO -->
           <div class="participation-card-vertical card-white-madrid">
             <div>
-              <div class="madrid-badge">🇪🇸 EUROPA • INTERNACIONAL</div>
-              <h3 class="madrid-title">TORNEO EN MADRID,<br>ESPAÑA.</h3>
+              <div class="madrid-badge">🌎 INTERNACIONAL • 2027</div>
+              <h3 class="madrid-title">TORNEO EN EL<br>RESTO DEL MUNDO</h3>
               <span class="madrid-soon">PRÓXIMAMENTE</span>
               <p class="madrid-desc">
-                Nueva experiencia internacional proyectada para los selectivos juveniles de alto rendimiento de EPFAR en España.
+                Nueva experiencia internacional proyectada para los selectivos juveniles de alto rendimiento de EPFAR en España, China y Brasil para el 2027.
               </p>
             </div>
             <div class="madrid-bottom-row">
@@ -1486,7 +1526,7 @@
   </div>
 
   <!-- ==================================================== -->
-  <!-- VISTA 2: ¿QUÉ ES EPFAR? (MEJORADA Y ALINEADA)        -->
+  <!-- VISTA 2: ¿QUÉ ES EPFAR?                              -->
   <!-- ==================================================== -->
   <div id="vista-que-es">
     <div class="que-es-card">
@@ -1535,23 +1575,10 @@
   </div>
 
   <!-- ==================================================== -->
-  <!-- PIE DE PÁGINA CON CONTACTO Y BYLANZAWEBS             -->
+  <!-- PIE DE PÁGINA CON CONTACTO SENCILLO Y BYLANZAWEBS    -->
   <!-- ==================================================== -->
   <footer class="footer" id="contacto-footer">
     <div class="footer-content">
-
-      <!-- Sección de Contacto en el Pie de Página -->
-      <div class="footer-contact-box">
-        <span class="footer-contact-title">CONTACTO OFICIAL — HERNÁN OJEDA</span>
-        <div class="footer-contact-links">
-          <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="contact-chip">
-            📞 +54 9 3415 99-9728
-          </a>
-          <a href="mailto:epfarfutbol@gmail.com" class="contact-chip">
-            ✉️ epfarfutbol@gmail.com
-          </a>
-        </div>
-      </div>
 
       <div class="footer-line-1">
         <span class="footer-brand">EPFAR</span>
@@ -1561,6 +1588,11 @@
       <div class="footer-line-2">
         Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe |<br>
         Dir. Hernán Ojeda
+      </div>
+
+      <!-- Contacto sencillo sin recuadros redondeados y con igual tipografía y tamaño -->
+      <div class="footer-contact-plain">
+        Contacto Hernán Ojeda: <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> | <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a>
       </div>
 
       <div class="footer-lanzawebs-row">
@@ -1582,7 +1614,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS: MENÚ PANTALLA COMPLETA, SCROLL REVEAL E INCLINACIÓN 3D -->
+  <!-- SCRIPTS: MENÚ, SCROLL REVEAL, INCLINACIÓN 3D Y PARTÍCULAS -->
   <script>
     const fullscreenMenu = document.getElementById('fullscreenMenu');
     const vistaInicio = document.getElementById('vista-inicio');
@@ -1633,7 +1665,6 @@
       }, 80);
     }
 
-    // Soporte para enlaces directos con hash desde la página del torneo
     window.addEventListener('DOMContentLoaded', () => {
       if (window.location.hash === '#que-es-epfar') {
         irAQueEs();
@@ -1644,7 +1675,7 @@
       }
     });
 
-    // EFECTO SCROLL REVEAL AL BAJAR POR LA PÁGINA
+    // EFECTO SCROLL REVEAL
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1656,7 +1687,7 @@
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // EFECTO DE INCLINACIÓN 3D (TILT) AL PASAR EL DEDO O EL MOUSE EN LAS 5 FICHAS
+    // EFECTO DE INCLINACIÓN 3D EN TARJETAS DE ENTRENADORES
     const tiltCards = document.querySelectorAll('[data-tilt]');
 
     tiltCards.forEach(card => {
@@ -1666,8 +1697,8 @@
         const y = clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -9;
-        const rotateY = ((x - centerX) / centerX) * 9;
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
         card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
       };
 
@@ -1676,11 +1707,9 @@
         card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)';
       };
 
-      // Mouse (PC)
       card.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY));
       card.addEventListener('mouseleave', resetTilt);
 
-      // Táctil (Celulares y Tablets)
       card.addEventListener('touchstart', (e) => {
         card.classList.add('touch-active');
         const touch = e.touches[0];
@@ -1694,6 +1723,57 @@
 
       card.addEventListener('touchend', resetTilt);
     });
+
+    // SISTEMA DE PARTÍCULAS DIMINUTAS DISPERSAS EN PRIMER PLANO
+    (function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      const particles = [];
+      const PARTICLE_COUNT = 28;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.8 + 0.8,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35 - 0.12,
+          alpha: Math.random() * 0.45 + 0.2,
+          color: Math.random() > 0.45 ? '#f26522' : '#093170'
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+        }
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    })();
   </script>
 
 </body>
