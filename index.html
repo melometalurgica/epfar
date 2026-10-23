@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EPFAR | Centro de Entrenamiento de Alto Rendimiento</title>
   
-  <!-- Únicamente 2 tipografías para jerarquía limpia: Clash Display (Títulos) e Inter (Texto) -->
+  <!-- Dos tipografías: Clash Display (Títulos) e Inter (Lectura) -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,7 @@
       background-color: #f9f9fb;
       background-image: 
         url('image_6.png.PNG'),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(242, 243, 247, 0.4) 48%, rgba(230, 232, 238, 0.7) 48.3%, rgba(252, 252, 254, 0.95) 100%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(242, 243, 247, 0.45) 48%, rgba(230, 232, 238, 0.72) 48.3%, rgba(252, 252, 254, 0.96) 100%),
         repeating-linear-gradient(-45deg, #fbfbfc 0px, #fbfbfc 4px, #f3f4f7 4px, #f3f4f7 8px);
       background-size: cover, 100% 100%, auto;
       background-attachment: fixed;
@@ -51,7 +51,7 @@
       overflow-x: hidden;
     }
 
-    /* LIENZO DE PARTÍCULAS DIMINUTAS EN PRIMER PLANO (POR DELANTE) */
+    /* LIENZO DE PARTÍCULAS DIMINUTAS GRIS CASI OSCURO */
     #particles-canvas {
       position: fixed;
       inset: 0;
@@ -86,24 +86,25 @@
     }
 
     /* MICRO-INTERACCIONES AL PULSAR BOTONES */
-    button, .btn-interactive, .participation-card-vertical, .news-card, .fullscreen-link {
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, opacity 0.2s ease;
+    button, .btn-interactive, .participation-card-vertical, .news-card, .fullscreen-link, .contact-card-item {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, opacity 0.2s ease;
     }
 
-    button:active, .btn-interactive:active, .participation-card-vertical:active, .news-card:active, .fullscreen-link:active {
-      transform: scale(0.96) !important;
+    button:active, .btn-interactive:active, .participation-card-vertical:active, .news-card:active, .fullscreen-link:active, .contact-card-item:active {
+      transform: scale(0.97) !important;
     }
 
-    /* ANIMACIÓN SCROLL REVEAL */
+    /* SCROLL REVEAL MEJORADO Y ESCALONADO */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(34px) scale(0.99);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
     }
 
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     /* CABECERA SUPERIOR EN AZUL MARINO */
@@ -116,7 +117,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.38);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .navbar-title {
@@ -162,7 +164,7 @@
     }
 
     /* ==================================================== */
-    /* MENÚ DE PANTALLA COMPLETA CON CLASH DISPLAY          */
+    /* MENÚ DE PANTALLA COMPLETA                            */
     /* ==================================================== */
     .fullscreen-menu {
       position: fixed;
@@ -367,14 +369,13 @@
 
     .section-header {
       margin-bottom: 18px;
-      margin-top: 36px;
+      margin-top: 42px;
     }
 
     .section-header:first-of-type {
       margin-top: 6px;
     }
 
-    /* TÍTULOS CON CLASH DISPLAY (IGUAL A PAGINA OFICIAL EPFAR) */
     .section-title {
       font-family: var(--font-title);
       font-weight: 600;
@@ -396,21 +397,21 @@
     }
 
     .swipe-hint {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: #4b5563;
       font-weight: 500;
-      margin-top: 4px;
+      margin-top: 5px;
     }
 
     /* ==================================================== */
-    /* SECCIÓN ENTRENADORES (DESLIZABLE A LA DERECHA)       */
+    /* SECCIÓN ENTRENADORES (RECUADRO BLANCO AMPLIO)        */
     /* ==================================================== */
     .coaches-slider {
       display: flex;
-      gap: 16px;
+      gap: 18px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      padding: 8px 4px 20px;
+      padding: 8px 4px 22px;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scrollbar-color: var(--orange-accent) rgba(0,0,0,0.08);
@@ -430,16 +431,16 @@
     }
 
     .coach-card {
-      flex: 0 0 74%;
-      max-width: 265px;
+      flex: 0 0 80%;
+      max-width: 290px;
       scroll-snap-align: start;
       position: relative;
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 2px;
       background: linear-gradient(135deg, rgba(242, 101, 34, 0.9), rgba(9, 49, 112, 0.45), rgba(56, 189, 248, 0.9));
       background-size: 200% 200%;
       animation: borderGlow 4s ease infinite;
-      box-shadow: 0 12px 26px rgba(7, 25, 54, 0.16);
+      box-shadow: 0 12px 28px rgba(7, 25, 54, 0.18);
       transform-style: preserve-3d;
       transition: transform 0.15s ease-out, box-shadow 0.25s ease;
       cursor: pointer;
@@ -448,7 +449,7 @@
 
     @media (min-width: 640px) {
       .coach-card {
-        flex: 0 0 240px;
+        flex: 0 0 265px;
       }
     }
 
@@ -460,22 +461,22 @@
 
     .coach-card:hover,
     .coach-card.touch-active {
-      box-shadow: 0 16px 32px rgba(242, 101, 34, 0.28), 0 0 18px rgba(56, 189, 248, 0.45);
+      box-shadow: 0 18px 34px rgba(242, 101, 34, 0.28), 0 0 18px rgba(56, 189, 248, 0.45);
     }
 
     .coach-card-inner {
       background: linear-gradient(180deg, #0b224a 0%, #061329 100%);
-      border-radius: 18px;
+      border-radius: 20px;
       height: 100%;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 20px 14px 18px;
+      padding: 14px 14px 20px;
     }
 
-    /* RETRATO CENTRADO EN EL MEDIO DEL RECUADRO */
+    /* RECUADRO BLANCO AMPLIO ALREDEDOR DE LA FOTO DEL DT */
     .coach-photo-stage {
       width: 100%;
       display: flex;
@@ -485,23 +486,13 @@
       margin-bottom: 14px;
     }
 
-    .coach-photo-stage::before {
-      content: "";
-      position: absolute;
-      width: 148px;
-      height: 148px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(242, 101, 34, 0.28) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
     .coach-photo-frame {
-      width: 138px;
-      height: 138px;
-      border-radius: 24px;
-      padding: 3px;
-      background: linear-gradient(135deg, #ffffff 0%, var(--orange-accent) 100%);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+      width: 100%;
+      height: 215px;
+      border-radius: 16px;
+      padding: 4px;
+      background-color: #ffffff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
       overflow: hidden;
       position: relative;
       z-index: 1;
@@ -513,27 +504,27 @@
     .coach-photo-frame img {
       width: 100%;
       height: 100%;
-      border-radius: 21px;
+      border-radius: 12px;
       object-fit: cover;
-      object-position: center 18%;
+      object-position: center 16%;
       background-color: #0d1f40;
       display: block;
       transition: transform 0.35s ease;
     }
 
     .coach-card:hover .coach-photo-frame img {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
 
     .coach-Avatar-fallback {
       width: 100%;
       height: 100%;
-      border-radius: 21px;
+      border-radius: 12px;
       background: radial-gradient(circle at center, #1b3a70 0%, #091936 100%);
       color: #ffffff;
       font-family: var(--font-title);
       font-weight: 700;
-      font-size: 2rem;
+      font-size: 2.3rem;
       display: none;
       align-items: center;
       justify-content: center;
@@ -543,26 +534,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       flex: 1;
       width: 100%;
+      padding: 0 4px;
     }
 
+    /* UBICACIÓN SOLO CON TEXTO EN NARANJA SIN BORDES ALREDEDOR */
     .coach-location {
-      font-size: 0.68rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--orange-accent);
-      background: rgba(242, 101, 34, 0.12);
-      padding: 4px 10px;
-      border-radius: 99px;
+      background: none;
+      border: none;
+      padding: 0;
     }
 
-    /* NOMBRES DE ENTRENADORES CON CLASH DISPLAY */
     .coach-name {
       font-family: var(--font-title);
-      font-size: 1.12rem;
+      font-size: 1.18rem;
       font-weight: 600;
       color: #ffffff;
       letter-spacing: 0.02em;
@@ -571,10 +563,22 @@
     }
 
     .coach-role {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: 500;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 600;
       line-height: 1.35;
+    }
+
+    /* RESEÑA / DESDE EN BLANCO PURO Y SIN BORDES */
+    .coach-bio {
+      font-size: 0.78rem;
+      color: #ffffff;
+      font-weight: 400;
+      line-height: 1.42;
+      margin-top: 4px;
+      background: none;
+      border: none;
+      padding: 0;
     }
 
     /* ==================================================== */
@@ -661,18 +665,26 @@
     }
 
     .madrid-soon {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--font-title);
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 600;
       color: #ffffff;
       background: linear-gradient(135deg, var(--orange-accent) 0%, #d9460f 100%);
-      padding: 8px 16px;
+      padding: 10px 18px;
       border-radius: 12px;
+      border: none;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       align-self: flex-start;
-      box-shadow: 0 6px 16px rgba(242, 101, 34, 0.3);
+      box-shadow: 0 6px 16px rgba(242, 101, 34, 0.32);
+      cursor: pointer;
+    }
+
+    .madrid-soon:hover {
+      filter: brightness(1.06);
     }
 
     .madrid-desc {
@@ -753,7 +765,6 @@
       align-self: flex-start;
     }
 
-    /* TÍTULOS DE TORNEOS CON CLASH DISPLAY */
     .card-main-title {
       font-family: var(--font-title);
       font-size: 1.5rem;
@@ -784,16 +795,11 @@
       align-items: center;
       gap: 7px;
     }
-    .grid-btn.live {
-      background: rgba(239, 35, 60, 0.18);
-      border-color: rgba(239, 35, 60, 0.35);
-    }
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      background-color: #ef233c;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #ef233c;
+    .grid-btn.more-highlight {
+      background: rgba(242, 101, 34, 0.22);
+      border-color: rgba(242, 101, 34, 0.45);
+      color: #ffd166;
+      font-weight: 600;
     }
 
     .btn-ingresar {
@@ -826,6 +832,140 @@
       align-items: center;
       justify-content: center;
       font-size: 0.8rem;
+    }
+
+    /* ==================================================== */
+    /* LÍNEA FINA DE TRAYECTORIA (CAMINO IZQ A DER + PELOTA)*/
+    /* ==================================================== */
+    .trajectory-wrapper {
+      margin-top: 26px;
+      background: #ffffff;
+      border: 1px solid rgba(9, 49, 112, 0.12);
+      border-radius: 20px;
+      padding: 22px 18px 26px;
+      box-shadow: 0 10px 26px rgba(7, 25, 54, 0.07);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trajectory-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .trajectory-label {
+      font-family: var(--font-title);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy-header);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .trajectory-sub {
+      font-size: 0.75rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .trajectory-stage {
+      position: relative;
+      width: 100%;
+      height: 118px;
+      margin: 6px 0 10px;
+    }
+
+    .trajectory-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      display: block;
+    }
+
+    .path-bg {
+      fill: none;
+      stroke: #dbe3f0;
+      stroke-width: 2.2;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+    }
+
+    .path-Active {
+      fill: none;
+      stroke: var(--orange-accent);
+      stroke-width: 2.6;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      transition: stroke-dashoffset 0.12s linear;
+    }
+
+    .milestone-dot {
+      fill: #ffffff;
+      stroke: var(--navy-header);
+      stroke-width: 2.5;
+      transition: fill 0.25s ease, stroke 0.25s ease, r 0.25s ease;
+    }
+
+    .milestone-dot.reached {
+      fill: var(--orange-accent);
+      stroke: var(--navy-header);
+    }
+
+    .soccer-ball-marker {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 28px;
+      height: 28px;
+      margin-left: -14px;
+      margin-top: -14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      background: #ffffff;
+      border: 2px solid var(--navy-header);
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(7, 25, 54, 0.28);
+      pointer-events: none;
+      z-index: 5;
+      transition: transform 0.08s linear;
+    }
+
+    .trajectory-nodes-labels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .t-node-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .t-node-info:nth-child(1) { text-align: left; }
+    .t-node-info:nth-child(2) { text-align: center; }
+    .t-node-info:nth-child(3) { text-align: right; }
+
+    .t-node-title {
+      font-family: var(--font-title);
+      font-size: clamp(0.76rem, 2.3vw, 0.95rem);
+      font-weight: 600;
+      color: var(--navy-header);
+    }
+
+    .t-node-desc {
+      font-size: clamp(0.66rem, 1.9vw, 0.76rem);
+      color: #4b5563;
+      font-weight: 500;
     }
 
     /* ==================================================== */
@@ -943,7 +1083,128 @@
     }
 
     /* ==================================================== */
-    /* SECCIÓN "¿QUÉ ES EPFAR?" CON CLASH DISPLAY           */
+    /* SECCIÓN FOTOS (RECTÁNGULOS SIN BORDES, DESLIZABLE)   */
+    /* ==================================================== */
+    .photos-slider-borderless {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 4px 0 18px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--navy-header) rgba(0,0,0,0.08);
+    }
+
+    .photos-slider-borderless::-webkit-scrollbar {
+      height: 6px;
+    }
+    .photos-slider-borderless::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.06);
+    }
+    .photos-slider-borderless::-webkit-scrollbar-thumb {
+      background: var(--navy-header);
+    }
+
+    .photo-rect-item {
+      flex: 0 0 84%;
+      max-width: 380px;
+      aspect-ratio: 16 / 10;
+      scroll-snap-align: start;
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+      background: #111827;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .photo-rect-item {
+        flex: 0 0 340px;
+      }
+    }
+
+    .photo-rect-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border: none;
+      border-radius: 0;
+      transition: transform 0.4s ease;
+    }
+
+    .photo-rect-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* ==================================================== */
+    /* SECCIÓN DE CONTACTOS CORTA Y DIRECTA                 */
+    /* ==================================================== */
+    .contact-short-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .contact-card-item {
+      background: #ffffff;
+      border: 1px solid rgba(9, 49, 112, 0.14);
+      border-left: 4px solid var(--orange-accent);
+      border-radius: 14px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 8px 20px rgba(7, 25, 54, 0.06);
+    }
+
+    .contact-card-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(7, 25, 54, 0.12);
+      border-color: var(--blue-card);
+    }
+
+    .contact-item-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .contact-item-label {
+      font-family: var(--font-title);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--blue-card);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .contact-item-value {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0b1933;
+    }
+
+    .contact-item-action {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: rgba(9, 49, 112, 0.08);
+      color: var(--blue-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ==================================================== */
+    /* SECCIÓN "¿QUÉ ES EPFAR?"                             */
     /* ==================================================== */
     #vista-que-es {
       display: none;
@@ -1067,12 +1328,142 @@
     }
 
     /* ==================================================== */
-    /* PIE DE PÁGINA CON CONTACTO SENCILLO E IGUAL AL RESTO */
+    /* MODALES (PRÓXIMAMENTE Y TÉRMINOS Y CONDICIONES)      */
+    /* ==================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 4000;
+      background: rgba(4, 12, 28, 0.76);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      color: var(--text-dark);
+      width: 100%;
+      max-width: 520px;
+      border-radius: 20px;
+      padding: 24px 22px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+      position: relative;
+      max-height: 86vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-box.modal-large {
+      max-width: 780px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e5e7eb;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy-header);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .modal-close {
+      background: #f3f4f6;
+      border: none;
+      color: #1f2937;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .modal-body-scroll {
+      overflow-y: auto;
+      padding-right: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .modal-body-scroll h3 {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--blue-card);
+      margin-top: 10px;
+    }
+
+    .modal-body-scroll ul {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .modal-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .modal-contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 16px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      text-decoration: none;
+      color: var(--navy-header);
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    .modal-contact-btn:hover {
+      background: #eff6ff;
+      border-color: var(--blue-card);
+    }
+
+    /* ==================================================== */
+    /* PIE DE PÁGINA FORMAL CON CONTACTO AL COSTADO         */
     /* ==================================================== */
     .footer {
       background-color: #061326;
-      padding: 26px 16px 24px;
-      text-align: center;
+      padding: 28px 18px 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       margin-top: auto;
     }
@@ -1083,7 +1474,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .footer-line-1 {
@@ -1115,33 +1506,45 @@
       color: #9ba8bf;
     }
 
-    .footer-line-2,
-    .footer-contact-plain {
+    .footer-line-2 {
       font-family: var(--font-body);
       font-weight: 400;
       font-size: clamp(0.7rem, 2.9vw, 0.84rem);
       color: #8c9bb5;
       line-height: 1.5;
       width: 100%;
+      text-align: center;
     }
 
-    .footer-contact-plain a {
+    /* FILA MEDIA DEL FOOTER: CONTACTO AL COSTADO IZQUIERDO Y BYLANZAWEBS AL DERECHO */
+    .footer-side-row {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .footer-contact-side {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(0.7rem, 2.8vw, 0.82rem);
       color: #8c9bb5;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    .footer-contact-side a {
+      color: #9ba8bf;
       text-decoration: none;
     }
 
-    .footer-contact-plain a:hover {
+    .footer-contact-side a:hover {
       color: #ffffff;
       text-decoration: underline;
-    }
-
-    .footer-lanzawebs-row {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      padding-right: 6px;
-      margin-top: -2px;
-      margin-bottom: 4px;
     }
 
     .lanzawebs-badge {
@@ -1151,6 +1554,7 @@
       color: #ffffff;
       text-decoration: none;
       opacity: 0.92;
+      margin-left: auto;
     }
 
     .lanzawebs-text {
@@ -1180,20 +1584,39 @@
       flex-shrink: 0;
     }
 
-    .footer-copyright {
+    .footer-bottom-bar {
       width: 100%;
-      padding-top: 10px;
+      padding-top: 12px;
       border-top: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
       font-family: var(--font-body);
-      font-size: 0.7rem;
-      color: rgba(155, 168, 191, 0.75);
-      letter-spacing: 0.01em;
+      font-size: 0.72rem;
+      color: rgba(155, 168, 191, 0.78);
+    }
+
+    .terms-trigger-link {
+      background: none;
+      border: none;
+      color: #9ba8bf;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .terms-trigger-link:hover {
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
 
-  <!-- PARTÍCULAS DIMINUTAS MOVIÉNDOSE POR DELANTE -->
+  <!-- PARTÍCULAS MÁS DIMINUTAS EN GRIS CASI OSCURO -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- CABECERA SUPERIOR -->
@@ -1248,7 +1671,7 @@
   </div>
 
   <!-- ==================================================== -->
-  <!-- VISTA 1: PORTADA DE INICIO                           -->
+  <!-- VISTA 1: PORTADA PRINCIPAL                           -->
   <!-- ==================================================== -->
   <div id="vista-inicio">
     
@@ -1280,16 +1703,16 @@
     <main class="main-content">
 
       <!-- ============================================== -->
-      <!-- SECCIÓN ENTRENADORES (DESLIZABLE HORIZONTAL)   -->
+      <!-- SECCIÓN ENTRENADORES                           -->
       <!-- ============================================== -->
       <section id="seccion-entrenadores" class="reveal">
         <div class="section-header">
           <h2 class="section-title">ENTRENADORES</h2>
-          <p class="swipe-hint">Deslizá hacia la derecha para ver a todos los DT ➔</p>
+          <p class="swipe-hint">Deslizá para conocer al cuerpo técnico ➔</p>
         </div>
 
         <div class="coaches-slider">
-          <!-- Ficha 1 -->
+          <!-- Ficha 1: Hernán Ojeda -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
               <div class="coach-photo-stage">
@@ -1299,48 +1722,51 @@
                 </div>
               </div>
               <div class="coach-info">
-                <span class="coach-location">📍 Santa Regina</span>
+                <span class="coach-location">Santa Regina</span>
                 <h3 class="coach-name">Hernán Ojeda</h3>
                 <p class="coach-role">Director Técnico - Coordinador General.</p>
+                <p class="coach-bio">Desde 2013. Fundador</p>
               </div>
             </div>
           </div>
 
-          <!-- Ficha 2 -->
+          <!-- Ficha 2: Cristian Martínez (Foto intercambiada a fotoo3.PNG) -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
               <div class="coach-photo-stage">
                 <div class="coach-photo-frame">
-                  <img src="fotoo2.PNG" alt="Cristian Martínez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <img src="fotoo3.PNG" alt="Cristian Martínez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                   <div class="coach-Avatar-fallback">CM</div>
                 </div>
               </div>
               <div class="coach-info">
-                <span class="coach-location">📍 C. Charlone</span>
+                <span class="coach-location">Cnel. Charlone</span>
                 <h3 class="coach-name">Cristian Martínez</h3>
                 <p class="coach-role">DT.</p>
+                <p class="coach-bio">Desde 2025. “Dirige a la categoría Sub-15 en entrenamientos y torneos"</p>
               </div>
             </div>
           </div>
 
-          <!-- Ficha 3 -->
+          <!-- Ficha 3: Fabián Millares (Foto intercambiada a fotoo2.PNG) -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
               <div class="coach-photo-stage">
                 <div class="coach-photo-frame">
-                  <img src="fotoo3.PNG" alt="Fabián Millarez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <img src="fotoo2.PNG" alt="Fabián Millares" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                   <div class="coach-Avatar-fallback">FM</div>
                 </div>
               </div>
               <div class="coach-info">
-                <span class="coach-location">📍 C. Charlone</span>
-                <h3 class="coach-name">Fabián Millarez</h3>
+                <span class="coach-location">Cnel. Charlone</span>
+                <h3 class="coach-name">Fabián Millares</h3>
                 <p class="coach-role">DT.</p>
+                <p class="coach-bio">Desde 2026. “Dirige a la categoría Sub-15 en entrenamientos y torneos"</p>
               </div>
             </div>
           </div>
 
-          <!-- Ficha 4 -->
+          <!-- Ficha 4: Gastón Jara -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
               <div class="coach-photo-stage">
@@ -1350,14 +1776,15 @@
                 </div>
               </div>
               <div class="coach-info">
-                <span class="coach-location">📍 Rosario</span>
+                <span class="coach-location">Rosario</span>
                 <h3 class="coach-name">Gastón Jara</h3>
                 <p class="coach-role">DT</p>
+                <p class="coach-bio">Desde 2026.</p>
               </div>
             </div>
           </div>
 
-          <!-- Ficha 5 -->
+          <!-- Ficha 5: Alex Corvalán -->
           <div class="coach-card" data-tilt>
             <div class="coach-card-inner">
               <div class="coach-photo-stage">
@@ -1367,7 +1794,7 @@
                 </div>
               </div>
               <div class="coach-info">
-                <span class="coach-location">📍 Rosario</span>
+                <span class="coach-location">Rosario</span>
                 <h3 class="coach-name">Alex Corvalán</h3>
                 <p class="coach-role">DT</p>
               </div>
@@ -1377,12 +1804,12 @@
       </section>
 
       <!-- ============================================== -->
-      <!-- SECCIÓN PARTICIPACIONES (DESLIZABLE DERECHA)   -->
+      <!-- SECCIÓN PARTICIPACIONES                        -->
       <!-- ============================================== -->
       <section id="seccion-participaciones" class="reveal">
         <div class="section-header">
           <h2 class="section-title">PARTICIPACIONES</h2>
-          <p class="swipe-hint">Deslizá hacia la derecha para ver todos los torneos ➔</p>
+          <p class="swipe-hint">Deslizá para ver todos los torneos ➔</p>
         </div>
 
         <div class="participations-slider">
@@ -1392,13 +1819,15 @@
             <div>
               <div class="madrid-badge">🌎 INTERNACIONAL • 2027</div>
               <h3 class="madrid-title">TORNEO EN EL<br>RESTO DEL MUNDO</h3>
-              <span class="madrid-soon">PRÓXIMAMENTE</span>
+              <button type="button" class="madrid-soon" onclick="abrirModalProximamente()">
+                PRÓXIMAMENTE <span>➔</span>
+              </button>
               <p class="madrid-desc">
                 Nueva experiencia internacional proyectada para los selectivos juveniles de alto rendimiento de EPFAR en España, China y Brasil para el 2027.
               </p>
             </div>
             <div class="madrid-bottom-row">
-              <span class="madrid-bottom-text">Proyecto Internacional</span>
+              <span class="madrid-bottom-text">Tocá "Próximamente" para + info</span>
               <img src="image_4.png.jpg" alt="Logo EPFAR" class="madrid-mini-logo" />
             </div>
           </div>
@@ -1420,7 +1849,7 @@
                 <div class="grid-btn">👥 Jugadores EPFAR</div>
                 <div class="grid-btn">📅 Fixture Completo</div>
                 <div class="grid-btn">⚽ Partidos a Jugar</div>
-                <div class="grid-btn live"><span class="live-dot"></span> Transmisión en Vivo</div>
+                <div class="grid-btn more-highlight">➕ Ver Más</div>
               </div>
             </div>
 
@@ -1458,10 +1887,49 @@
           </a>
 
         </div>
+
+        <!-- LÍNEA FINA DE TRAYECTORIA (CAMINO ANGULADO DE IZQUIERDA A DERECHA) -->
+        <div class="trajectory-wrapper reveal" id="trajectorySection">
+          <div class="trajectory-header">
+            <span class="trajectory-label">Trayectoria Internacional EPFAR</span>
+            <span class="trajectory-sub">Recorrido competitivo del proyecto</span>
+          </div>
+
+          <div class="trajectory-stage" id="trajectoryStage">
+            <svg class="trajectory-svg" id="trajectorySvg" viewBox="0 0 900 110" preserveAspectRatio="none">
+              <!-- Camino quebrado tipo recorrido táctico de izquierda a derecha (ni recto ni curvo) -->
+              <path id="trajectoryPathBg" class="path-bg" d="M 45 78 L 200 26 L 340 76 L 450 38 L 620 82 L 740 28 L 855 62" />
+              <path id="trajectoryPathActive" class="path-Active" d="M 45 78 L 200 26 L 340 76 L 450 38 L 620 82 L 740 28 L 855 62" />
+
+              <!-- Puntos de cada hito -->
+              <circle class="milestone-dot reached" id="mileDot1" cx="45" cy="78" r="7" />
+              <circle class="milestone-dot" id="mileDot2" cx="450" cy="38" r="7" />
+              <circle class="milestone-dot" id="mileDot3" cx="855" cy="62" r="7" />
+            </svg>
+
+            <!-- Pelota de fútbol que recorre el camino al hacer scroll -->
+            <div class="soccer-ball-marker" id="soccerBallMarker">⚽</div>
+          </div>
+
+          <div class="trajectory-nodes-labels">
+            <div class="t-node-info">
+              <span class="t-node-title">🇧🇩 Bangladesh 2025</span>
+              <span class="t-node-desc">AFB Latin-Bangla Super Cup</span>
+            </div>
+            <div class="t-node-info">
+              <span class="t-node-title">🇧🇷 Brasil 2026</span>
+              <span class="t-node-desc">Copa Fair Play Internacional</span>
+            </div>
+            <div class="t-node-info">
+              <span class="t-node-title">🌍 Próximamente</span>
+              <span class="t-node-desc">España, China, Brasil (2027)</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ============================================== -->
-      <!-- SECTOR NOTICIAS (EN HORIZONTAL CADA UNA)       -->
+      <!-- SECTOR NOTICIAS                                -->
       <!-- ============================================== -->
       <section id="seccion-noticias" class="reveal">
         <div class="section-header">
@@ -1522,6 +1990,70 @@
         </div>
       </section>
 
+      <!-- ============================================== -->
+      <!-- SECCIÓN FOTOS (RECTÁNGULOS SIN BORDES)         -->
+      <!-- ============================================== -->
+      <section id="seccion-fotos" class="reveal">
+        <div class="section-header">
+          <h2 class="section-title">FOTOS</h2>
+          <p class="swipe-hint">Deslizá hacia el costado para ver la galería ➔</p>
+        </div>
+
+        <div class="photos-slider-borderless">
+          <div class="photo-rect-item">
+            <img src="SUB17.jpg" alt="Galería EPFAR 1" />
+          </div>
+          <div class="photo-rect-item">
+            <img src="SUB15.jpg" alt="Galería EPFAR 2" />
+          </div>
+          <div class="photo-rect-item">
+            <img src="FOTO10.JPG" alt="Galería EPFAR 3" />
+          </div>
+          <div class="photo-rect-item">
+            <img src="FOTO11.jpg" alt="Galería EPFAR 4" />
+          </div>
+          <div class="photo-rect-item">
+            <img src="FOTO12.JPG" alt="Galería EPFAR 5" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- SECCIÓN DE CONTACTOS CORTA                     -->
+      <!-- ============================================== -->
+      <section id="seccion-contacto" class="reveal">
+        <div class="section-header">
+          <h2 class="section-title">CONTACTO</h2>
+          <p class="swipe-hint">Tocá cualquiera de los canales oficiales para comunicarte</p>
+        </div>
+
+        <div class="contact-short-grid">
+          <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+            <div class="contact-item-left">
+              <span class="contact-item-label">EPFAR CONTACTO</span>
+              <span class="contact-item-value">+54 9 3415 99-9728 (Hernán Ojeda)</span>
+            </div>
+            <span class="contact-item-action">➔</span>
+          </a>
+
+          <a href="mailto:epfarfutbol@gmail.com" class="contact-card-item">
+            <div class="contact-item-left">
+              <span class="contact-item-label">E-MAIL</span>
+              <span class="contact-item-value">epfarfutbol@gmail.com</span>
+            </div>
+            <span class="contact-item-action">✉</span>
+          </a>
+
+          <a href="https://www.google.com/maps/search/?api=1&query=Rivadavia+558,+Santa+Regina,+Buenos+Aires" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+            <div class="contact-item-left">
+              <span class="contact-item-label">UBICACIÓN</span>
+              <span class="contact-item-value">Rivadavia 558, Santa Regina, Bs As.</span>
+            </div>
+            <span class="contact-item-action">📍</span>
+          </a>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -1575,14 +2107,92 @@
   </div>
 
   <!-- ==================================================== -->
-  <!-- PIE DE PÁGINA CON CONTACTO SENCILLO Y BYLANZAWEBS    -->
+  <!-- MODAL 1: MÁS INFORMACIÓN ("PRÓXIMAMENTE")            -->
+  <!-- ==================================================== -->
+  <div class="modal-backdrop" id="modalProximamente" onclick="cerrarModalExterior(event, 'modalProximamente')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Gira Internacional 2027</h3>
+        <button type="button" class="modal-close" onclick="cerrarModal('modalProximamente')">✕</button>
+      </div>
+      <div class="modal-body-scroll">
+        <p><strong>Más información en nuestros canales oficiales de contacto.</strong> Comunicate directamente con la coordinación general de EPFAR para conocer detalles sobre las próximas convocatorias y participaciones en España, China y Brasil:</p>
+        <div class="modal-contact-list">
+          <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="modal-contact-btn">
+            <span>📞 WhatsApp: +54 9 3415 99-9728 (Hernán Ojeda)</span>
+            <span>➔</span>
+          </a>
+          <a href="mailto:epfarfutbol@gmail.com" class="modal-contact-btn">
+            <span>✉️ E-mail: epfarfutbol@gmail.com</span>
+            <span>➔</span>
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Rivadavia+558,+Santa+Regina,+Buenos+Aires" target="_blank" rel="noopener noreferrer" class="modal-contact-btn">
+            <span>📍 Ubicación: Rivadavia 558, Santa Regina, Bs As.</span>
+            <span>➔</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- MODAL 2: TÉRMINOS Y CONDICIONES DE USO — EPFAR       -->
+  <!-- ==================================================== -->
+  <div class="modal-backdrop" id="modalTerminos" onclick="cerrarModalExterior(event, 'modalTerminos')">
+    <div class="modal-box modal-large">
+      <div class="modal-header">
+        <h3 class="modal-title">Términos y Condiciones </h3>
+        <button type="button" class="modal-close" onclick="cerrarModal('modalTerminos')">✕</button>
+      </div>
+      <div class="modal-body-scroll">
+        <h3>1. Titular del sitio y aceptación de los términos</h3>
+        <p>EPFAR (Centro de Entrenamiento de Alto Rendimiento – Ligas Regionales Argentinas), en adelante «EPFAR», es un proyecto de formación y entrenamiento de jóvenes futbolistas ubicado en Santa Regina, Partido de General Villegas, provincia de Buenos Aires, con conexión en Rosario, provincia de Santa Fe, dirigido por Hernán Ojeda.</p>
+        <p>El acceso y uso del sitio web www.epfar.com implica la aceptación plena de estos Términos y Condiciones. Quien no esté de acuerdo con ellos debe abstenerse de utilizar el Sitio.</p>
+
+        <h3>2. Objeto y alcance del sitio</h3>
+        <p>El Sitio tiene carácter informativo. Presenta el proyecto EPFAR, su cuerpo técnico, los torneos y participaciones, las noticias y los canales de contacto.</p>
+        <p>El Sitio no procesa pagos ni inscripciones. Cualquier consulta, inscripción o acuerdo se gestiona exclusivamente a través de los canales de contacto oficiales indicados en la sección de Contacto (+54 9 3415 99-9728 | epfarfutbol@gmail.com | Rivadavia 558, Santa Regina, Bs As.).</p>
+
+        <h3>3. Uso permitido</h3>
+        <p>El usuario se compromete a utilizar el Sitio de buena fe y conforme a la ley. En particular, queda prohibido:</p>
+        <ul>
+          <li>Utilizar el Sitio con fines ilícitos o contrarios a estos términos.</li>
+          <li>Intentar acceder sin autorización a sistemas, cuentas o datos, o dañar, sobrecargar o interferir con el funcionamiento del Sitio.</li>
+          <li>Hacerse pasar por EPFAR, por su cuerpo técnico, por sus jugadores o por cualquier tercero.</li>
+          <li>Copiar, reproducir o redistribuir los contenidos del Sitio con fines comerciales sin autorización escrita del Titular.</li>
+          <li>Utilizar la información o las imágenes de menores de edad publicadas en el Sitio con fines distintos de su consulta informativa.</li>
+        </ul>
+
+        <h3>4. Propiedad intelectual</h3>
+        <p>El nombre y el logo de EPFAR, así como los textos, el diseño, las fotografías, los videos y demás contenidos del Sitio, pertenecen a EPFAR o se utilizan con la debida autorización de sus titulares.</p>
+        <p>Las marcas, logos y nombres de terceros que aparecen en el Sitio (organizadores de torneos, clubes, socios institucionales y otros) pertenecen a sus respectivos titulares y se muestran con autorización o a título meramente informativo.</p>
+        <p>Se prohíbe la reproducción, distribución, modificación o uso comercial de los contenidos del Sitio sin autorización escrita del Titular. Se permite compartir los enlaces del Sitio y citar sus contenidos para uso personal y no comercial, indicando la fuente.</p>
+
+        <h3>5. Imágenes y datos de menores de edad</h3>
+        <p>El Sitio puede mostrar nombres, fotografías y otros datos de jugadores, muchos de ellos menores de edad, así como de integrantes del cuerpo técnico. Su publicación se realiza con la autorización de los padres, madres o tutores, o de las propias personas mayores de edad, en el marco de la Ley 26.061 de Protección Integral de los Derechos de Niñas, Niños y Adolescentes y del derecho a la imagen (artículo 53 del Código Civil y Comercial de la Nación).</p>
+        <p>Los padres, madres o tutores, y las personas mayores de edad, pueden solicitar en cualquier momento la rectificación, la modificación o el retiro de sus imágenes y datos escribiendo a los contactos oficiales. EPFAR atenderá el pedido a la mayor brevedad posible.</p>
+        <p>Queda prohibido descargar, copiar, editar, publicar o difundir fuera del Sitio imágenes o datos de menores publicados en él, sin autorización expresa de EPFAR y de sus responsables.</p>
+
+        <h3>6. Datos personales y privacidad</h3>
+        <p>El Sitio no requiere registro de usuarios ni recopila datos mediante formularios. Cuando una persona se comunica con EPFAR por WhatsApp, correo electrónico u otro canal, sus datos se utilizan únicamente para responder la consulta o gestionar el trámite solicitado, y no se venden ni se ceden a terceros.</p>
+        <p>El Sitio está alojado en Netlify, que puede registrar datos técnicos (como la dirección IP o el tipo de navegador) para garantizar la seguridad y el funcionamiento del servicio. Si en el futuro se incorporan herramientas de analítica o cookies, se informará en la Política de Privacidad del Sitio.</p>
+        <p>El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a ellos en forma gratuita a intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto, conforme lo establecido en la Ley 25.326 de Protección de los Datos Personales. También puede solicitar la rectificación, actualización o supresión de sus datos escribiendo a los contactos oficiales.</p>
+        <p>La Agencia de Acceso a la Información Pública, en su carácter de órgano de control de la Ley 25.326, tiene la atribución de atender las denuncias y reclamos que interpongan quienes resulten afectados en sus derechos por el incumplimiento de las normas vigentes en materia de protección de datos personales.</p>
+
+        <h3>7. Enlaces y contenido de terceros</h3>
+        <p>El Sitio puede contener enlaces a redes sociales, plataformas de video, transmisiones en vivo y sitios de organizadores de torneos u otros terceros. EPFAR no controla esos sitios ni se responsabiliza por sus contenidos, políticas de privacidad o disponibilidad. El acceso a ellos es bajo exclusiva responsabilidad del usuario.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- PIE DE PÁGINA FORMAL CON CONTACTO AL COSTADO         -->
   <!-- ==================================================== -->
   <footer class="footer" id="contacto-footer">
     <div class="footer-content">
 
       <div class="footer-line-1">
         <span class="footer-brand">EPFAR</span>
-        <span class="footer-dot">•</span>
         <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
       </div>
       <div class="footer-line-2">
@@ -1590,12 +2200,13 @@
         Dir. Hernán Ojeda
       </div>
 
-      <!-- Contacto sencillo sin recuadros redondeados y con igual tipografía y tamaño -->
-      <div class="footer-contact-plain">
-        Contacto Hernán Ojeda: <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> | <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a>
-      </div>
+      <!-- Contacto alineado al costado izquierdo y logo byLanzaWebs al derecho -->
+      <div class="footer-side-row">
+        <div class="footer-contact-side">
+          EPFAR Contacto: <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> (Hernán Ojeda)<br>
+          E-mail: <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a> | Rivadavia 558, Santa Regina, Bs As.
+        </div>
 
-      <div class="footer-lanzawebs-row">
         <div class="lanzawebs-badge" aria-label="byLanzaWebs">
           <span class="lanzawebs-text">
             <span class="lanzawebs-by">by</span><span class="lanzawebs-main">LanzaWebs</span>
@@ -1608,13 +2219,14 @@
         </div>
       </div>
 
-      <div class="footer-copyright">
-        EPFAR © 2026 Todos los derechos reservados.
+      <div class="footer-bottom-bar">
+        <span>EPFAR © 2026 Todos los derechos reservados.</span>
+        <button type="button" class="terms-trigger-link" onclick="abrirModalTerminos()">Términos y Condiciones de Uso</button>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS: MENÚ, SCROLL REVEAL, INCLINACIÓN 3D Y PARTÍCULAS -->
+  <!-- SCRIPTS: MENÚ, MODALES, TRAYECTORIA CON PELOTA, SCROLL REVEAL Y PARTÍCULAS -->
   <script>
     const fullscreenMenu = document.getElementById('fullscreenMenu');
     const vistaInicio = document.getElementById('vista-inicio');
@@ -1659,10 +2271,35 @@
 
     function irAContacto() {
       cerrarMenu();
+      vistaQueEs.style.display = 'none';
+      vistaInicio.style.display = 'block';
+      document.body.classList.remove('modo-que-es');
       setTimeout(() => {
-        const footer = document.getElementById('contacto-footer');
-        if (footer) footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const contactSection = document.getElementById('seccion-contacto');
+        if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 80);
+    }
+
+    // MODALES DE PRÓXIMAMENTE Y TÉRMINOS Y CONDICIONES
+    function abrirModalProximamente() {
+      document.getElementById('modalProximamente').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function abrirModalTerminos() {
+      document.getElementById('modalTerminos').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModal(id) {
+      document.getElementById(id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function cerrarModalExterior(event, id) {
+      if (event.target.id === id) {
+        cerrarModal(id);
+      }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -1675,7 +2312,7 @@
       }
     });
 
-    // EFECTO SCROLL REVEAL
+    // EFECTO SCROLL REVEAL MEJORADO
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1683,11 +2320,68 @@
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // EFECTO DE INCLINACIÓN 3D EN TARJETAS DE ENTRENADORES
+    // LÍNEA DE TRAYECTORIA: PELOTA RECORRIENDO EL CAMINO AL HACER SCROLL
+    (function initTrajectoryLine() {
+      const section = document.getElementById('trajectorySection');
+      const stage = document.getElementById('trajectoryStage');
+      const pathBg = document.getElementById('trajectoryPathBg');
+      const pathActive = document.getElementById('trajectoryPathActive');
+      const ball = document.getElementById('soccerBallMarker');
+      const dot1 = document.getElementById('mileDot1');
+      const dot2 = document.getElementById('mileDot2');
+      const dot3 = document.getElementById('mileDot3');
+
+      if (!section || !pathBg || !pathActive || !ball) return;
+
+      let totalLength = 0;
+
+      function setupPath() {
+        totalLength = pathBg.getTotalLength();
+        pathActive.style.strokeDasharray = totalLength;
+        updateBallOnScroll();
+      }
+
+      function updateBallOnScroll() {
+        if (!totalLength) return;
+        const rect = section.getBoundingClientRect();
+        const winH = window.innerHeight;
+
+        // Progreso entre 0 y 1 a medida que la sección atraviesa la pantalla
+        const start = winH * 0.85;
+        const end = winH * 0.25;
+        let progress = (start - rect.top) / (start - end);
+        progress = Math.max(0, Math.min(1, progress));
+
+        const drawLength = totalLength * progress;
+        pathActive.style.strokeDashoffset = totalLength - drawLength;
+
+        const pt = pathBg.getPointAtLength(drawLength);
+        const stageW = stage.clientWidth;
+        const stageH = stage.clientHeight;
+
+        // Convertir coordenadas del viewBox (900x110) al tamaño real en pantalla
+        const pixelX = (pt.x / 900) * stageW;
+        const pixelY = (pt.y / 110) * stageH;
+        const rotation = progress * 720;
+
+        ball.style.transform = `translate3d(${pixelX}px, ${pixelY}px, 0) rotate(${rotation}deg)`;
+
+        dot1.classList.toggle('reached', progress >= 0.02);
+        dot2.classList.toggle('reached', progress >= 0.48);
+        dot3.classList.toggle('reached', progress >= 0.95);
+      }
+
+      window.addEventListener('load', setupPath);
+      window.addEventListener('resize', setupPath);
+      window.addEventListener('scroll', updateBallOnScroll, { passive: true });
+      setTimeout(setupPath, 150);
+    })();
+
+    // EFECTO DE INCLINACIÓN 3D EN FICHAS DE ENTRENADORES
     const tiltCards = document.querySelectorAll('[data-tilt]');
 
     tiltCards.forEach(card => {
@@ -1697,8 +2391,8 @@
         const y = clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -8;
-        const rotateY = ((x - centerX) / centerX) * 8;
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
         card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
       };
 
@@ -1724,13 +2418,13 @@
       card.addEventListener('touchend', resetTilt);
     });
 
-    // SISTEMA DE PARTÍCULAS DIMINUTAS DISPERSAS EN PRIMER PLANO
+    // PARTÍCULAS MÁS DIMINUTAS EN COLOR GRIS CASI OSCURO
     (function initParticles() {
       const canvas = document.getElementById('particles-canvas');
       const ctx = canvas.getContext('2d');
       let width, height;
       const particles = [];
-      const PARTICLE_COUNT = 28;
+      const PARTICLE_COUNT = 34;
 
       function resize() {
         width = canvas.width = window.innerWidth;
@@ -1744,11 +2438,11 @@
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          r: Math.random() * 1.8 + 0.8,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35 - 0.12,
-          alpha: Math.random() * 0.45 + 0.2,
-          color: Math.random() > 0.45 ? '#f26522' : '#093170'
+          r: Math.random() * 0.75 + 0.55, // Muy diminutas
+          vx: (Math.random() - 0.5) * 0.28,
+          vy: (Math.random() - 0.5) * 0.28 - 0.08,
+          alpha: Math.random() * 0.38 + 0.18,
+          color: Math.random() > 0.5 ? '#1f2937' : '#374151' // Gris casi oscuro
         });
       }
 
