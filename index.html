@@ -51,6 +51,41 @@
       overflow-x: hidden;
     }
 
+    /* ==================================================== */
+    /* ESQUELETO DE CARGA (SKELETON LOADER SHIMMER)         */
+    /* ==================================================== */
+    .skeleton-shimmer {
+      position: relative;
+      overflow: hidden;
+      background-color: #e2e8f0;
+    }
+
+    .skeleton-shimmer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.65) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      animation: shimmerSweep 1.35s infinite;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .skeleton-shimmer.loaded::after {
+      display: none;
+    }
+
+    @keyframes shimmerSweep {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
     /* LIENZO DE PARTÍCULAS DIMINUTAS GRIS CASI OSCURO */
     #particles-canvas {
       position: fixed;
@@ -94,11 +129,11 @@
       transform: scale(0.97) !important;
     }
 
-    /* SCROLL REVEAL MEJORADO Y ESCALONADO */
+    /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
-      transform: translateY(34px) scale(0.99);
-      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(32px) scale(0.99);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform;
     }
 
@@ -368,7 +403,7 @@
     }
 
     .section-header {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       margin-top: 42px;
     }
 
@@ -397,60 +432,92 @@
     }
 
     .swipe-hint {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #4b5563;
       font-weight: 500;
       margin-top: 5px;
     }
 
     /* ==================================================== */
-    /* SECCIÓN ENTRENADORES (RECUADRO BLANCO AMPLIO)        */
+    /* NUEVO CUERPO TÉCNICO (TIMELINE VERTICAL + TARJETAS)  */
     /* ==================================================== */
-    .coaches-slider {
+    .staff-timeline-container {
+      position: relative;
       display: flex;
-      gap: 18px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 8px 4px 22px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--orange-accent) rgba(0,0,0,0.08);
+      flex-direction: column;
+      gap: 24px;
+      padding-left: 36px;
+      margin-top: 14px;
+      max-width: 780px;
+    }
+
+    /* Línea base gris vertical a la izquierda */
+    .staff-timeline-track {
+      position: absolute;
+      left: 11px;
+      top: 24px;
+      bottom: 24px;
+      width: 3px;
+      background: #d1d9e6;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    /* Línea de progreso naranja que baja con el scroll */
+    .staff-timeline-progress {
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(180deg, var(--orange-accent) 0%, #ff8c42 100%);
+      border-radius: 99px;
+      transition: height 0.12s linear;
+    }
+
+    .staff-year-group {
+      position: relative;
       perspective: 1000px;
     }
 
-    .coaches-slider::-webkit-scrollbar {
-      height: 6px;
-    }
-    .coaches-slider::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.06);
-      border-radius: 99px;
-    }
-    .coaches-slider::-webkit-scrollbar-thumb {
-      background: var(--orange-accent);
-      border-radius: 99px;
+    /* Punto circular en la línea de tiempo (azul oscuro con borde naranja) */
+    .staff-timeline-dot {
+      position: absolute;
+      left: -35px;
+      top: 22px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: #cbd5e1;
+      border: 3.5px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(7, 25, 54, 0.18);
+      z-index: 3;
+      transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .coach-card {
-      flex: 0 0 80%;
-      max-width: 290px;
-      scroll-snap-align: start;
+    .staff-timeline-dot.active {
+      background-color: var(--navy-header);
+      border-color: var(--orange-accent);
+      transform: scale(1.12);
+      box-shadow: 0 0 0 4px rgba(242, 101, 34, 0.2), 0 4px 10px rgba(7, 25, 54, 0.3);
+    }
+
+    /* Tarjeta blanca horizontal con borde brillante e inclinación 3D */
+    .staff-year-card {
       position: relative;
       border-radius: 22px;
       padding: 2px;
-      background: linear-gradient(135deg, rgba(242, 101, 34, 0.9), rgba(9, 49, 112, 0.45), rgba(56, 189, 248, 0.9));
+      background: linear-gradient(135deg, rgba(242, 101, 34, 0.25), rgba(9, 49, 112, 0.15), rgba(56, 189, 248, 0.25));
       background-size: 200% 200%;
-      animation: borderGlow 4s ease infinite;
-      box-shadow: 0 12px 28px rgba(7, 25, 54, 0.18);
+      box-shadow: 0 10px 26px rgba(7, 25, 54, 0.08);
       transform-style: preserve-3d;
-      transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+      transition: transform 0.16s ease-out, box-shadow 0.25s ease, background 0.3s ease;
       cursor: pointer;
       user-select: none;
     }
 
-    @media (min-width: 640px) {
-      .coach-card {
-        flex: 0 0 265px;
-      }
+    .staff-year-card:hover,
+    .staff-year-card.touch-active {
+      background: linear-gradient(135deg, rgba(242, 101, 34, 0.95), rgba(9, 49, 112, 0.6), rgba(56, 189, 248, 0.95));
+      animation: borderGlow 3s ease infinite;
+      box-shadow: 0 16px 34px rgba(242, 101, 34, 0.22), 0 0 18px rgba(56, 189, 248, 0.32);
     }
 
     @keyframes borderGlow {
@@ -459,126 +526,114 @@
       100% { background-position: 0% 50%; }
     }
 
-    .coach-card:hover,
-    .coach-card.touch-active {
-      box-shadow: 0 18px 34px rgba(242, 101, 34, 0.28), 0 0 18px rgba(56, 189, 248, 0.45);
-    }
-
-    .coach-card-inner {
-      background: linear-gradient(180deg, #0b224a 0%, #061329 100%);
+    .staff-year-card-inner {
+      background: #ffffff;
       border-radius: 20px;
-      height: 100%;
-      overflow: hidden;
+      padding: 18px 20px 22px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 14px 14px 20px;
+      gap: 14px;
     }
 
-    /* RECUADRO BLANCO AMPLIO ALREDEDOR DE LA FOTO DEL DT */
-    .coach-photo-stage {
-      width: 100%;
+    .staff-year-badge {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--orange-accent);
+      letter-spacing: 0.04em;
+    }
+
+    .staff-member-row {
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-bottom: 14px;
+      gap: 16px;
     }
 
-    .coach-photo-frame {
+    .staff-divider {
+      height: 1px;
+      background: #e5e7eb;
       width: 100%;
-      height: 215px;
-      border-radius: 16px;
-      padding: 4px;
-      background-color: #ffffff;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
+      margin: 4px 0;
+    }
+
+    /* Cuadrado para la foto del DT bien centrada */
+    .staff-square-photo {
+      width: 86px;
+      height: 86px;
+      border-radius: 18px;
+      background-color: var(--navy-header);
+      flex-shrink: 0;
       overflow: hidden;
       position: relative;
-      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 6px 14px rgba(7, 25, 54, 0.18);
+      border: 2px solid #f1f5f9;
     }
 
-    .coach-photo-frame img {
+    .staff-square-photo img {
       width: 100%;
       height: 100%;
-      border-radius: 12px;
       object-fit: cover;
-      object-position: center 16%;
-      background-color: #0d1f40;
+      /* Encuadre equilibrado en rostro y hombros sin super zoom */
+      object-position: center 18%;
       display: block;
-      transition: transform 0.35s ease;
+      transition: transform 0.3s ease;
     }
 
-    .coach-card:hover .coach-photo-frame img {
+    .staff-year-card:hover .staff-square-photo img {
       transform: scale(1.04);
     }
 
-    .coach-Avatar-fallback {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      background: radial-gradient(circle at center, #1b3a70 0%, #091936 100%);
-      color: #ffffff;
+    .staff-initials-fallback {
       font-family: var(--font-title);
       font-weight: 700;
-      font-size: 2.3rem;
+      font-size: 1.55rem;
+      color: #ffffff;
+      letter-spacing: 0.03em;
       display: none;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: var(--navy-header);
     }
 
-    .coach-info {
+    .staff-member-details {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 4px;
+      gap: 3px;
+      min-width: 0;
       flex: 1;
-      width: 100%;
-      padding: 0 4px;
     }
 
-    /* UBICACIÓN SOLO CON TEXTO EN NARANJA SIN BORDES ALREDEDOR */
-    .coach-location {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--orange-accent);
-      background: none;
-      border: none;
-      padding: 0;
-    }
-
-    .coach-name {
+    .staff-member-name {
       font-family: var(--font-title);
-      font-size: 1.18rem;
+      font-size: clamp(1.08rem, 3vw, 1.25rem);
       font-weight: 600;
-      color: #ffffff;
-      letter-spacing: 0.02em;
+      color: #0b1933;
       line-height: 1.2;
-      margin-top: 2px;
+      letter-spacing: 0.01em;
     }
 
-    .coach-role {
-      font-size: 0.82rem;
-      color: rgba(255, 255, 255, 0.88);
-      font-weight: 600;
-      line-height: 1.35;
+    .staff-member-role {
+      font-size: 0.86rem;
+      color: #4b5563;
+      font-weight: 500;
+      line-height: 1.38;
     }
 
-    /* RESEÑA / DESDE EN BLANCO PURO Y SIN BORDES */
-    .coach-bio {
-      font-size: 0.78rem;
-      color: #ffffff;
-      font-weight: 400;
-      line-height: 1.42;
-      margin-top: 4px;
-      background: none;
-      border: none;
-      padding: 0;
+    .staff-member-meta {
+      font-size: 0.84rem;
+      color: #4b5563;
+      font-weight: 500;
+      line-height: 1.38;
+    }
+
+    .staff-highlight-orange {
+      color: var(--orange-accent);
+      font-weight: 700;
     }
 
     /* ==================================================== */
@@ -1053,6 +1108,7 @@
       border-radius: 99px;
       letter-spacing: 0.04em;
       backdrop-filter: blur(4px);
+      z-index: 3;
     }
 
     .news-body {
@@ -1139,13 +1195,22 @@
     }
 
     /* ==================================================== */
-    /* SECCIÓN DE CONTACTOS CORTA Y DIRECTA                 */
+    /* VISTA EXCLUSIVA DE CONTACTO (SOLO DESDE LAS 3 RAYAS) */
     /* ==================================================== */
+    #vista-contacto {
+      display: none;
+      width: 100%;
+      flex: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 28px 18px 52px;
+    }
+
     .contact-short-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 14px;
-      margin-top: 8px;
+      margin-top: 12px;
     }
 
     .contact-card-item {
@@ -1153,7 +1218,7 @@
       border: 1px solid rgba(9, 49, 112, 0.14);
       border-left: 4px solid var(--orange-accent);
       border-radius: 14px;
-      padding: 16px 18px;
+      padding: 18px 20px;
       text-decoration: none;
       color: var(--text-dark);
       display: flex;
@@ -1172,7 +1237,7 @@
     .contact-item-left {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
     }
 
     .contact-item-label {
@@ -1185,15 +1250,15 @@
     }
 
     .contact-item-value {
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       font-weight: 700;
       color: #0b1933;
     }
 
     .contact-item-action {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
       background: rgba(9, 49, 112, 0.08);
       color: var(--blue-card);
       display: flex;
@@ -1201,6 +1266,23 @@
       justify-content: center;
       font-weight: 700;
       flex-shrink: 0;
+    }
+
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy-header);
+      color: #ffffff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-family: var(--font-title);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      margin-bottom: 18px;
     }
 
     /* ==================================================== */
@@ -1459,7 +1541,7 @@
     }
 
     /* ==================================================== */
-    /* PIE DE PÁGINA FORMAL CON CONTACTO AL COSTADO         */
+    /* PIE DE PÁGINA FORMAL SIN PUNTO (•) Y CONTACTO LIMPIO */
     /* ==================================================== */
     .footer {
       background-color: #061326;
@@ -1481,7 +1563,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       white-space: nowrap;
       width: 100%;
     }
@@ -1492,11 +1574,6 @@
       font-size: clamp(0.95rem, 3.8vw, 1.15rem);
       color: #ffffff;
       letter-spacing: 0.03em;
-    }
-
-    .footer-dot {
-      color: #8c9bb5;
-      font-size: 0.85rem;
     }
 
     .footer-desc {
@@ -1666,7 +1743,7 @@
     </nav>
 
     <div class="fullscreen-footer">
-      EPFAR • Centro de Entrenamiento de Alto Rendimiento
+      EPFAR Centro de Entrenamiento de Alto Rendimiento
     </div>
   </div>
 
@@ -1686,8 +1763,8 @@
           </p>
         </div>
         <div class="hero-logo-side">
-          <div class="hero-logo-card">
-            <img src="image_4.png.jpg" alt="EPFAR" />
+          <div class="hero-logo-card skeleton-shimmer">
+            <img src="image_4.png.jpg" alt="EPFAR" onload="this.parentElement.classList.add('loaded')" />
           </div>
         </div>
       </div>
@@ -1695,111 +1772,124 @@
 
     <!-- Foto de todos con la bandera de EPFAR -->
     <section class="video-section reveal">
-      <div class="video-container">
-        <img src="FOTO11.jpg" alt="Plantel EPFAR con bandera" class="promo-photo" />
+      <div class="video-container skeleton-shimmer">
+        <img src="FOTO11.jpg" alt="Plantel EPFAR con bandera" class="promo-photo" onload="this.parentElement.classList.add('loaded')" />
       </div>
     </section>
 
     <main class="main-content">
 
       <!-- ============================================== -->
-      <!-- SECCIÓN ENTRENADORES                           -->
+      <!-- SECCIÓN CUERPO TÉCNICO EPFAR (NUEVO ESTILO)    -->
       <!-- ============================================== -->
       <section id="seccion-entrenadores" class="reveal">
         <div class="section-header">
-          <h2 class="section-title">ENTRENADORES</h2>
-          <p class="swipe-hint">Deslizá para conocer al cuerpo técnico ➔</p>
+          <h2 class="section-title">CUERPO TÉCNICO EPFAR</h2>
+          <p class="swipe-hint">Un equipo que fue creciendo desde 2013</p>
         </div>
 
-        <div class="coaches-slider">
-          <!-- Ficha 1: Hernán Ojeda -->
-          <div class="coach-card" data-tilt>
-            <div class="coach-card-inner">
-              <div class="coach-photo-stage">
-                <div class="coach-photo-frame">
-                  <img src="fotoo1.PNG" alt="Hernán Ojeda" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                  <div class="coach-Avatar-fallback">HO</div>
+        <div class="staff-timeline-container" id="staffTimeline">
+          <!-- Línea vertical con barra de progreso animada al bajar -->
+          <div class="staff-timeline-track">
+            <div class="staff-timeline-progress" id="staffTimelineProgress"></div>
+          </div>
+
+          <!-- BLOQUE 2013: HERNÁN OJEDA -->
+          <div class="staff-year-group reveal">
+            <div class="staff-timeline-dot active" data-staff-dot></div>
+            <div class="staff-year-card" data-tilt>
+              <div class="staff-year-card-inner">
+                <span class="staff-year-badge">2013</span>
+                <div class="staff-member-row">
+                  <div class="staff-square-photo skeleton-shimmer">
+                    <img src="fotoo1.PNG" alt="Hernán Ojeda" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <div class="staff-initials-fallback">HO</div>
+                  </div>
+                  <div class="staff-member-details">
+                    <h3 class="staff-member-name">Hernán Ojeda</h3>
+                    <p class="staff-member-role">Director Técnico · Coordinador General</p>
+                    <p class="staff-member-meta">Rosario, Santa Fe · <span class="staff-highlight-orange">Fundador</span></p>
+                  </div>
                 </div>
-              </div>
-              <div class="coach-info">
-                <span class="coach-location">Santa Regina</span>
-                <h3 class="coach-name">Hernán Ojeda</h3>
-                <p class="coach-role">Director Técnico - Coordinador General.</p>
-                <p class="coach-bio">Desde 2013. Fundador</p>
               </div>
             </div>
           </div>
 
-          <!-- Ficha 2: Cristian Martínez (Foto intercambiada a fotoo3.PNG) -->
-          <div class="coach-card" data-tilt>
-            <div class="coach-card-inner">
-              <div class="coach-photo-stage">
-                <div class="coach-photo-frame">
-                  <img src="fotoo3.PNG" alt="Cristian Martínez" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                  <div class="coach-Avatar-fallback">CM</div>
+          <!-- BLOQUE 2025: CRISTIAN MARTÍNEZ -->
+          <div class="staff-year-group reveal">
+            <div class="staff-timeline-dot" data-staff-dot></div>
+            <div class="staff-year-card" data-tilt>
+              <div class="staff-year-card-inner">
+                <span class="staff-year-badge">2025</span>
+                <div class="staff-member-row">
+                  <div class="staff-square-photo skeleton-shimmer">
+                    <img src="fotoo3.PNG" alt="Cristian Martínez" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <div class="staff-initials-fallback">CM</div>
+                  </div>
+                  <div class="staff-member-details">
+                    <h3 class="staff-member-name">Cristian Martínez</h3>
+                    <p class="staff-member-role">DT · Cnel. Charlone</p>
+                    <p class="staff-member-meta"><span class="staff-highlight-orange">Sub-15</span> · “Dirige a la categoría Sub-15 en entrenamientos y torneos”</p>
+                  </div>
                 </div>
-              </div>
-              <div class="coach-info">
-                <span class="coach-location">Cnel. Charlone</span>
-                <h3 class="coach-name">Cristian Martínez</h3>
-                <p class="coach-role">DT.</p>
-                <p class="coach-bio">Desde 2025. “Dirige a la categoría Sub-15 en entrenamientos y torneos"</p>
               </div>
             </div>
           </div>
 
-          <!-- Ficha 3: Fabián Millares (Foto intercambiada a fotoo2.PNG) -->
-          <div class="coach-card" data-tilt>
-            <div class="coach-card-inner">
-              <div class="coach-photo-stage">
-                <div class="coach-photo-frame">
-                  <img src="fotoo2.PNG" alt="Fabián Millares" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                  <div class="coach-Avatar-fallback">FM</div>
+          <!-- BLOQUE 2026: FABIÁN MILLAREZ, GASTÓN JARA Y ALEX CORVALÁN -->
+          <div class="staff-year-group reveal">
+            <div class="staff-timeline-dot" data-staff-dot></div>
+            <div class="staff-year-card" data-tilt>
+              <div class="staff-year-card-inner">
+                <span class="staff-year-badge">2026</span>
+
+                <!-- Fabián Millarez -->
+                <div class="staff-member-row">
+                  <div class="staff-square-photo skeleton-shimmer">
+                    <img src="fotoo2.PNG" alt="Fabián Millarez" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <div class="staff-initials-fallback">FM</div>
+                  </div>
+                  <div class="staff-member-details">
+                    <h3 class="staff-member-name">Fabián Millarez</h3>
+                    <p class="staff-member-role">DT · Cnel. Charlone</p>
+                    <p class="staff-member-meta"><span class="staff-highlight-orange">Sub-15</span> · “Dirige a la categoría Sub-15 en entrenamientos y torneos”</p>
+                  </div>
                 </div>
-              </div>
-              <div class="coach-info">
-                <span class="coach-location">Cnel. Charlone</span>
-                <h3 class="coach-name">Fabián Millares</h3>
-                <p class="coach-role">DT.</p>
-                <p class="coach-bio">Desde 2026. “Dirige a la categoría Sub-15 en entrenamientos y torneos"</p>
+
+                <div class="staff-divider"></div>
+
+                <!-- Gastón Jara -->
+                <div class="staff-member-row">
+                  <div class="staff-square-photo skeleton-shimmer">
+                    <img src="fotoo4.PNG" alt="Gastón Jara" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <div class="staff-initials-fallback">GJ</div>
+                  </div>
+                  <div class="staff-member-details">
+                    <h3 class="staff-member-name">Gastón Jara</h3>
+                    <p class="staff-member-role">DT · Rosario</p>
+                    <p class="staff-member-meta">Cuerpo Técnico EPFAR</p>
+                  </div>
+                </div>
+
+                <div class="staff-divider"></div>
+
+                <!-- Alex Corvalán -->
+                <div class="staff-member-row">
+                  <div class="staff-square-photo skeleton-shimmer">
+                    <img src="fotoo5.PNG" alt="Alex Corvalán" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <div class="staff-initials-fallback">AC</div>
+                  </div>
+                  <div class="staff-member-details">
+                    <h3 class="staff-member-name">Alex Corvalán</h3>
+                    <p class="staff-member-role">DT · Rosario</p>
+                    <p class="staff-member-meta">Cuerpo Técnico EPFAR</p>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
 
-          <!-- Ficha 4: Gastón Jara -->
-          <div class="coach-card" data-tilt>
-            <div class="coach-card-inner">
-              <div class="coach-photo-stage">
-                <div class="coach-photo-frame">
-                  <img src="fotoo4.PNG" alt="Gastón Jara" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                  <div class="coach-Avatar-fallback">GJ</div>
-                </div>
-              </div>
-              <div class="coach-info">
-                <span class="coach-location">Rosario</span>
-                <h3 class="coach-name">Gastón Jara</h3>
-                <p class="coach-role">DT</p>
-                <p class="coach-bio">Desde 2026.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Ficha 5: Alex Corvalán -->
-          <div class="coach-card" data-tilt>
-            <div class="coach-card-inner">
-              <div class="coach-photo-stage">
-                <div class="coach-photo-frame">
-                  <img src="fotoo5.PNG" alt="Alex Corvalán" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                  <div class="coach-Avatar-fallback">AC</div>
-                </div>
-              </div>
-              <div class="coach-info">
-                <span class="coach-location">Rosario</span>
-                <h3 class="coach-name">Alex Corvalán</h3>
-                <p class="coach-role">DT</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1835,8 +1925,8 @@
           <!-- 2. VENTANA AZUL: COPA FAIR PLAY 2026 BRASIL -->
           <a href="copa-fair-play-2026.html" class="participation-card-vertical card-blue-fairplay">
             <div>
-              <div class="card-logo-box">
-                <img src="image.png.JPG" alt="Copa Fair Play 2026" />
+              <div class="card-logo-box skeleton-shimmer">
+                <img src="image.png.JPG" alt="Copa Fair Play 2026" onload="this.parentElement.classList.add('loaded')" />
               </div>
 
               <div class="card-location-pill">
@@ -1862,8 +1952,8 @@
           <!-- 3. VENTANA ROJA: AFB LATIN-BANGLA SUPER CUP 2025 -->
           <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/?amp=1" target="_blank" rel="noopener noreferrer" class="participation-card-vertical card-red-bangla">
             <div>
-              <div class="card-logo-box">
-                <img src="image_4.png.jpg" alt="AFB Latin-Bangla Super Cup 2025" />
+              <div class="card-logo-box skeleton-shimmer">
+                <img src="image_4.png.jpg" alt="AFB Latin-Bangla Super Cup 2025" onload="this.parentElement.classList.add('loaded')" />
               </div>
 
               <div class="card-location-pill">
@@ -1897,17 +1987,14 @@
 
           <div class="trajectory-stage" id="trajectoryStage">
             <svg class="trajectory-svg" id="trajectorySvg" viewBox="0 0 900 110" preserveAspectRatio="none">
-              <!-- Camino quebrado tipo recorrido táctico de izquierda a derecha (ni recto ni curvo) -->
               <path id="trajectoryPathBg" class="path-bg" d="M 45 78 L 200 26 L 340 76 L 450 38 L 620 82 L 740 28 L 855 62" />
               <path id="trajectoryPathActive" class="path-Active" d="M 45 78 L 200 26 L 340 76 L 450 38 L 620 82 L 740 28 L 855 62" />
 
-              <!-- Puntos de cada hito -->
               <circle class="milestone-dot reached" id="mileDot1" cx="45" cy="78" r="7" />
               <circle class="milestone-dot" id="mileDot2" cx="450" cy="38" r="7" />
               <circle class="milestone-dot" id="mileDot3" cx="855" cy="62" r="7" />
             </svg>
 
-            <!-- Pelota de fútbol que recorre el camino al hacer scroll -->
             <div class="soccer-ball-marker" id="soccerBallMarker">⚽</div>
           </div>
 
@@ -1941,8 +2028,8 @@
 
           <!-- Noticia 1 -->
           <a href="https://www.distritointerior.com.ar/hoy/218911/el-combinado-de-nuestra-zona-se-consagro-campeon-en-brasil" target="_blank" rel="noopener noreferrer" class="news-card">
-            <div class="news-thumb">
-              <img src="SUB17.jpg" alt="Campeón en Brasil" onerror="this.src='FOTO11.jpg'" />
+            <div class="news-thumb skeleton-shimmer">
+              <img src="SUB17.jpg" alt="Campeón en Brasil" onload="this.parentElement.classList.add('loaded')" onerror="this.src='FOTO11.jpg'" />
               <span class="news-source-tag">Distrito Interior</span>
             </div>
             <div class="news-body">
@@ -1953,8 +2040,8 @@
 
           <!-- Noticia 2 -->
           <a href="https://www.instagram.com/p/DepWBk1Fh--/?cplk=b3pxaThkbGd6emFh" target="_blank" rel="noopener noreferrer" class="news-card">
-            <div class="news-thumb">
-              <img src="FOTO10.JPG" alt="Publicación Oficial EPFAR" onerror="this.src='FOTO11.jpg'" />
+            <div class="news-thumb skeleton-shimmer">
+              <img src="FOTO10.JPG" alt="Publicación Oficial EPFAR" onload="this.parentElement.classList.add('loaded')" onerror="this.src='FOTO11.jpg'" />
               <span class="news-source-tag">Instagram</span>
             </div>
             <div class="news-body">
@@ -1965,8 +2052,8 @@
 
           <!-- Noticia 3 -->
           <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/?amp=1" target="_blank" rel="noopener noreferrer" class="news-card">
-            <div class="news-thumb">
-              <img src="FOTO12.JPG" alt="Rumbo a Bangladesh" onerror="this.src='FOTO11.jpg'" />
+            <div class="news-thumb skeleton-shimmer">
+              <img src="FOTO12.JPG" alt="Rumbo a Bangladesh" onload="this.parentElement.classList.add('loaded')" onerror="this.src='FOTO11.jpg'" />
               <span class="news-source-tag">Diario Actualidad</span>
             </div>
             <div class="news-body">
@@ -1977,8 +2064,8 @@
 
           <!-- Noticia 4 -->
           <a href="https://www.distritointerior.com.ar/deportes/218808/esta-madrugada-partieron-desde-villegas-los-selectivos-que-participaran-en-brasil-de-la-copa-fair-play" target="_blank" rel="noopener noreferrer" class="news-card">
-            <div class="news-thumb">
-              <img src="SUB15.jpg" alt="Partida desde Villegas a Brasil" onerror="this.src='FOTO11.jpg'" />
+            <div class="news-thumb skeleton-shimmer">
+              <img src="SUB15.jpg" alt="Partida desde Villegas a Brasil" onload="this.parentElement.classList.add('loaded')" onerror="this.src='FOTO11.jpg'" />
               <span class="news-source-tag">Distrito Interior</span>
             </div>
             <div class="news-body">
@@ -2000,57 +2087,21 @@
         </div>
 
         <div class="photos-slider-borderless">
-          <div class="photo-rect-item">
-            <img src="SUB17.jpg" alt="Galería EPFAR 1" />
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="SUB17.jpg" alt="Galería EPFAR 1" onload="this.parentElement.classList.add('loaded')" />
           </div>
-          <div class="photo-rect-item">
-            <img src="SUB15.jpg" alt="Galería EPFAR 2" />
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="SUB15.jpg" alt="Galería EPFAR 2" onload="this.parentElement.classList.add('loaded')" />
           </div>
-          <div class="photo-rect-item">
-            <img src="FOTO10.JPG" alt="Galería EPFAR 3" />
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="FOTO10.JPG" alt="Galería EPFAR 3" onload="this.parentElement.classList.add('loaded')" />
           </div>
-          <div class="photo-rect-item">
-            <img src="FOTO11.jpg" alt="Galería EPFAR 4" />
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="FOTO11.jpg" alt="Galería EPFAR 4" onload="this.parentElement.classList.add('loaded')" />
           </div>
-          <div class="photo-rect-item">
-            <img src="FOTO12.JPG" alt="Galería EPFAR 5" />
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="FOTO12.JPG" alt="Galería EPFAR 5" onload="this.parentElement.classList.add('loaded')" />
           </div>
-        </div>
-      </section>
-
-      <!-- ============================================== -->
-      <!-- SECCIÓN DE CONTACTOS CORTA                     -->
-      <!-- ============================================== -->
-      <section id="seccion-contacto" class="reveal">
-        <div class="section-header">
-          <h2 class="section-title">CONTACTO</h2>
-          <p class="swipe-hint">Tocá cualquiera de los canales oficiales para comunicarte</p>
-        </div>
-
-        <div class="contact-short-grid">
-          <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="contact-card-item">
-            <div class="contact-item-left">
-              <span class="contact-item-label">EPFAR CONTACTO</span>
-              <span class="contact-item-value">+54 9 3415 99-9728 (Hernán Ojeda)</span>
-            </div>
-            <span class="contact-item-action">➔</span>
-          </a>
-
-          <a href="mailto:epfarfutbol@gmail.com" class="contact-card-item">
-            <div class="contact-item-left">
-              <span class="contact-item-label">E-MAIL</span>
-              <span class="contact-item-value">epfarfutbol@gmail.com</span>
-            </div>
-            <span class="contact-item-action">✉</span>
-          </a>
-
-          <a href="https://www.google.com/maps/search/?api=1&query=Rivadavia+558,+Santa+Regina,+Buenos+Aires" target="_blank" rel="noopener noreferrer" class="contact-card-item">
-            <div class="contact-item-left">
-              <span class="contact-item-label">UBICACIÓN</span>
-              <span class="contact-item-value">Rivadavia 558, Santa Regina, Bs As.</span>
-            </div>
-            <span class="contact-item-action">📍</span>
-          </a>
         </div>
       </section>
 
@@ -2107,6 +2158,44 @@
   </div>
 
   <!-- ==================================================== -->
+  <!-- VISTA 3: CONTACTO (SOLO AL TOCAR EN LAS 3 RAYITAS)   -->
+  <!-- ==================================================== -->
+  <div id="vista-contacto">
+    <button type="button" class="back-home-btn" onclick="irAInicio()">⬅ VOLVER AL INICIO</button>
+
+    <div class="section-header" style="margin-top: 0;">
+      <h2 class="section-title">CONTACTO</h2>
+      <p class="swipe-hint">Tocá cualquiera de los canales oficiales para comunicarte</p>
+    </div>
+
+    <div class="contact-short-grid">
+      <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+        <div class="contact-item-left">
+          <span class="contact-item-label">CONTACTO</span>
+          <span class="contact-item-value">+54 9 3415 99-9728 (Hernán Ojeda)</span>
+        </div>
+        <span class="contact-item-action">➔</span>
+      </a>
+
+      <a href="mailto:epfarfutbol@gmail.com" class="contact-card-item">
+        <div class="contact-item-left">
+          <span class="contact-item-label">E-MAIL</span>
+          <span class="contact-item-value">epfarfutbol@gmail.com</span>
+        </div>
+        <span class="contact-item-action">✉</span>
+      </a>
+
+      <a href="https://www.google.com/maps/search/?api=1&query=Rivadavia+558,+Santa+Regina,+Buenos+Aires" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+        <div class="contact-item-left">
+          <span class="contact-item-label">UBICACIÓN</span>
+          <span class="contact-item-value">Rivadavia 558, Santa Regina, Bs As.</span>
+        </div>
+        <span class="contact-item-action">📍</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
   <!-- MODAL 1: MÁS INFORMACIÓN ("PRÓXIMAMENTE")            -->
   <!-- ==================================================== -->
   <div class="modal-backdrop" id="modalProximamente" onclick="cerrarModalExterior(event, 'modalProximamente')">
@@ -2119,15 +2208,11 @@
         <p><strong>Más información en nuestros canales oficiales de contacto.</strong> Comunicate directamente con la coordinación general de EPFAR para conocer detalles sobre las próximas convocatorias y participaciones en España, China y Brasil:</p>
         <div class="modal-contact-list">
           <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="modal-contact-btn">
-            <span>📞 WhatsApp: +54 9 3415 99-9728 (Hernán Ojeda)</span>
+            <span>📞 Contacto: +54 9 3415 99-9728 (Hernán Ojeda)</span>
             <span>➔</span>
           </a>
           <a href="mailto:epfarfutbol@gmail.com" class="modal-contact-btn">
             <span>✉️ E-mail: epfarfutbol@gmail.com</span>
-            <span>➔</span>
-          </a>
-          <a href="https://www.google.com/maps/search/?api=1&query=Rivadavia+558,+Santa+Regina,+Buenos+Aires" target="_blank" rel="noopener noreferrer" class="modal-contact-btn">
-            <span>📍 Ubicación: Rivadavia 558, Santa Regina, Bs As.</span>
             <span>➔</span>
           </a>
         </div>
@@ -2141,7 +2226,7 @@
   <div class="modal-backdrop" id="modalTerminos" onclick="cerrarModalExterior(event, 'modalTerminos')">
     <div class="modal-box modal-large">
       <div class="modal-header">
-        <h3 class="modal-title">Términos y Condiciones </h3>
+        <h3 class="modal-title">Términos y Condiciones de Uso — EPFAR</h3>
         <button type="button" class="modal-close" onclick="cerrarModal('modalTerminos')">✕</button>
       </div>
       <div class="modal-body-scroll">
@@ -2151,7 +2236,7 @@
 
         <h3>2. Objeto y alcance del sitio</h3>
         <p>El Sitio tiene carácter informativo. Presenta el proyecto EPFAR, su cuerpo técnico, los torneos y participaciones, las noticias y los canales de contacto.</p>
-        <p>El Sitio no procesa pagos ni inscripciones. Cualquier consulta, inscripción o acuerdo se gestiona exclusivamente a través de los canales de contacto oficiales indicados en la sección de Contacto (+54 9 3415 99-9728 | epfarfutbol@gmail.com | Rivadavia 558, Santa Regina, Bs As.).</p>
+        <p>El Sitio no procesa pagos ni inscripciones. Cualquier consulta, inscripción o acuerdo se gestiona exclusivamente a través de los canales de contacto oficiales (+54 9 3415 99-9728 | epfarfutbol@gmail.com).</p>
 
         <h3>3. Uso permitido</h3>
         <p>El usuario se compromete a utilizar el Sitio de buena fe y conforme a la ley. En particular, queda prohibido:</p>
@@ -2186,7 +2271,7 @@
   </div>
 
   <!-- ==================================================== -->
-  <!-- PIE DE PÁGINA FORMAL CON CONTACTO AL COSTADO         -->
+  <!-- PIE DE PÁGINA FORMAL                                 -->
   <!-- ==================================================== -->
   <footer class="footer" id="contacto-footer">
     <div class="footer-content">
@@ -2203,8 +2288,8 @@
       <!-- Contacto alineado al costado izquierdo y logo byLanzaWebs al derecho -->
       <div class="footer-side-row">
         <div class="footer-contact-side">
-          EPFAR Contacto: <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> (Hernán Ojeda)<br>
-          E-mail: <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a> | Rivadavia 558, Santa Regina, Bs As.
+          Contacto: <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> (Hernán Ojeda)<br>
+          E-mail: <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a>
         </div>
 
         <div class="lanzawebs-badge" aria-label="byLanzaWebs">
@@ -2226,11 +2311,12 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS: MENÚ, MODALES, TRAYECTORIA CON PELOTA, SCROLL REVEAL Y PARTÍCULAS -->
+  <!-- SCRIPTS: MENÚ, VISTAS, LÍNEAS DE PROGRESO, INCLINACIÓN 3D Y PARTÍCULAS -->
   <script>
     const fullscreenMenu = document.getElementById('fullscreenMenu');
     const vistaInicio = document.getElementById('vista-inicio');
     const vistaQueEs = document.getElementById('vista-que-es');
+    const vistaContacto = document.getElementById('vista-contacto');
 
     function abrirMenu() {
       fullscreenMenu.classList.add('open');
@@ -2245,6 +2331,7 @@
     function irAInicio() {
       cerrarMenu();
       vistaQueEs.style.display = 'none';
+      vistaContacto.style.display = 'none';
       vistaInicio.style.display = 'block';
       document.body.classList.remove('modo-que-es');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2253,6 +2340,7 @@
     function irAEntrenadores() {
       cerrarMenu();
       vistaQueEs.style.display = 'none';
+      vistaContacto.style.display = 'none';
       vistaInicio.style.display = 'block';
       document.body.classList.remove('modo-que-es');
       setTimeout(() => {
@@ -2264,6 +2352,7 @@
     function irAQueEs() {
       cerrarMenu();
       vistaInicio.style.display = 'none';
+      vistaContacto.style.display = 'none';
       vistaQueEs.style.display = 'block';
       document.body.classList.add('modo-que-es');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2271,13 +2360,11 @@
 
     function irAContacto() {
       cerrarMenu();
+      vistaInicio.style.display = 'none';
       vistaQueEs.style.display = 'none';
-      vistaInicio.style.display = 'block';
+      vistaContacto.style.display = 'block';
       document.body.classList.remove('modo-que-es');
-      setTimeout(() => {
-        const contactSection = document.getElementById('seccion-contacto');
-        if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // MODALES DE PRÓXIMAMENTE Y TÉRMINOS Y CONDICIONES
@@ -2307,12 +2394,12 @@
         irAQueEs();
       } else if (window.location.hash === '#entrenadores') {
         irAEntrenadores();
-      } else if (window.location.hash === '#contacto-footer') {
+      } else if (window.location.hash === '#contacto-footer' || window.location.hash === '#contacto') {
         irAContacto();
       }
     });
 
-    // EFECTO SCROLL REVEAL MEJORADO
+    // EFECTO SCROLL REVEAL
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -2323,6 +2410,38 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // LÍNEA DE PROGRESO VERTICAL EN CUERPO TÉCNICO AL HACER SCROLL
+    (function initStaffTimelineScroll() {
+      const container = document.getElementById('staffTimeline');
+      const progress = document.getElementById('staffTimelineProgress');
+      const dots = document.querySelectorAll('[data-staff-dot]');
+
+      if (!container || !progress) return;
+
+      function updateStaffTimeline() {
+        const rect = container.getBoundingClientRect();
+        const winH = window.innerHeight;
+        const start = winH * 0.78;
+        const end = winH * 0.25;
+        let pct = ((start - rect.top) / (rect.height + (start - end))) * 100;
+        pct = Math.max(0, Math.min(100, pct));
+        progress.style.height = pct + '%';
+
+        dots.forEach((dot) => {
+          const dotRect = dot.getBoundingClientRect();
+          if (dotRect.top < winH * 0.76) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateStaffTimeline, { passive: true });
+      window.addEventListener('resize', updateStaffTimeline);
+      setTimeout(updateStaffTimeline, 120);
+    })();
 
     // LÍNEA DE TRAYECTORIA: PELOTA RECORRIENDO EL CAMINO AL HACER SCROLL
     (function initTrajectoryLine() {
@@ -2350,7 +2469,6 @@
         const rect = section.getBoundingClientRect();
         const winH = window.innerHeight;
 
-        // Progreso entre 0 y 1 a medida que la sección atraviesa la pantalla
         const start = winH * 0.85;
         const end = winH * 0.25;
         let progress = (start - rect.top) / (start - end);
@@ -2363,7 +2481,6 @@
         const stageW = stage.clientWidth;
         const stageH = stage.clientHeight;
 
-        // Convertir coordenadas del viewBox (900x110) al tamaño real en pantalla
         const pixelX = (pt.x / 900) * stageW;
         const pixelY = (pt.y / 110) * stageH;
         const rotation = progress * 720;
@@ -2381,7 +2498,7 @@
       setTimeout(setupPath, 150);
     })();
 
-    // EFECTO DE INCLINACIÓN 3D EN FICHAS DE ENTRENADORES
+    // EFECTO DE INCLINACIÓN 3D Y BRILLO EN LAS FICHAS HORIZONTALES DEL CUERPO TÉCNICO
     const tiltCards = document.querySelectorAll('[data-tilt]');
 
     tiltCards.forEach(card => {
@@ -2391,14 +2508,14 @@
         const y = clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -7;
-        const rotateY = ((x - centerX) / centerX) * 7;
-        card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.015)`;
       };
 
       const resetTilt = () => {
         card.classList.remove('touch-active');
-        card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)';
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
       };
 
       card.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY));
@@ -2438,11 +2555,11 @@
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          r: Math.random() * 0.75 + 0.55, // Muy diminutas
+          r: Math.random() * 0.75 + 0.55,
           vx: (Math.random() - 0.5) * 0.28,
           vy: (Math.random() - 0.5) * 0.28 - 0.08,
           alpha: Math.random() * 0.38 + 0.18,
-          color: Math.random() > 0.5 ? '#1f2937' : '#374151' // Gris casi oscuro
+          color: Math.random() > 0.5 ? '#1f2937' : '#374151'
         });
       }
 
