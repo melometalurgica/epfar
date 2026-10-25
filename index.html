@@ -4,12 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EPFAR | Centro de Entrenamiento de Alto Rendimiento</title>
-  
+  <meta name="description" content="Centro de entrenamiento de alto rendimiento para juveniles de las ligas regionales. Santa Regina (Gral. Villegas) y Rosario. Selectivos Sub-15, Sub-17 y Sub-20." />
+  <meta name="theme-color" content="#071936" />
+  <link rel="icon" type="image/png" href="epfar%20logoo.PNG" />
+  <link rel="apple-touch-icon" href="epfar%20logoo.PNG" />
+  <link rel="canonical" href="https://epfar.netlify.app/" />
+
+  <!-- Vista previa al compartir el link (WhatsApp, Instagram, Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="EPFAR" />
+  <meta property="og:title" content="EPFAR | Centro de Entrenamiento de Alto Rendimiento" />
+  <meta property="og:description" content="Selectivos juveniles de las ligas regionales argentinas. Desde 2013, con participaciones en Bangladesh 2025 y Brasil 2026." />
+  <meta property="og:url" content="https://epfar.netlify.app/" />
+  <meta property="og:image" content="https://epfar.netlify.app/FOTO11.jpg" />
+  <meta property="og:image:alt" content="Plantel de EPFAR con la bandera del proyecto" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Marca que hay JS: el scroll reveal solo oculta contenido si el script corre -->
+  <script>
+    document.documentElement.classList.add('js');
+    window.addEventListener('error', function () { document.documentElement.classList.remove('js'); });
+  </script>
+
   <!-- Dos tipografías: Clash Display (Títulos) e Inter (Lectura) -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -31,24 +53,34 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
+    /* El scroll suave lo maneja el JS (respeta "reducir movimiento") */
+    [hidden] {
+      display: none !important;
     }
 
     body {
       font-family: var(--font-body);
       color: var(--text-dark);
       background-color: #f9f9fb;
-      background-image: 
-        url('image_6.png.PNG'),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(242, 243, 247, 0.45) 48%, rgba(230, 232, 238, 0.72) 48.3%, rgba(252, 252, 254, 0.96) 100%),
-        repeating-linear-gradient(-45deg, #fbfbfc 0px, #fbfbfc 4px, #f3f4f7 4px, #f3f4f7 8px);
-      background-size: cover, 100% 100%, auto;
-      background-attachment: fixed;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+    }
+
+    /* Fondo fijo en una capa propia: iOS ignora background-attachment: fixed
+       y en Android obliga a repintar todo el fondo en cada scroll */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        url('image_6.png.PNG'),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(242, 243, 247, 0.45) 48%, rgba(230, 232, 238, 0.72) 48.3%, rgba(252, 252, 254, 0.96) 100%),
+        repeating-linear-gradient(-45deg, #fbfbfc 0px, #fbfbfc 4px, #f3f4f7 4px, #f3f4f7 8px);
+      background-size: cover, 100% 100%, auto;
     }
 
     /* ==================================================== */
@@ -93,31 +125,21 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 2500;
+      z-index: -1; /* detrás del contenido y encima del fondo */
     }
 
     /* FONDO AZUL DE RAYITAS PARA "QUE ES EPFAR" */
     body.modo-que-es {
       background-color: #2b65d9;
-      background-image: 
+    }
+
+    body.modo-que-es::before {
+      background-image:
         url('fondo-azul.jpg'),
-        repeating-linear-gradient(
-          -45deg,
-          rgba(255, 255, 255, 0.08) 0px,
-          rgba(255, 255, 255, 0.08) 2px,
-          transparent 2px,
-          transparent 7px
-        ),
-        repeating-linear-gradient(
-          45deg,
-          rgba(10, 38, 99, 0.18) 0px,
-          rgba(10, 38, 99, 0.18) 2px,
-          transparent 2px,
-          transparent 90px
-        ),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 2px, transparent 2px, transparent 7px),
+        repeating-linear-gradient(45deg, rgba(10, 38, 99, 0.18) 0px, rgba(10, 38, 99, 0.18) 2px, transparent 2px, transparent 90px),
         linear-gradient(135deg, #4b85f5 0%, #2962d4 50%, #1744a6 100%);
       background-size: cover, auto, auto, 100% 100%;
-      background-attachment: fixed;
     }
 
     /* MICRO-INTERACCIONES AL PULSAR BOTONES */
@@ -129,17 +151,16 @@
       transform: scale(0.97) !important;
     }
 
-    /* SCROLL REVEAL */
-    .reveal {
+    /* SCROLL REVEAL: solo oculta si hay JS (clase .js en <html>) */
+    .js .reveal {
       opacity: 0;
       transform: translateY(32px) scale(0.99);
       transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
     }
 
-    .reveal.visible {
+    .js .reveal.visible {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: none;
     }
 
     /* CABECERA SUPERIOR EN AZUL MARINO */
@@ -186,8 +207,10 @@
       cursor: pointer;
     }
 
-    .icon-btn:hover {
-      background: rgba(255, 255, 255, 0.16);
+    @media (hover: hover) {
+      .icon-btn:hover {
+        background: rgba(255, 255, 255, 0.16);
+      }
     }
 
     .icon-btn svg {
@@ -279,10 +302,12 @@
       text-transform: uppercase;
     }
 
-    .fullscreen-link:hover {
-      background: rgba(242, 101, 34, 0.18);
-      border-color: var(--orange-accent);
-      color: #ffd166;
+    @media (hover: hover) {
+      .fullscreen-link:hover {
+        background: rgba(242, 101, 34, 0.18);
+        border-color: var(--orange-accent);
+        color: #ffd166;
+      }
     }
 
     .fullscreen-link span.arrow {
@@ -302,10 +327,9 @@
     .hero-strip {
       position: relative;
       width: 100%;
-      padding: 28px 18px 52px;
-      background: linear-gradient(180deg, rgba(8, 11, 18, 0.96) 0%, rgba(12, 16, 24, 0.88) 58%, rgba(18, 23, 34, 0.42) 84%, rgba(249, 249, 251, 0) 100%);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      padding: 28px 18px 72px;
+      /* Oscuro detrás de todo el texto: el fundido ocurre solo en el padding de abajo */
+      background: linear-gradient(180deg, rgba(8, 11, 18, 0.97) 0%, rgba(12, 16, 24, 0.93) calc(100% - 64px), rgba(249, 249, 251, 0) 100%);
     }
 
     .hero-container {
@@ -325,7 +349,7 @@
 
     .badge-ligas-plain {
       display: block;
-      font-size: clamp(0.68rem, 2vw, 0.82rem);
+      font-size: clamp(0.72rem, 2vw, 0.82rem);
       font-weight: 700;
       color: var(--orange-accent);
       text-transform: uppercase;
@@ -333,20 +357,25 @@
       letter-spacing: 0.08em;
     }
 
+    /* Título tipo afiche: mayúsculas, bloque compacto y muy pesado */
     .hero-title {
-      font-family: var(--font-title);
-      font-weight: 700;
-      font-size: clamp(1.85rem, 5.5vw, 3rem);
+      font-family: 'Montserrat', var(--font-title);
+      font-weight: 800;
+      font-size: clamp(2.1rem, 8.5vw, 3.6rem);
       color: #ffffff;
-      line-height: 1.05;
-      margin-bottom: 10px;
+      line-height: 0.98;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      max-width: 13ch;
+      text-wrap: balance;
     }
 
     .hero-subtitle {
       border-left: 3px solid var(--orange-accent);
       padding-left: 12px;
-      font-size: clamp(0.78rem, 2.3vw, 1rem);
-      line-height: 1.48;
+      font-size: clamp(1rem, 2.3vw, 1.125rem);
+      line-height: 1.55;
       color: rgba(255, 255, 255, 0.92);
       max-width: 640px;
     }
@@ -362,9 +391,22 @@
       box-shadow: 0 14px 28px rgba(0,0,0,0.65), 0 0 18px rgba(242,101,34,0.25);
     }
     .hero-logo-card img {
-      width: clamp(105px, 25vw, 195px);
+      width: clamp(120px, 25vw, 195px);
       height: auto;
       display: block;
+    }
+
+    /* EN CELULAR: LOGO ARRIBA Y TEXTO A TODO EL ANCHO */
+    @media (max-width: 599px) {
+      .hero-container {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .hero-text-side {
+        width: 100%;
+      }
     }
 
     /* SECCIÓN FOTO PRINCIPAL */
@@ -464,12 +506,15 @@
     }
 
     /* Línea de progreso naranja que baja con el scroll */
+    /* Se anima con transform (no con height) para no recalcular el layout en cada scroll */
     .staff-timeline-progress {
       width: 100%;
-      height: 0%;
+      height: 100%;
       background: linear-gradient(180deg, var(--orange-accent) 0%, #ff8c42 100%);
       border-radius: 99px;
-      transition: height 0.12s linear;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.12s linear;
     }
 
     .staff-year-group {
@@ -509,15 +554,15 @@
       box-shadow: 0 10px 26px rgba(7, 25, 54, 0.08);
       transform-style: preserve-3d;
       transition: transform 0.16s ease-out, box-shadow 0.25s ease, background 0.3s ease;
-      cursor: pointer;
-      user-select: none;
     }
 
-    .staff-year-card:hover,
-    .staff-year-card.touch-active {
-      background: linear-gradient(135deg, rgba(242, 101, 34, 0.95), rgba(9, 49, 112, 0.6), rgba(56, 189, 248, 0.95));
-      animation: borderGlow 3s ease infinite;
-      box-shadow: 0 16px 34px rgba(242, 101, 34, 0.22), 0 0 18px rgba(56, 189, 248, 0.32);
+    /* Brillo e inclinación solo con mouse: en el celular el :hover queda "pegado" al tocar */
+    @media (hover: hover) and (pointer: fine) {
+      .staff-year-card:hover {
+        background: linear-gradient(135deg, rgba(242, 101, 34, 0.95), rgba(9, 49, 112, 0.6), rgba(56, 189, 248, 0.95));
+        animation: borderGlow 3s ease infinite;
+        box-shadow: 0 16px 34px rgba(242, 101, 34, 0.22), 0 0 18px rgba(56, 189, 248, 0.32);
+      }
     }
 
     @keyframes borderGlow {
@@ -582,8 +627,10 @@
       transition: transform 0.3s ease;
     }
 
-    .staff-year-card:hover .staff-square-photo img {
-      transform: scale(1.04);
+    @media (hover: hover) and (pointer: fine) {
+      .staff-year-card:hover .staff-square-photo img {
+        transform: scale(1.04);
+      }
     }
 
     .staff-initials-fallback {
@@ -738,8 +785,10 @@
       cursor: pointer;
     }
 
-    .madrid-soon:hover {
-      filter: brightness(1.06);
+    @media (hover: hover) {
+      .madrid-soon:hover {
+        filter: brightness(1.06);
+      }
     }
 
     .madrid-desc {
@@ -890,140 +939,6 @@
     }
 
     /* ==================================================== */
-    /* LÍNEA FINA DE TRAYECTORIA (CAMINO IZQ A DER + PELOTA)*/
-    /* ==================================================== */
-    .trajectory-wrapper {
-      margin-top: 26px;
-      background: #ffffff;
-      border: 1px solid rgba(9, 49, 112, 0.12);
-      border-radius: 20px;
-      padding: 22px 18px 26px;
-      box-shadow: 0 10px 26px rgba(7, 25, 54, 0.07);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .trajectory-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .trajectory-label {
-      font-family: var(--font-title);
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--navy-header);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .trajectory-sub {
-      font-size: 0.75rem;
-      color: #6b7280;
-      font-weight: 500;
-    }
-
-    .trajectory-stage {
-      position: relative;
-      width: 100%;
-      height: 118px;
-      margin: 6px 0 10px;
-    }
-
-    .trajectory-svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-      display: block;
-    }
-
-    .path-bg {
-      fill: none;
-      stroke: #dbe3f0;
-      stroke-width: 2.2;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-    }
-
-    .path-Active {
-      fill: none;
-      stroke: var(--orange-accent);
-      stroke-width: 2.6;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      transition: stroke-dashoffset 0.12s linear;
-    }
-
-    .milestone-dot {
-      fill: #ffffff;
-      stroke: var(--navy-header);
-      stroke-width: 2.5;
-      transition: fill 0.25s ease, stroke 0.25s ease, r 0.25s ease;
-    }
-
-    .milestone-dot.reached {
-      fill: var(--orange-accent);
-      stroke: var(--navy-header);
-    }
-
-    .soccer-ball-marker {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 28px;
-      height: 28px;
-      margin-left: -14px;
-      margin-top: -14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-      background: #ffffff;
-      border: 2px solid var(--navy-header);
-      border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(7, 25, 54, 0.28);
-      pointer-events: none;
-      z-index: 5;
-      transition: transform 0.08s linear;
-    }
-
-    .trajectory-nodes-labels {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .t-node-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .t-node-info:nth-child(1) { text-align: left; }
-    .t-node-info:nth-child(2) { text-align: center; }
-    .t-node-info:nth-child(3) { text-align: right; }
-
-    .t-node-title {
-      font-family: var(--font-title);
-      font-size: clamp(0.76rem, 2.3vw, 0.95rem);
-      font-weight: 600;
-      color: var(--navy-header);
-    }
-
-    .t-node-desc {
-      font-size: clamp(0.66rem, 1.9vw, 0.76rem);
-      color: #4b5563;
-      font-weight: 500;
-    }
-
-    /* ==================================================== */
     /* SECCIÓN NOTICIAS (DESLIZABLE HORIZONTAL)             */
     /* ==================================================== */
     .news-slider {
@@ -1070,9 +985,11 @@
       }
     }
 
-    .news-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 32px rgba(7, 25, 54, 0.16);
+    @media (hover: hover) {
+      .news-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 32px rgba(7, 25, 54, 0.16);
+      }
     }
 
     .news-thumb {
@@ -1091,8 +1008,10 @@
       transition: transform 0.35s ease;
     }
 
-    .news-card:hover .news-thumb img {
-      transform: scale(1.05);
+    @media (hover: hover) {
+      .news-card:hover .news-thumb img {
+        transform: scale(1.05);
+      }
     }
 
     .news-source-tag {
@@ -1190,15 +1109,16 @@
       transition: transform 0.4s ease;
     }
 
-    .photo-rect-item:hover img {
-      transform: scale(1.04);
+    @media (hover: hover) {
+      .photo-rect-item:hover img {
+        transform: scale(1.04);
+      }
     }
 
     /* ==================================================== */
     /* VISTA EXCLUSIVA DE CONTACTO (SOLO DESDE LAS 3 RAYAS) */
     /* ==================================================== */
     #vista-contacto {
-      display: none;
       width: 100%;
       flex: 1;
       max-width: 960px;
@@ -1228,10 +1148,12 @@
       box-shadow: 0 8px 20px rgba(7, 25, 54, 0.06);
     }
 
-    .contact-card-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(7, 25, 54, 0.12);
-      border-color: var(--blue-card);
+    @media (hover: hover) {
+      .contact-card-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 26px rgba(7, 25, 54, 0.12);
+        border-color: var(--blue-card);
+      }
     }
 
     .contact-item-left {
@@ -1283,13 +1205,13 @@
       letter-spacing: 0.03em;
       cursor: pointer;
       margin-bottom: 18px;
+      text-decoration: none;
     }
 
     /* ==================================================== */
     /* SECCIÓN "¿QUÉ ES EPFAR?"                             */
     /* ==================================================== */
     #vista-que-es {
-      display: none;
       width: 100%;
       flex: 1;
       padding: 16px 12px 32px;
@@ -1445,6 +1367,7 @@
       box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
       position: relative;
       max-height: 86vh;
+      max-height: 86dvh;
       display: flex;
       flex-direction: column;
     }
@@ -1689,6 +1612,84 @@
     .terms-trigger-link:hover {
       color: #ffffff;
     }
+
+    /* ==================================================== */
+    /* FLECHAS DE LOS CARRUSELES (SOLO CON MOUSE)           */
+    /* ==================================================== */
+    .slider-wrap {
+      position: relative;
+    }
+
+    .slider-arrow {
+      display: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 4;
+        width: 44px;
+        height: 44px;
+        margin-top: -31px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid rgba(9, 49, 112, 0.18);
+        background: #ffffff;
+        color: var(--navy-header);
+        font-size: 1.6rem;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(7, 25, 54, 0.18);
+      }
+
+      .slider-arrow.prev {
+        left: -10px;
+      }
+
+      .slider-arrow.next {
+        right: -10px;
+      }
+
+      .slider-arrow:disabled {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    /* QUE EL HEADER STICKY NO TAPE LOS TÍTULOS AL SALTAR A UNA SECCIÓN */
+    main section[id] {
+      scroll-margin-top: 84px;
+    }
+
+    /* FOCO VISIBLE PARA NAVEGAR CON TECLADO */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--orange-accent);
+      outline-offset: 3px;
+    }
+
+    /* MENOS MOVIMIENTO SI EL USUARIO LO PIDE EN SU SISTEMA */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .skeleton-shimmer::after {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1698,12 +1699,12 @@
 
   <!-- CABECERA SUPERIOR -->
   <header class="navbar">
-    <a onclick="irAInicio()" class="navbar-title">
-      Pagina Oficial EPFAR
+    <a href="#inicio" class="navbar-title">
+      Página Oficial EPFAR
     </a>
     <div class="navbar-actions">
-      <button class="icon-btn" id="menuBtn" type="button" aria-label="Abrir Menú" onclick="abrirMenu()">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="fullscreenMenu" onclick="abrirMenu()">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -1713,32 +1714,32 @@
   </header>
 
   <!-- MENÚ DE PANTALLA COMPLETA -->
-  <div class="fullscreen-menu" id="fullscreenMenu">
+  <div class="fullscreen-menu" id="fullscreenMenu" role="dialog" aria-modal="true" aria-label="Menú">
     <div class="fullscreen-header">
       <span class="fullscreen-brand">MENÚ EPFAR</span>
-      <button class="close-menu-btn" type="button" aria-label="Cerrar Menú" onclick="cerrarMenu()">✕</button>
+      <button class="close-menu-btn" type="button" aria-label="Cerrar menú" data-cerrar onclick="cerrarMenu()">✕</button>
     </div>
 
-    <nav class="fullscreen-nav">
-      <a class="fullscreen-link" onclick="irAInicio()">
+    <nav class="fullscreen-nav" aria-label="Secciones">
+      <a class="fullscreen-link" href="#inicio">
         <span>INICIO</span>
-        <span class="arrow">➔</span>
+        <span class="arrow" aria-hidden="true">➔</span>
       </a>
-      <a class="fullscreen-link" onclick="irAEntrenadores()">
+      <a class="fullscreen-link" href="#entrenadores">
         <span>ENTRENADORES EPFAR</span>
-        <span class="arrow">➔</span>
+        <span class="arrow" aria-hidden="true">➔</span>
       </a>
-      <a class="fullscreen-link" onclick="irAEntrenadores()">
+      <a class="fullscreen-link" href="#participaciones">
         <span>TORNEOS PARTICIPADOS</span>
-        <span class="arrow">➔</span>
+        <span class="arrow" aria-hidden="true">➔</span>
       </a>
-      <a class="fullscreen-link" onclick="irAQueEs()">
-        <span>QUE ES EPFAR</span>
-        <span class="arrow">➔</span>
+      <a class="fullscreen-link" href="#que-es-epfar">
+        <span>¿QUÉ ES EPFAR?</span>
+        <span class="arrow" aria-hidden="true">➔</span>
       </a>
-      <a class="fullscreen-link" onclick="irAContacto()">
+      <a class="fullscreen-link" href="#contacto">
         <span>CONTACTO</span>
-        <span class="arrow">➔</span>
+        <span class="arrow" aria-hidden="true">➔</span>
       </a>
     </nav>
 
@@ -1751,20 +1752,20 @@
   <!-- VISTA 1: PORTADA PRINCIPAL                           -->
   <!-- ==================================================== -->
   <div id="vista-inicio">
-    
+
     <!-- Tira superior oscura -->
-    <section class="hero-strip">
+    <section class="hero-strip" aria-labelledby="hero-titulo">
       <div class="hero-container">
         <div class="hero-text-side">
           <span class="badge-ligas-plain">LIGAS REGIONALES ARGENTINAS</span>
-          <h1 class="hero-title">EPFAR</h1>
+          <h1 class="hero-title" id="hero-titulo">Alto rendimiento para los juveniles de la región.</h1>
           <p class="hero-subtitle">
-            <strong>EPFAR</strong> es un Centro de Entrenamiento de Alto Rendimiento ubicado en el <strong>Partido de Gral. Villegas, Santa Regina</strong>, con conexión en <strong>Rosario, Santa Fe</strong>. Dirigida por <span class="director-highlight">Hernán Ojeda</span>.
+            <strong>EPFAR</strong> es un centro de entrenamiento con sede en <strong>Santa Regina (Gral. Villegas)</strong> y conexión en <strong>Rosario, Santa Fe</strong>. Dirigido por <span class="director-highlight">Hernán Ojeda</span>.
           </p>
         </div>
         <div class="hero-logo-side">
           <div class="hero-logo-card skeleton-shimmer">
-            <img src="image_4.png.jpg" alt="EPFAR" onload="this.parentElement.classList.add('loaded')" />
+            <img src="epfar%20logoo.PNG" alt="Logo de EPFAR" onload="this.parentElement.classList.add('loaded')" />
           </div>
         </div>
       </div>
@@ -1773,7 +1774,7 @@
     <!-- Foto de todos con la bandera de EPFAR -->
     <section class="video-section reveal">
       <div class="video-container skeleton-shimmer">
-        <img src="FOTO11.jpg" alt="Plantel EPFAR con bandera" class="promo-photo" onload="this.parentElement.classList.add('loaded')" />
+        <img src="FOTO11.jpg" alt="Plantel de EPFAR con la bandera del proyecto" class="promo-photo" fetchpriority="high" onload="this.parentElement.classList.add('loaded')" />
       </div>
     </section>
 
@@ -1782,8 +1783,8 @@
       <!-- ============================================== -->
       <!-- SECCIÓN CUERPO TÉCNICO EPFAR (NUEVO ESTILO)    -->
       <!-- ============================================== -->
-      <section id="seccion-entrenadores" class="reveal">
-        <div class="section-header">
+      <section id="seccion-entrenadores">
+        <div class="section-header reveal">
           <h2 class="section-title">CUERPO TÉCNICO EPFAR</h2>
           <p class="swipe-hint">Un equipo que fue creciendo desde 2013</p>
         </div>
@@ -1802,7 +1803,7 @@
                 <span class="staff-year-badge">2013</span>
                 <div class="staff-member-row">
                   <div class="staff-square-photo skeleton-shimmer">
-                    <img src="fotoo1.PNG" alt="Hernán Ojeda" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <img loading="lazy" decoding="async" src="fotoo1.PNG" alt="Hernán Ojeda" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
                     <div class="staff-initials-fallback">HO</div>
                   </div>
                   <div class="staff-member-details">
@@ -1823,7 +1824,7 @@
                 <span class="staff-year-badge">2025</span>
                 <div class="staff-member-row">
                   <div class="staff-square-photo skeleton-shimmer">
-                    <img src="fotoo3.PNG" alt="Cristian Martínez" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <img loading="lazy" decoding="async" src="cristian%20foto.PNG" alt="Cristian Martínez" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
                     <div class="staff-initials-fallback">CM</div>
                   </div>
                   <div class="staff-member-details">
@@ -1846,7 +1847,7 @@
                 <!-- Fabián Millarez -->
                 <div class="staff-member-row">
                   <div class="staff-square-photo skeleton-shimmer">
-                    <img src="fotoo2.PNG" alt="Fabián Millarez" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <img loading="lazy" decoding="async" src="fotoo2.PNG" alt="Fabián Millarez" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
                     <div class="staff-initials-fallback">FM</div>
                   </div>
                   <div class="staff-member-details">
@@ -1861,7 +1862,7 @@
                 <!-- Gastón Jara -->
                 <div class="staff-member-row">
                   <div class="staff-square-photo skeleton-shimmer">
-                    <img src="fotoo4.PNG" alt="Gastón Jara" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <img loading="lazy" decoding="async" src="fotoo4.PNG" alt="Gastón Jara" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
                     <div class="staff-initials-fallback">GJ</div>
                   </div>
                   <div class="staff-member-details">
@@ -1876,7 +1877,7 @@
                 <!-- Alex Corvalán -->
                 <div class="staff-member-row">
                   <div class="staff-square-photo skeleton-shimmer">
-                    <img src="fotoo5.PNG" alt="Alex Corvalán" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <img loading="lazy" decoding="async" src="fotoo5.PNG" alt="Alex Corvalán" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
                     <div class="staff-initials-fallback">AC</div>
                   </div>
                   <div class="staff-member-details">
@@ -1896,12 +1897,15 @@
       <!-- ============================================== -->
       <!-- SECCIÓN PARTICIPACIONES                        -->
       <!-- ============================================== -->
-      <section id="seccion-participaciones" class="reveal">
-        <div class="section-header">
+      <section id="seccion-participaciones">
+        <div class="section-header reveal">
           <h2 class="section-title">PARTICIPACIONES</h2>
           <p class="swipe-hint">Deslizá para ver todos los torneos ➔</p>
         </div>
 
+        <div class="slider-wrap reveal">
+        <button type="button" class="slider-arrow prev" aria-label="Torneo anterior">‹</button>
+        <button type="button" class="slider-arrow next" aria-label="Torneo siguiente">›</button>
         <div class="participations-slider">
 
           <!-- 1. PRIMERA VENTANA BLANCA: TORNEO EN EL RESTO DEL MUNDO -->
@@ -1917,8 +1921,8 @@
               </p>
             </div>
             <div class="madrid-bottom-row">
-              <span class="madrid-bottom-text">Tocá "Próximamente" para + info</span>
-              <img src="image_4.png.jpg" alt="Logo EPFAR" class="madrid-mini-logo" />
+              <span class="madrid-bottom-text">Consultá por las próximas convocatorias</span>
+              <img src="epfar%20logoo.PNG" alt="Logo EPFAR" class="madrid-mini-logo" />
             </div>
           </div>
 
@@ -1937,23 +1941,23 @@
 
               <div class="card-grid">
                 <div class="grid-btn">👥 Jugadores EPFAR</div>
-                <div class="grid-btn">📅 Fixture Completo</div>
-                <div class="grid-btn">⚽ Partidos a Jugar</div>
+                <div class="grid-btn">Torneo Brasilero 🇧🇷</div>
+                <div class="grid-btn">📺 Canales de Transmisión</div>
                 <div class="grid-btn more-highlight">➕ Ver Más</div>
               </div>
             </div>
 
             <div class="btn-ingresar">
-              INGRESAR AL TORNEO 
+              INGRESAR AL TORNEO
               <div class="btn-icon">➔</div>
             </div>
           </a>
 
           <!-- 3. VENTANA ROJA: AFB LATIN-BANGLA SUPER CUP 2025 -->
-          <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/?amp=1" target="_blank" rel="noopener noreferrer" class="participation-card-vertical card-red-bangla">
+          <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/" target="_blank" rel="noopener noreferrer" class="participation-card-vertical card-red-bangla">
             <div>
               <div class="card-logo-box skeleton-shimmer">
-                <img src="image_4.png.jpg" alt="AFB Latin-Bangla Super Cup 2025" onload="this.parentElement.classList.add('loaded')" />
+                <img src="epfar%20logoo.PNG" alt="Logo de EPFAR" onload="this.parentElement.classList.add('loaded')" />
               </div>
 
               <div class="card-location-pill">
@@ -1971,47 +1975,12 @@
             </div>
 
             <div class="btn-ingresar">
-              VER PARTICIPACIÓN 
+              VER PARTICIPACIÓN
               <div class="btn-icon">➔</div>
             </div>
           </a>
 
         </div>
-
-        <!-- LÍNEA FINA DE TRAYECTORIA (CAMINO ANGULADO DE IZQUIERDA A DERECHA) -->
-        <div class="trajectory-wrapper reveal" id="trajectorySection">
-          <div class="trajectory-header">
-            <span class="trajectory-label">Trayectoria Internacional EPFAR</span>
-            <span class="trajectory-sub">Recorrido competitivo del proyecto</span>
-          </div>
-
-          <div class="trajectory-stage" id="trajectoryStage">
-            <svg class="trajectory-svg" id="trajectorySvg" viewBox="0 0 900 110" preserveAspectRatio="none">
-              <path id="trajectoryPathBg" class="path-bg" d="M 45 78 L 200 26 L 340 76 L 450 38 L 620 82 L 740 28 L 855 62" />
-              <path id="trajectoryPathActive" class="path-Active" d="M 45 78 L 200 26 L 340 76 L 450 38 L 620 82 L 740 28 L 855 62" />
-
-              <circle class="milestone-dot reached" id="mileDot1" cx="45" cy="78" r="7" />
-              <circle class="milestone-dot" id="mileDot2" cx="450" cy="38" r="7" />
-              <circle class="milestone-dot" id="mileDot3" cx="855" cy="62" r="7" />
-            </svg>
-
-            <div class="soccer-ball-marker" id="soccerBallMarker">⚽</div>
-          </div>
-
-          <div class="trajectory-nodes-labels">
-            <div class="t-node-info">
-              <span class="t-node-title">🇧🇩 Bangladesh 2025</span>
-              <span class="t-node-desc">AFB Latin-Bangla Super Cup</span>
-            </div>
-            <div class="t-node-info">
-              <span class="t-node-title">🇧🇷 Brasil 2026</span>
-              <span class="t-node-desc">Copa Fair Play Internacional</span>
-            </div>
-            <div class="t-node-info">
-              <span class="t-node-title">🌍 Próximamente</span>
-              <span class="t-node-desc">España, China, Brasil (2027)</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -2024,12 +1993,15 @@
           <p class="swipe-hint">Tocá cualquier noticia para leer la nota completa ➔</p>
         </div>
 
+        <div class="slider-wrap">
+        <button type="button" class="slider-arrow prev" aria-label="Noticia anterior">‹</button>
+        <button type="button" class="slider-arrow next" aria-label="Noticia siguiente">›</button>
         <div class="news-slider">
 
           <!-- Noticia 1 -->
           <a href="https://www.distritointerior.com.ar/hoy/218911/el-combinado-de-nuestra-zona-se-consagro-campeon-en-brasil" target="_blank" rel="noopener noreferrer" class="news-card">
             <div class="news-thumb skeleton-shimmer">
-              <img src="SUB17.jpg" alt="Campeón en Brasil" onload="this.parentElement.classList.add('loaded')" onerror="this.src='FOTO11.jpg'" />
+              <img src="SUB17.jpg" alt="Campeón en Brasil" onload="this.parentElement.classList.add('loaded')" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='FOTO11.jpg'" />
               <span class="news-source-tag">Distrito Interior</span>
             </div>
             <div class="news-body">
@@ -2039,9 +2011,9 @@
           </a>
 
           <!-- Noticia 2 -->
-          <a href="https://www.instagram.com/p/DepWBk1Fh--/?cplk=b3pxaThkbGd6emFh" target="_blank" rel="noopener noreferrer" class="news-card">
+          <a href="https://www.instagram.com/p/DepWBk1Fh--/" target="_blank" rel="noopener noreferrer" class="news-card">
             <div class="news-thumb skeleton-shimmer">
-              <img src="FOTO10.JPG" alt="Publicación Oficial EPFAR" onload="this.parentElement.classList.add('loaded')" onerror="this.src='FOTO11.jpg'" />
+              <img src="FOTO10.JPG" alt="Publicación Oficial EPFAR" onload="this.parentElement.classList.add('loaded')" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='FOTO11.jpg'" />
               <span class="news-source-tag">Instagram</span>
             </div>
             <div class="news-body">
@@ -2051,9 +2023,9 @@
           </a>
 
           <!-- Noticia 3 -->
-          <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/?amp=1" target="_blank" rel="noopener noreferrer" class="news-card">
+          <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/" target="_blank" rel="noopener noreferrer" class="news-card">
             <div class="news-thumb skeleton-shimmer">
-              <img src="FOTO12.JPG" alt="Rumbo a Bangladesh" onload="this.parentElement.classList.add('loaded')" onerror="this.src='FOTO11.jpg'" />
+              <img src="bangladeshnoticia.jpg" alt="Rumbo a Bangladesh" onload="this.parentElement.classList.add('loaded')" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='FOTO11.jpg'" />
               <span class="news-source-tag">Diario Actualidad</span>
             </div>
             <div class="news-body">
@@ -2062,10 +2034,46 @@
             </div>
           </a>
 
-          <!-- Noticia 4 -->
+          <!-- Noticia 4: C5N -->
+          <a href="https://www.c5n.com/deportes/arranca-bangladesh-el-torneo-futbol-mas-extrano-2025-argentina-presenta-una-seleccion-un-pueblo-bonaerense-n222926" target="_blank" rel="noopener noreferrer" class="news-card">
+            <div class="news-thumb skeleton-shimmer">
+              <img src="bangladesh%203.WEBP" alt="EPFAR en la AFB Latin-Bangla Super Cup 2025" onload="this.parentElement.classList.add('loaded')" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='FOTO11.jpg'" />
+              <span class="news-source-tag">C5N</span>
+            </div>
+            <div class="news-body">
+              <h3 class="news-headline">Un equipo de un pueblo bonaerense representa a la Argentina en el torneo juvenil de Bangladesh</h3>
+              <span class="news-read-more">Leer noticia completa ➔</span>
+            </div>
+          </a>
+
+          <!-- Noticia 5: Municipalidad de General Villegas -->
+          <a href="https://villegas.gob.ar/blog/2025/12/09/de-charlone-a-asia-un-sub20-villenguense-juega-la-latin-bangla-super-cup/" target="_blank" rel="noopener noreferrer" class="news-card">
+            <div class="news-thumb skeleton-shimmer">
+              <img src="IMG_2173.jpeg" alt="Delegación Sub-20 en la Latin-Bangla Super Cup 2025" onload="this.parentElement.classList.add('loaded')" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='FOTO11.jpg'" />
+              <span class="news-source-tag">Municipalidad de Gral. Villegas</span>
+            </div>
+            <div class="news-body">
+              <h3 class="news-headline">De Charlone a Asia: el Sub-20 villeguense que juega la Latin Bangla Super Cup</h3>
+              <span class="news-read-more">Leer noticia completa ➔</span>
+            </div>
+          </a>
+
+          <!-- Noticia 6: partido ante Bangladesh Sub-20 -->
+          <a href="https://www.outlookindia.com/amp/story/sports/football/latin-bangla-super-cup-2025-argentina-vs-bangladesh-watch-fight-video" target="_blank" rel="noopener noreferrer" class="news-card">
+            <div class="news-thumb skeleton-shimmer">
+              <img src="bangladesh2.JPG" alt="EPFAR en la AFB Latin-Bangla Super Cup 2025" onload="this.parentElement.classList.add('loaded')" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='FOTO11.jpg'" />
+              <span class="news-source-tag">Outlook India</span>
+            </div>
+            <div class="news-body">
+              <h3 class="news-headline">Latin-Bangla Super Cup 2025: lo que pasó en el partido ante Bangladesh Sub-20</h3>
+              <span class="news-read-more">Leer nota completa (en inglés) ➔</span>
+            </div>
+          </a>
+
+          <!-- Noticia 7 -->
           <a href="https://www.distritointerior.com.ar/deportes/218808/esta-madrugada-partieron-desde-villegas-los-selectivos-que-participaran-en-brasil-de-la-copa-fair-play" target="_blank" rel="noopener noreferrer" class="news-card">
             <div class="news-thumb skeleton-shimmer">
-              <img src="SUB15.jpg" alt="Partida desde Villegas a Brasil" onload="this.parentElement.classList.add('loaded')" onerror="this.src='FOTO11.jpg'" />
+              <img src="SUB15.jpg" alt="Partida desde Villegas a Brasil" onload="this.parentElement.classList.add('loaded')" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='FOTO11.jpg'" />
               <span class="news-source-tag">Distrito Interior</span>
             </div>
             <div class="news-body">
@@ -2074,6 +2082,7 @@
             </div>
           </a>
 
+        </div>
         </div>
       </section>
 
@@ -2086,22 +2095,47 @@
           <p class="swipe-hint">Deslizá hacia el costado para ver la galería ➔</p>
         </div>
 
+        <div class="slider-wrap">
+        <button type="button" class="slider-arrow prev" aria-label="Foto anterior">‹</button>
+        <button type="button" class="slider-arrow next" aria-label="Foto siguiente">›</button>
         <div class="photos-slider-borderless">
           <div class="photo-rect-item skeleton-shimmer">
-            <img src="SUB17.jpg" alt="Galería EPFAR 1" onload="this.parentElement.classList.add('loaded')" />
+            <img src="SUB17.jpg" alt="Selectivo Sub-17 de EPFAR" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
           </div>
           <div class="photo-rect-item skeleton-shimmer">
-            <img src="SUB15.jpg" alt="Galería EPFAR 2" onload="this.parentElement.classList.add('loaded')" />
+            <img src="SUB15.jpg" alt="Selectivo Sub-15 de EPFAR" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
           </div>
           <div class="photo-rect-item skeleton-shimmer">
-            <img src="FOTO10.JPG" alt="Galería EPFAR 3" onload="this.parentElement.classList.add('loaded')" />
+            <img src="FOTO10.JPG" alt="Selectivos de EPFAR en la Copa Fair Play 2026, Brasil" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
           </div>
           <div class="photo-rect-item skeleton-shimmer">
-            <img src="FOTO11.jpg" alt="Galería EPFAR 4" onload="this.parentElement.classList.add('loaded')" />
+            <img src="FOTO11.jpg" alt="Plantel de EPFAR con la bandera «El fútbol es integración»" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
           </div>
           <div class="photo-rect-item skeleton-shimmer">
-            <img src="FOTO12.JPG" alt="Galería EPFAR 5" onload="this.parentElement.classList.add('loaded')" />
+            <img src="FOTO12.JPG" alt="Jugadores de EPFAR en la Copa Fair Play 2026, Brasil" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
           </div>
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="foto40.JPG" alt="Selectivos juveniles de EPFAR" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
+          </div>
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="foto34.JPG" alt="Selectivos juveniles de EPFAR" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
+          </div>
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="SECCION%20FOTOS%20AGREGAR.JPG" alt="Selectivos juveniles de EPFAR" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
+          </div>
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="fotos32.JPG" alt="Selectivos juveniles de EPFAR" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
+          </div>
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="HERNAN2.JPG" alt="Hernán Ojeda, director técnico de EPFAR" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
+          </div>
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="bangladesh2.JPG" alt="EPFAR en la AFB Latin-Bangla Super Cup 2025, Bangladesh" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
+          </div>
+          <div class="photo-rect-item skeleton-shimmer">
+            <img src="bangladesh%203.WEBP" alt="EPFAR en la AFB Latin-Bangla Super Cup 2025, Bangladesh" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')" />
+          </div>
+        </div>
         </div>
       </section>
 
@@ -2111,10 +2145,10 @@
   <!-- ==================================================== -->
   <!-- VISTA 2: ¿QUÉ ES EPFAR?                              -->
   <!-- ==================================================== -->
-  <div id="vista-que-es">
+  <div id="vista-que-es" hidden>
     <div class="que-es-card">
       <div class="que-es-logo-top">
-        <img src="image_4.png.jpg" alt="Logo EPFAR" />
+        <img src="epfar%20logoo.PNG" alt="Logo EPFAR" />
       </div>
 
       <div class="que-es-content">
@@ -2160,8 +2194,8 @@
   <!-- ==================================================== -->
   <!-- VISTA 3: CONTACTO (SOLO AL TOCAR EN LAS 3 RAYITAS)   -->
   <!-- ==================================================== -->
-  <div id="vista-contacto">
-    <button type="button" class="back-home-btn" onclick="irAInicio()">⬅ VOLVER AL INICIO</button>
+  <div id="vista-contacto" hidden>
+    <a href="#inicio" class="back-home-btn">⬅ VOLVER AL INICIO</a>
 
     <div class="section-header" style="margin-top: 0;">
       <h2 class="section-title">CONTACTO</h2>
@@ -2169,7 +2203,7 @@
     </div>
 
     <div class="contact-short-grid">
-      <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+      <a href="https://wa.me/5493415999728?text=Hola%20Hern%C3%A1n%2C%20vi%20la%20p%C3%A1gina%20de%20EPFAR%20y%20quer%C3%ADa%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" class="contact-card-item">
         <div class="contact-item-left">
           <span class="contact-item-label">CONTACTO</span>
           <span class="contact-item-value">+54 9 3415 99-9728 (Hernán Ojeda)</span>
@@ -2199,15 +2233,15 @@
   <!-- MODAL 1: MÁS INFORMACIÓN ("PRÓXIMAMENTE")            -->
   <!-- ==================================================== -->
   <div class="modal-backdrop" id="modalProximamente" onclick="cerrarModalExterior(event, 'modalProximamente')">
-    <div class="modal-box">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="tituloProximamente">
       <div class="modal-header">
-        <h3 class="modal-title">Gira Internacional 2027</h3>
-        <button type="button" class="modal-close" onclick="cerrarModal('modalProximamente')">✕</button>
+        <h3 class="modal-title" id="tituloProximamente">Gira Internacional 2027</h3>
+        <button type="button" class="modal-close" aria-label="Cerrar" data-cerrar onclick="cerrarModal('modalProximamente')">✕</button>
       </div>
       <div class="modal-body-scroll">
         <p><strong>Más información en nuestros canales oficiales de contacto.</strong> Comunicate directamente con la coordinación general de EPFAR para conocer detalles sobre las próximas convocatorias y participaciones en España, China y Brasil:</p>
         <div class="modal-contact-list">
-          <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer" class="modal-contact-btn">
+          <a href="https://wa.me/5493415999728?text=Hola%20Hern%C3%A1n%2C%20quer%C3%ADa%20informaci%C3%B3n%20sobre%20la%20gira%20internacional%202027%20de%20EPFAR." target="_blank" rel="noopener noreferrer" class="modal-contact-btn">
             <span>📞 Contacto: +54 9 3415 99-9728 (Hernán Ojeda)</span>
             <span>➔</span>
           </a>
@@ -2224,15 +2258,15 @@
   <!-- MODAL 2: TÉRMINOS Y CONDICIONES DE USO — EPFAR       -->
   <!-- ==================================================== -->
   <div class="modal-backdrop" id="modalTerminos" onclick="cerrarModalExterior(event, 'modalTerminos')">
-    <div class="modal-box modal-large">
+    <div class="modal-box modal-large" role="dialog" aria-modal="true" aria-labelledby="tituloTerminos">
       <div class="modal-header">
-        <h3 class="modal-title">Términos y Condiciones de Uso — EPFAR</h3>
-        <button type="button" class="modal-close" onclick="cerrarModal('modalTerminos')">✕</button>
+        <h3 class="modal-title" id="tituloTerminos">Términos y Condiciones de Uso — EPFAR</h3>
+        <button type="button" class="modal-close" aria-label="Cerrar" data-cerrar onclick="cerrarModal('modalTerminos')">✕</button>
       </div>
       <div class="modal-body-scroll">
         <h3>1. Titular del sitio y aceptación de los términos</h3>
         <p>EPFAR (Centro de Entrenamiento de Alto Rendimiento – Ligas Regionales Argentinas), en adelante «EPFAR», es un proyecto de formación y entrenamiento de jóvenes futbolistas ubicado en Santa Regina, Partido de General Villegas, provincia de Buenos Aires, con conexión en Rosario, provincia de Santa Fe, dirigido por Hernán Ojeda.</p>
-        <p>El acceso y uso del sitio web www.epfar.com implica la aceptación plena de estos Términos y Condiciones. Quien no esté de acuerdo con ellos debe abstenerse de utilizar el Sitio.</p>
+        <p>El acceso y uso del sitio web oficial de EPFAR (en adelante, «el Sitio») implica la aceptación plena de estos Términos y Condiciones. Quien no esté de acuerdo con ellos debe abstenerse de utilizar el Sitio.</p>
 
         <h3>2. Objeto y alcance del sitio</h3>
         <p>El Sitio tiene carácter informativo. Presenta el proyecto EPFAR, su cuerpo técnico, los torneos y participaciones, las noticias y los canales de contacto.</p>
@@ -2288,7 +2322,7 @@
       <!-- Contacto alineado al costado izquierdo y logo byLanzaWebs al derecho -->
       <div class="footer-side-row">
         <div class="footer-contact-side">
-          Contacto: <a href="https://wa.me/5493415999728" target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> (Hernán Ojeda)<br>
+          Contacto: <a href="https://wa.me/5493415999728?text=Hola%20Hern%C3%A1n%2C%20vi%20la%20p%C3%A1gina%20de%20EPFAR%20y%20quer%C3%ADa%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> (Hernán Ojeda)<br>
           E-mail: <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a>
         </div>
 
@@ -2311,245 +2345,301 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS: MENÚ, VISTAS, LÍNEAS DE PROGRESO, INCLINACIÓN 3D Y PARTÍCULAS -->
+  <!-- SCRIPTS: NAVEGACIÓN, MENÚ, MODALES, SCROLL REVEAL, LÍNEAS DE PROGRESO, CARRUSELES, INCLINACIÓN 3D Y PARTÍCULAS -->
   <script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const puedeHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const comportamiento = () => (reduceMotion ? 'auto' : 'smooth');
+
     const fullscreenMenu = document.getElementById('fullscreenMenu');
+    const menuBtn = document.getElementById('menuBtn');
     const vistaInicio = document.getElementById('vista-inicio');
-    const vistaQueEs = document.getElementById('vista-que-es');
-    const vistaContacto = document.getElementById('vista-contacto');
+    const VISTAS = {
+      inicio: vistaInicio,
+      'que-es': document.getElementById('vista-que-es'),
+      contacto: document.getElementById('vista-contacto')
+    };
+
+    // ====================================================
+    // MENÚ Y MODALES: cierre con Esc, foco y scroll bloqueado
+    // ====================================================
+    let dialogoAbierto = null;
+    let focoPrevio = null;
+
+    function abrirDialogo(el) {
+      focoPrevio = document.activeElement;
+      dialogoAbierto = el;
+      el.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      const cerrar = el.querySelector('[data-cerrar]');
+      if (cerrar) setTimeout(() => cerrar.focus({ preventScroll: true }), 50);
+    }
+
+    function cerrarDialogo(el, devolverFoco = true) {
+      if (!el.classList.contains('open')) return;
+      el.classList.remove('open');
+      document.body.style.overflow = '';
+      if (dialogoAbierto === el) dialogoAbierto = null;
+      if (devolverFoco && focoPrevio && document.contains(focoPrevio)) {
+        focoPrevio.focus({ preventScroll: true });
+      }
+    }
 
     function abrirMenu() {
-      fullscreenMenu.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      abrirDialogo(fullscreenMenu);
+      menuBtn.setAttribute('aria-expanded', 'true');
     }
 
-    function cerrarMenu() {
-      fullscreenMenu.classList.remove('open');
-      document.body.style.overflow = '';
+    function cerrarMenu(devolverFoco = true) {
+      menuBtn.setAttribute('aria-expanded', 'false');
+      cerrarDialogo(fullscreenMenu, devolverFoco);
     }
 
-    function irAInicio() {
-      cerrarMenu();
-      vistaQueEs.style.display = 'none';
-      vistaContacto.style.display = 'none';
-      vistaInicio.style.display = 'block';
-      document.body.classList.remove('modo-que-es');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function irAEntrenadores() {
-      cerrarMenu();
-      vistaQueEs.style.display = 'none';
-      vistaContacto.style.display = 'none';
-      vistaInicio.style.display = 'block';
-      document.body.classList.remove('modo-que-es');
-      setTimeout(() => {
-        const el = document.getElementById('seccion-entrenadores');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
-    }
-
-    function irAQueEs() {
-      cerrarMenu();
-      vistaInicio.style.display = 'none';
-      vistaContacto.style.display = 'none';
-      vistaQueEs.style.display = 'block';
-      document.body.classList.add('modo-que-es');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function irAContacto() {
-      cerrarMenu();
-      vistaInicio.style.display = 'none';
-      vistaQueEs.style.display = 'none';
-      vistaContacto.style.display = 'block';
-      document.body.classList.remove('modo-que-es');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // MODALES DE PRÓXIMAMENTE Y TÉRMINOS Y CONDICIONES
     function abrirModalProximamente() {
-      document.getElementById('modalProximamente').classList.add('open');
-      document.body.style.overflow = 'hidden';
+      abrirDialogo(document.getElementById('modalProximamente'));
     }
 
     function abrirModalTerminos() {
-      document.getElementById('modalTerminos').classList.add('open');
-      document.body.style.overflow = 'hidden';
+      abrirDialogo(document.getElementById('modalTerminos'));
     }
 
     function cerrarModal(id) {
-      document.getElementById(id).classList.remove('open');
-      document.body.style.overflow = '';
+      cerrarDialogo(document.getElementById(id));
+      // Si se abrió desde el link /#terminos, limpia la URL sin sumar historial
+      if (id === 'modalTerminos' && location.hash === '#terminos') {
+        history.replaceState(history.state, '', location.pathname + location.search);
+      }
     }
 
     function cerrarModalExterior(event, id) {
-      if (event.target.id === id) {
-        cerrarModal(id);
+      if (event.target.id === id) cerrarModal(id);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!dialogoAbierto) return;
+
+      if (e.key === 'Escape') {
+        if (dialogoAbierto === fullscreenMenu) cerrarMenu();
+        else cerrarModal(dialogoAbierto.id);
+        return;
+      }
+
+      // Mantiene el foco del teclado dentro del menú o modal abierto
+      if (e.key !== 'Tab') return;
+      const enfocables = [...dialogoAbierto.querySelectorAll('a[href], button:not([disabled])')];
+      if (!enfocables.length) return;
+      const primero = enfocables[0];
+      const ultimo = enfocables[enfocables.length - 1];
+      if (e.shiftKey && document.activeElement === primero) {
+        e.preventDefault();
+        ultimo.focus();
+      } else if (!e.shiftKey && document.activeElement === ultimo) {
+        e.preventDefault();
+        primero.focus();
+      }
+    });
+
+    // ====================================================
+    // NAVEGACIÓN POR HASH: el botón "atrás" vuelve a la vista anterior
+    // ====================================================
+    const RUTAS = {
+      '': ['inicio'],
+      '#inicio': ['inicio'],
+      '#entrenadores': ['inicio', 'seccion-entrenadores'],
+      '#participaciones': ['inicio', 'seccion-participaciones'],
+      '#que-es-epfar': ['que-es'],
+      '#contacto': ['contacto'],
+      '#contacto-footer': ['contacto'],
+      '#terminos': ['inicio']
+    };
+
+    // El scroll al volver lo maneja el script (el navegador no puede, porque la vista estaba oculta)
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+    let vistaActual = 'inicio';
+    let navPorClick = false;
+
+    function mostrarVista(nombre) {
+      Object.entries(VISTAS).forEach(([clave, el]) => {
+        el.hidden = clave !== nombre;
+      });
+      document.body.classList.toggle('modo-que-es', nombre === 'que-es');
+      const cambio = nombre !== vistaActual;
+      vistaActual = nombre;
+      return cambio;
+    }
+
+    function route() {
+      const [vista, seccion] = RUTAS[location.hash] || RUTAS[''];
+      const cambioVista = mostrarVista(vista);
+
+      if (fullscreenMenu.classList.contains('open')) cerrarMenu(false);
+      if (dialogoAbierto && dialogoAbierto !== fullscreenMenu && location.hash !== '#terminos') {
+        cerrarModal(dialogoAbierto.id);
+      }
+
+      // Al volver con "atrás", recupera la posición guardada de esa entrada del historial
+      const guardada = !navPorClick && history.state && typeof history.state.y === 'number' ? history.state.y : null;
+      navPorClick = false;
+
+      if (location.hash === '#terminos') abrirModalTerminos();
+
+      if (guardada !== null) {
+        requestAnimationFrame(() => window.scrollTo(0, guardada));
+      } else if (seccion) {
+        requestAnimationFrame(() => {
+          const el = document.getElementById(seccion);
+          if (el) el.scrollIntoView({ behavior: cambioVista ? 'auto' : comportamiento(), block: 'start' });
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: cambioVista ? 'auto' : comportamiento() });
       }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      if (window.location.hash === '#que-es-epfar') {
-        irAQueEs();
-      } else if (window.location.hash === '#entrenadores') {
-        irAEntrenadores();
-      } else if (window.location.hash === '#contacto-footer' || window.location.hash === '#contacto') {
-        irAContacto();
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      const destino = link.getAttribute('href');
+      if (!(destino in RUTAS)) return;
+
+      // Guarda dónde estaba el usuario para que "atrás" lo devuelva ahí
+      history.replaceState({ y: window.scrollY }, '');
+      navPorClick = true;
+
+      // Mismo hash: el navegador no dispara hashchange, así que se navega a mano
+      if (destino === location.hash || (destino === '#inicio' && location.hash === '')) {
+        e.preventDefault();
+        route();
       }
     });
 
-    // EFECTO SCROLL REVEAL
+    window.addEventListener('hashchange', route);
+
+    // ====================================================
+    // SCROLL REVEAL
+    // ====================================================
     const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealElements.forEach(el => el.classList.add('visible'));
+    } else {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
           entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // LÍNEA DE PROGRESO VERTICAL EN CUERPO TÉCNICO AL HACER SCROLL
-    (function initStaffTimelineScroll() {
-      const container = document.getElementById('staffTimeline');
-      const progress = document.getElementById('staffTimelineProgress');
-      const dots = document.querySelectorAll('[data-staff-dot]');
-
-      if (!container || !progress) return;
-
-      function updateStaffTimeline() {
-        const rect = container.getBoundingClientRect();
-        const winH = window.innerHeight;
-        const start = winH * 0.78;
-        const end = winH * 0.25;
-        let pct = ((start - rect.top) / (rect.height + (start - end))) * 100;
-        pct = Math.max(0, Math.min(100, pct));
-        progress.style.height = pct + '%';
-
-        dots.forEach((dot) => {
-          const dotRect = dot.getBoundingClientRect();
-          if (dotRect.top < winH * 0.76) {
-            dot.classList.add('active');
-          } else {
-            dot.classList.remove('active');
-          }
+          observer.unobserve(entry.target); // ya se mostró: deja de observarlo
         });
-      }
+      }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
 
-      window.addEventListener('scroll', updateStaffTimeline, { passive: true });
-      window.addEventListener('resize', updateStaffTimeline);
-      setTimeout(updateStaffTimeline, 120);
-    })();
+      revealElements.forEach(el => revealObserver.observe(el));
+    }
 
-    // LÍNEA DE TRAYECTORIA: PELOTA RECORRIENDO EL CAMINO AL HACER SCROLL
-    (function initTrajectoryLine() {
-      const section = document.getElementById('trajectorySection');
-      const stage = document.getElementById('trajectoryStage');
-      const pathBg = document.getElementById('trajectoryPathBg');
-      const pathActive = document.getElementById('trajectoryPathActive');
-      const ball = document.getElementById('soccerBallMarker');
-      const dot1 = document.getElementById('mileDot1');
-      const dot2 = document.getElementById('mileDot2');
-      const dot3 = document.getElementById('mileDot3');
+    // ====================================================
+    // LÍNEA DEL CUERPO TÉCNICO
+    // Un solo listener de scroll, sincronizado con requestAnimationFrame
+    // ====================================================
+    const staffContainer = document.getElementById('staffTimeline');
+    const staffProgress = document.getElementById('staffTimelineProgress');
+    const staffDots = document.querySelectorAll('[data-staff-dot]');
 
-      if (!section || !pathBg || !pathActive || !ball) return;
+    function actualizarStaff() {
+      if (!staffContainer || !staffProgress) return;
+      const winH = window.innerHeight;
 
-      let totalLength = 0;
+      // Primero se leen todas las medidas y después se escribe, para no forzar reflows
+      const rect = staffContainer.getBoundingClientRect();
+      const dotsTop = Array.from(staffDots, dot => dot.getBoundingClientRect().top);
 
-      function setupPath() {
-        totalLength = pathBg.getTotalLength();
-        pathActive.style.strokeDasharray = totalLength;
-        updateBallOnScroll();
-      }
+      const start = winH * 0.78;
+      const end = winH * 0.25;
+      const pct = Math.max(0, Math.min(1, (start - rect.top) / (rect.height + (start - end))));
 
-      function updateBallOnScroll() {
-        if (!totalLength) return;
-        const rect = section.getBoundingClientRect();
-        const winH = window.innerHeight;
+      staffProgress.style.transform = `scaleY(${pct})`;
+      staffDots.forEach((dot, i) => dot.classList.toggle('active', dotsTop[i] < winH * 0.76));
+    }
 
-        const start = winH * 0.85;
-        const end = winH * 0.25;
-        let progress = (start - rect.top) / (start - end);
-        progress = Math.max(0, Math.min(1, progress));
+    let frameProgramado = false;
 
-        const drawLength = totalLength * progress;
-        pathActive.style.strokeDashoffset = totalLength - drawLength;
+    function alScrollear() {
+      if (frameProgramado) return;
+      frameProgramado = true;
+      requestAnimationFrame(() => {
+        frameProgramado = false;
+        if (vistaInicio.hidden) return;
+        actualizarStaff();
+      });
+    }
 
-        const pt = pathBg.getPointAtLength(drawLength);
-        const stageW = stage.clientWidth;
-        const stageH = stage.clientHeight;
+    window.addEventListener('scroll', alScrollear, { passive: true });
+    window.addEventListener('resize', alScrollear);
 
-        const pixelX = (pt.x / 900) * stageW;
-        const pixelY = (pt.y / 110) * stageH;
-        const rotation = progress * 720;
+    // Recalcula al volver a la vista de inicio (el contenedor pasa de 0 a su tamaño real)
+    if ('ResizeObserver' in window && staffContainer) {
+      new ResizeObserver(actualizarStaff).observe(staffContainer);
+    }
 
-        ball.style.transform = `translate3d(${pixelX}px, ${pixelY}px, 0) rotate(${rotation}deg)`;
+    actualizarStaff();
 
-        dot1.classList.toggle('reached', progress >= 0.02);
-        dot2.classList.toggle('reached', progress >= 0.48);
-        dot3.classList.toggle('reached', progress >= 0.95);
-      }
+    // ====================================================
+    // FLECHAS DE LOS CARRUSELES (se muestran solo con mouse)
+    // ====================================================
+    document.querySelectorAll('.slider-wrap').forEach(wrap => {
+      const pista = wrap.querySelector('.participations-slider, .news-slider, .photos-slider-borderless');
+      const prev = wrap.querySelector('.slider-arrow.prev');
+      const next = wrap.querySelector('.slider-arrow.next');
+      if (!pista || !prev || !next) return;
 
-      window.addEventListener('load', setupPath);
-      window.addEventListener('resize', setupPath);
-      window.addEventListener('scroll', updateBallOnScroll, { passive: true });
-      setTimeout(setupPath, 150);
-    })();
+      const paso = () => pista.clientWidth * 0.85;
+      prev.addEventListener('click', () => pista.scrollBy({ left: -paso(), behavior: comportamiento() }));
+      next.addEventListener('click', () => pista.scrollBy({ left: paso(), behavior: comportamiento() }));
 
-    // EFECTO DE INCLINACIÓN 3D Y BRILLO EN LAS FICHAS HORIZONTALES DEL CUERPO TÉCNICO
-    const tiltCards = document.querySelectorAll('[data-tilt]');
-
-    tiltCards.forEach(card => {
-      const handleMove = (clientX, clientY) => {
-        const rect = card.getBoundingClientRect();
-        const x = clientX - rect.left;
-        const y = clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.015)`;
+      const actualizarFlechas = () => {
+        prev.disabled = pista.scrollLeft <= 4;
+        next.disabled = pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 4;
       };
 
-      const resetTilt = () => {
-        card.classList.remove('touch-active');
-        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
-      };
-
-      card.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY));
-      card.addEventListener('mouseleave', resetTilt);
-
-      card.addEventListener('touchstart', (e) => {
-        card.classList.add('touch-active');
-        const touch = e.touches[0];
-        handleMove(touch.clientX, touch.clientY);
-      }, { passive: true });
-
-      card.addEventListener('touchmove', (e) => {
-        const touch = e.touches[0];
-        handleMove(touch.clientX, touch.clientY);
-      }, { passive: true });
-
-      card.addEventListener('touchend', resetTilt);
+      pista.addEventListener('scroll', actualizarFlechas, { passive: true });
+      if ('ResizeObserver' in window) new ResizeObserver(actualizarFlechas).observe(pista);
+      actualizarFlechas();
     });
 
-    // PARTÍCULAS MÁS DIMINUTAS EN COLOR GRIS CASI OSCURO
+    // ====================================================
+    // INCLINACIÓN 3D EN LAS FICHAS DEL CUERPO TÉCNICO (solo con mouse)
+    // ====================================================
+    if (puedeHover && !reduceMotion) {
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const rotateX = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -5;
+          const rotateY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5;
+          card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.015)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
+
+    // ====================================================
+    // IMÁGENES: si una falla, saca igual el brillo de carga
+    // ====================================================
+    document.querySelectorAll('.skeleton-shimmer img').forEach(img => {
+      img.addEventListener('error', () => img.parentElement.classList.add('loaded'), { once: true });
+      if (img.complete) img.parentElement.classList.add('loaded');
+    });
+
+    // ====================================================
+    // PARTÍCULAS (detrás del contenido; quietas si se pidió menos movimiento)
+    // ====================================================
     (function initParticles() {
       const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      let width, height;
       const particles = [];
       const PARTICLE_COUNT = 34;
-
-      function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      }
-
-      window.addEventListener('resize', resize);
-      resize();
+      let width = window.innerWidth;
+      let height = window.innerHeight;
 
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         particles.push({
@@ -2563,28 +2653,47 @@
         });
       }
 
-      function animate() {
+      function dibujar() {
         ctx.clearRect(0, 0, width, height);
         for (const p of particles) {
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-          if (p.y < 0) p.y = height;
-          if (p.y > height) p.y = 0;
-
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
           ctx.globalAlpha = p.alpha;
           ctx.fill();
         }
-        requestAnimationFrame(animate);
       }
 
-      animate();
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // nítidas en pantallas retina
+        if (reduceMotion) dibujar();
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      if (reduceMotion) return;
+
+      (function animar() {
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+        }
+        dibujar();
+        requestAnimationFrame(animar);
+      })();
     })();
+
+    // Vista inicial según la URL (ej. /#que-es-epfar desde la página del torneo)
+    route();
   </script>
 
 </body>
