@@ -374,8 +374,8 @@
     .hero-subtitle {
       border-left: 3px solid var(--orange-accent);
       padding-left: 12px;
-      font-size: clamp(1rem, 2.3vw, 1.125rem);
-      line-height: 1.55;
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      line-height: 1.5;
       color: rgba(255, 255, 255, 0.92);
       max-width: 640px;
     }
@@ -384,14 +384,13 @@
     .hero-subtitle .director-highlight { color: var(--orange-accent); font-weight: 600; }
 
     .hero-logo-side { flex-shrink: 0; }
+    /* Logo transparente: sin tarjeta ni fondo detrás */
     .hero-logo-card {
-      background: #ffffff;
-      padding: 8px 10px;
-      border-radius: 14px;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.65), 0 0 18px rgba(242,101,34,0.25);
+      background: none;
+      padding: 0;
     }
     .hero-logo-card img {
-      width: clamp(120px, 25vw, 195px);
+      width: clamp(130px, 28vw, 210px);
       height: auto;
       display: block;
     }
@@ -406,6 +405,10 @@
 
       .hero-text-side {
         width: 100%;
+      }
+
+      .hero-logo-side {
+        align-self: flex-end;
       }
     }
 
@@ -1764,7 +1767,7 @@
           </p>
         </div>
         <div class="hero-logo-side">
-          <div class="hero-logo-card skeleton-shimmer">
+          <div class="hero-logo-card">
             <img src="epfar%20logoo.PNG" alt="Logo de EPFAR" onload="this.parentElement.classList.add('loaded')" />
           </div>
         </div>
