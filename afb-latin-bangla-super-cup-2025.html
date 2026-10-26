@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AFB Latin-Bangla Super Cup 2025 | EPFAR</title>
+  <meta name="description" content="Club Atlético Charlone representó a la Argentina en la AFB Latin-Bangla Super Cup 2025, triangular internacional Sub 20 disputado en Daca, Bangladesh, con la dirección técnica de Hernán Ojeda." />
+  <meta name="theme-color" content="#071936" />
+  <link rel="icon" type="image/png" href="epfar%20logoo.PNG" />
+  <link rel="apple-touch-icon" href="epfar%20logoo.PNG" />
+
+  <!-- Vista previa al compartir el link -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="EPFAR" />
+  <meta property="og:title" content="AFB Latin-Bangla Super Cup 2025 · Daca, Bangladesh" />
+  <meta property="og:description" content="Club Atlético Charlone representó a la Argentina en el triangular internacional Sub 20, con la dirección técnica de Hernán Ojeda." />
+  <meta property="og:url" content="https://epfar.netlify.app/afb-latin-bangla-super-cup-2025.html" />
+  <meta property="og:image" content="https://epfar.netlify.app/IMG_2390.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://epfar.netlify.app/afb-latin-bangla-super-cup-2025.html" />
+
+  <!-- Estadísticas (Google Analytics 4): el código se carga desde analytics.js -->
+  <script src="analytics.js" defer></script>
+
+  <!-- Tipografías: Clash Display (títulos) + Inter (textos) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      --navy-header: #071936;
+      --blue-card: #093170;
+      --blue-card-hover: #0d3e8c;
+      --orange-accent: #f26522;
+      --gold: #ffd166;
+      --text-dark: #111827;
+      --text-muted: #4b5563;
+      --line: rgba(9, 49, 112, 0.12);
+      --font-display: 'Clash Display', 'Inter', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-padding-top: 80px; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background-color: #f9f9fb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Fondo fijo (funciona también en iPhone) */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-color: #f9f9fb;
+      background-image:
+        url('image_6.png.PNG'),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(242, 243, 247, 0.4) 48%, rgba(230, 232, 238, 0.7) 48.3%, rgba(252, 252, 254, 0.95) 100%),
+        repeating-linear-gradient(-45deg, #fbfbfc 0px, #fbfbfc 4px, #f3f4f7 4px, #f3f4f7 8px);
+      background-size: cover, 100% 100%, auto;
+    }
+
+    .nowrap { white-space: nowrap; }
+
+    /* CABECERA SUPERIOR EN AZUL MARINO */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--navy-header);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .navbar-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(0.95rem, 2.8vw, 1.2rem);
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .icon-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background-color: var(--navy-header);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      width: 215px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 2000;
+    }
+
+    .dropdown-menu.open { display: flex; }
+
+    .dropdown-item {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .dropdown-item:last-child { border-bottom: none; }
+
+    .dropdown-item:hover {
+      background-color: var(--blue-card);
+      color: var(--gold);
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-content {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 18px 50px;
+      flex: 1;
+    }
+
+    .custom-arrow-box {
+      background-color: #a3bced;
+      color: #07255c;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .custom-arrow-box svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+      display: block;
+    }
+
+    .arrow-left svg { transform: rotate(180deg); }
+    .arrow-down svg { transform: rotate(90deg); }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--blue-card);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      background: #ffffff;
+      padding: 6px 14px 6px 6px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(9, 49, 112, 0.08);
+      border: 1px solid var(--line);
+    }
+
+    /* BANDERAS */
+    .flag {
+      width: 30px;
+      height: 20px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+      display: block;
+    }
+
+    /* PORTADA */
+    .hero-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange-accent);
+    }
+
+    .hero-title {
+      margin-top: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 9vw, 3.6rem);
+      line-height: 0.98;
+      letter-spacing: 0.005em;
+      text-transform: uppercase;
+      color: #0b1933;
+    }
+
+    .hero-place {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0b1933;
+    }
+
+    .hero-place svg {
+      width: 18px;
+      height: 18px;
+      color: var(--orange-accent);
+      flex-shrink: 0;
+    }
+
+    .hero-intro {
+      margin-top: 8px;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 46rem;
+    }
+
+    .hero-intro strong { color: #0b1933; }
+
+    .teams-card {
+      position: relative;
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      color: #ffffff;
+      background: radial-gradient(120% 140% at 0% 0%, var(--blue-card-hover) 0%, var(--blue-card) 45%, var(--navy-header) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 14px 30px rgba(9, 49, 112, 0.28);
+    }
+
+    .teams-card-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .teams-list {
+      list-style: none;
+      margin-top: 10px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .teams-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .teams-list li.is-ours {
+      background: rgba(255, 209, 102, 0.12);
+      border-color: rgba(255, 209, 102, 0.45);
+    }
+
+    .team-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .team-text strong { font-size: 0.98rem; font-weight: 700; }
+    .team-text span { font-size: 0.78rem; color: rgba(255, 255, 255, 0.72); }
+
+    .primary-btn {
+      margin-top: 12px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--orange-accent);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 22px rgba(242, 101, 34, 0.28);
+    }
+
+    .primary-btn svg { width: 18px; height: 18px; }
+
+    /* TÍTULOS DE SECCIÓN */
+    .section-header {
+      margin-bottom: 14px;
+      margin-top: 38px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.3rem, 4.6vw, 1.7rem);
+      color: #0b1933;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 48%;
+      height: 4px;
+      background: var(--orange-accent);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .section-sub {
+      margin-top: 8px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    /* TARJETAS BLANCAS GENÉRICAS */
+    .panel {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(9, 49, 112, 0.1);
+    }
+
+    /* FICHA TÉCNICA */
+    .facts {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .fact {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact:last-child { border-bottom: none; }
+
+    .fact dt {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280;
+    }
+
+    .fact dd {
+      margin-top: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.45;
+      color: #0b1933;
+    }
+
+    .fact dd small {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* RESULTADOS */
+    .matches {
+      display: grid;
+      gap: 14px;
+    }
+
+    .match { overflow: hidden; }
+
+    .match-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #f4f6fa;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .match-head strong { color: #0b1933; }
+
+    .match-status {
+      flex-shrink: 0;
+      padding: 3px 9px;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #e7edf8;
+      color: var(--blue-card);
+    }
+
+    .match-status--off {
+      background: #fdecec;
+      color: #b42318;
+    }
+
+    .match-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+    }
+
+    .match-row + .match-row { padding-top: 0; }
+
+    .match-team {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .match-team small {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #6b7280;
+    }
+
+    .match-score {
+      min-width: 34px;
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #374151;
+    }
+
+    .match-row.is-winner .match-team,
+    .match-row.is-winner .match-score { color: #0b1933; font-weight: 700; }
+
+    .match-row.is-ours .match-team { color: var(--blue-card); font-weight: 700; }
+
+    .match-notes {
+      padding: 12px 16px 14px;
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .match-notes strong { color: #0b1933; }
+
+    /* TABLA */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .standings {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .standings caption {
+      caption-side: bottom;
+      text-align: left;
+      padding: 12px 16px 14px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #6b7280;
+      border-top: 1px solid var(--line);
+    }
+
+    .standings th,
+    .standings td {
+      padding: 12px 8px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .standings thead th {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6b7280;
+      background: #f4f6fa;
+    }
+
+    .standings th:first-child,
+    .standings td:first-child { padding-left: 16px; }
+
+    .standings .team-cell {
+      text-align: left;
+      font-weight: 600;
+      color: #0b1933;
+    }
+
+    .team-cell-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .team-cell-inner .flag { width: 24px; height: 16px; }
+
+    .standings tr.is-ours td { background: rgba(255, 209, 102, 0.14); }
+    .standings td.pts { font-weight: 800; color: #0b1933; }
+    .standings tbody tr:last-child td { border-bottom: none; }
+
+    /* PLANTEL */
+    .staff {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+    }
+
+    .staff-avatar {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      border-radius: 15px;
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy-header);
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 2px solid #f1f5f9;
+      box-shadow: 0 6px 14px rgba(7, 25, 54, 0.18);
+    }
+
+    /* Foto de Hernán: si no carga, quedan sus iniciales */
+    .staff-avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+
+    .staff-text span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280;
+    }
+
+    .staff-text strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 1.05rem;
+      color: #0b1933;
+    }
+
+    .staff-text small {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .squad-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 18px;
+      border-top: 1px solid var(--line);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6b7280;
+    }
+
+    .squad-list {
+      list-style: none;
+      padding: 0 14px 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 8px;
+    }
+
+    .squad-list li {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #f4f6fa;
+      border-left: 4px solid var(--blue-card);
+      font-size: clamp(0.8rem, 2.9vw, 0.92rem);
+      font-weight: 600;
+      color: #0b1933;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .squad-list li.is-gk { border-left-color: var(--orange-accent); }
+
+    .pos-tag {
+      flex-shrink: 0;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(242, 101, 34, 0.12);
+      color: #c2410c;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .region-note {
+      margin: 0 14px 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px dashed rgba(9, 49, 112, 0.2);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    /* HISTORIA */
+    .story {
+      padding: 18px;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #374151;
+    }
+
+    .story p + p { margin-top: 10px; }
+
+    /* CRONOLOGÍA (con línea naranja que avanza al bajar) */
+    .timeline {
+      list-style: none;
+      position: relative;
+      padding: 18px 18px 6px 18px;
+    }
+
+    .timeline::before,
+    .timeline::after {
+      content: "";
+      position: absolute;
+      left: 23px;
+      top: var(--line-top, 28px);
+      width: 2px;
+      height: var(--line-h, 0px);
+      border-radius: 2px;
+      z-index: 0;
+    }
+
+    .timeline::before { background: rgba(9, 49, 112, 0.15); }
+
+    .timeline::after {
+      background: var(--orange-accent);
+      transform-origin: top center;
+      transform: scaleY(var(--progress, 0));
+    }
+
+    .timeline li {
+      position: relative;
+      z-index: 1;
+      padding-left: 26px;
+      padding-bottom: 16px;
+    }
+
+    .timeline li::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid rgba(9, 49, 112, 0.35);
+      transition: border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .timeline li.is-reached::after {
+      border-color: var(--orange-accent);
+      background: var(--orange-accent);
+    }
+
+    .timeline li.is-key.is-reached::after { box-shadow: 0 0 0 5px rgba(242, 101, 34, 0.18); }
+
+    .tl-date {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange-accent);
+    }
+
+    .tl-text {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #374151;
+    }
+
+    .tl-text strong { color: #0b1933; }
+
+    /* DECLARACIONES */
+    .quotes {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quote {
+      padding: 18px 18px 16px;
+      border-left: 4px solid var(--orange-accent);
+    }
+
+    .quote blockquote {
+      font-size: 1.02rem;
+      line-height: 1.55;
+      font-weight: 500;
+      color: #0b1933;
+    }
+
+    .quote figcaption {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .quote figcaption strong { color: #0b1933; }
+
+    /* VIDEO */
+    .video-card {
+      display: block;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #0b1933, #093170);
+      overflow: hidden;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-play span {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: rgba(229, 45, 39, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .video-play svg { width: 26px; height: 26px; fill: #ffffff; margin-left: 3px; }
+
+    .video-info {
+      padding: 14px 18px 16px;
+    }
+
+    .video-info strong {
+      display: block;
+      font-size: 0.98rem;
+      color: #0b1933;
+    }
+
+    .video-info span {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    /* PRENSA */
+    .press-list { list-style: none; }
+
+    .press-list li { border-bottom: 1px solid var(--line); }
+    .press-list li:last-child { border-bottom: none; }
+
+    .press-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .press-text { min-width: 0; }
+
+    .press-source {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange-accent);
+    }
+
+    .press-title {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #0b1933;
+    }
+
+    .press-date {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.76rem;
+      color: #6b7280;
+    }
+
+    .press-list .custom-arrow-box { width: 30px; height: 30px; }
+    .press-list .custom-arrow-box svg { width: 16px; height: 16px; transform: rotate(-45deg); }
+
+    /* AGRADECIMIENTOS */
+    .thanks {
+      padding: 16px 18px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .thanks ul { list-style: none; margin-top: 6px; }
+    .thanks li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+    .thanks li:last-child { border-bottom: none; }
+    .thanks li strong { color: #0b1933; }
+
+    /* SUMATE A EPFAR */
+    .join-card {
+      margin-top: 38px;
+      padding: 22px 20px;
+    }
+
+    .join-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange-accent);
+    }
+
+    .join-title {
+      margin-top: 6px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.4rem, 5.6vw, 1.85rem);
+      line-height: 1.1;
+      color: #0b1933;
+    }
+
+    .join-text {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .join-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .join-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 8px 8px 16px;
+      border-radius: 12px;
+      background: var(--blue-card);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+    }
+
+    .join-btn--wa { background: #25d366; padding: 12px 16px; }
+    .join-btn--wa svg { width: 20px; height: 20px; fill: currentColor; }
+    .join-btn[hidden] { display: none; }
+
+    /* PIE DE PÁGINA (el mismo de la página principal) */
+    .footer {
+      background-color: #061326;
+      padding: 28px 18px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-line-1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      width: 100%;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+      color: #ffffff;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-desc {
+      font-size: clamp(0.72rem, 3.1vw, 0.9rem);
+      color: #9ba8bf;
+    }
+
+    .footer-line-2 {
+      font-size: clamp(0.7rem, 2.9vw, 0.84rem);
+      color: #8c9bb5;
+      line-height: 1.5;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Contacto a la izquierda y byLanzaWebs a la derecha */
+    .footer-side-row {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .footer-contact-side {
+      font-size: clamp(0.7rem, 2.8vw, 0.82rem);
+      color: #8c9bb5;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    .footer-contact-side a { color: #9ba8bf; text-decoration: none; }
+    .footer-contact-side a:hover { color: #ffffff; text-decoration: underline; }
+
+    .lanzawebs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 44px;
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.92;
+      margin-left: auto;
+    }
+
+    .lanzawebs-badge:hover { opacity: 1; }
+    .lanzawebs-text { display: inline-flex; align-items: baseline; line-height: 1; }
+    .lanzawebs-by { font-size: 0.65rem; font-weight: 700; letter-spacing: -0.02em; }
+    .lanzawebs-main { font-size: 0.95rem; font-weight: 800; letter-spacing: -0.04em; }
+    .lanzawebs-icon { width: 22px; height: 22px; display: block; flex-shrink: 0; }
+
+    .footer-bottom-bar {
+      width: 100%;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: rgba(155, 168, 191, 0.78);
+    }
+
+    .terms-trigger-link {
+      color: #9ba8bf;
+      font-size: 0.72rem;
+      text-decoration: underline;
+      padding: 0 2px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .terms-trigger-link:hover { color: #ffffff; }
+
+    @media (min-width: 768px) {
+      .primary-btn { width: auto; display: inline-flex; padding: 13px 22px; }
+      .teams-list { grid-template-columns: repeat(3, 1fr); }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .fact:nth-child(odd) { border-right: 1px solid var(--line); }
+      .fact:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+      .matches { grid-template-columns: repeat(3, 1fr); }
+      .quotes { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 359px) {
+      .standings th, .standings td { padding: 10px 5px; }
+      .team-cell-inner .flag { display: none; }
+    }
+    /* ===================================================================
+       PARTÍCULAS EN EL AIRE (detrás del contenido)
+       =================================================================== */
+    #airParticles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ===================================================================
+       SCROLL REVEAL: los bloques aparecen suave al ir bajando
+       =================================================================== */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      filter: blur(4px);
+      transition:
+        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--d, 0ms);
+    }
+
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Partículas en el aire -->
+  <canvas id="airParticles" aria-hidden="true"></canvas>
+
+  <!-- CABECERA -->
+  <header class="navbar">
+    <a href="index.html" class="navbar-title">Página Oficial EPFAR</a>
+    <div class="navbar-actions">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Menú" aria-expanded="false" aria-controls="dropdownMenu" onclick="toggleMenu(event)">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <a class="dropdown-item" href="index.html">INICIO</a>
+        <a class="dropdown-item" href="index.html#participaciones">TORNEOS</a>
+        <a class="dropdown-item" href="index.html#que-es-epfar">QUÉ ES EPFAR</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banderas reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="flag-ar" viewBox="0 0 30 20">
+        <rect width="30" height="20" fill="#74acdf" />
+        <rect y="6.67" width="30" height="6.66" fill="#ffffff" />
+        <circle cx="15" cy="10" r="2.3" fill="#f6b40e" />
+      </symbol>
+      <symbol id="flag-br" viewBox="0 0 30 20">
+        <rect width="30" height="20" fill="#009c3b" />
+        <polygon points="15,2.2 27.6,10 15,17.8 2.4,10" fill="#ffdf00" />
+        <circle cx="15" cy="10" r="4.4" fill="#002776" />
+      </symbol>
+      <symbol id="flag-bd" viewBox="0 0 30 20">
+        <rect width="30" height="20" fill="#006a4e" />
+        <circle cx="13.5" cy="10" r="6" fill="#f42a41" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <main class="main-content">
+
+    <a href="index.html" class="back-link">
+      <span class="custom-arrow-box arrow-left">
+        <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+      </span>
+      <span>Volver al inicio</span>
+    </a>
+
+    <!-- PORTADA -->
+    <section aria-labelledby="tituloTorneo">
+      <p class="hero-kicker reveal">Torneo internacional Sub 20 · <span class="nowrap">Diciembre 2025</span></p>
+      <h1 class="hero-title reveal" style="--d: 80ms" id="tituloTorneo">AFB <span class="nowrap">Latin-Bangla</span> Super Cup 2025</h1>
+      <p class="hero-place reveal" style="--d: 160ms">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Daca, Bangladesh · Estadio Nacional
+      </p>
+      <p class="hero-intro reveal" style="--d: 220ms">
+        <strong>Club Atlético Charlone</strong>, de la Liga de General Villegas, representó a la Argentina en este triangular internacional Sub 20, con la dirección técnica de <strong>Hernán Ojeda</strong>, fundador y director de EPFAR.
+      </p>
+
+      <div class="teams-card reveal" style="--d: 300ms">
+        <span class="teams-card-label">Equipos participantes</span>
+        <ul class="teams-list">
+          <li class="is-ours">
+            <svg class="flag" aria-hidden="true"><use href="#flag-ar" /></svg>
+            <span class="team-text"><strong>Club Atlético Charlone</strong><span>Argentina</span></span>
+          </li>
+          <li>
+            <svg class="flag" aria-hidden="true"><use href="#flag-br" /></svg>
+            <span class="team-text"><strong>EC São Bernardo</strong><span>Brasil</span></span>
+          </li>
+          <li>
+            <svg class="flag" aria-hidden="true"><use href="#flag-bd" /></svg>
+            <span class="team-text"><strong>Red Green Future Star</strong><span>Bangladesh</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal" style="--d: 380ms">
+      <a href="#resultados" class="primary-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        Ver resultados
+      </a>
+      </div>
+    </section>
+
+    <!-- FICHA TÉCNICA -->
+    <section aria-labelledby="tituloFicha">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloFicha">Ficha técnica</h2>
+      </div>
+      <dl class="panel facts reveal">
+        <div class="fact">
+          <dt>Fechas</dt>
+          <dd>Del 5 al 11 de diciembre de 2025</dd>
+        </div>
+        <div class="fact">
+          <dt>Sede</dt>
+          <dd>Estadio Nacional de Daca<small>Daca, Bangladesh</small></dd>
+        </div>
+        <div class="fact">
+          <dt>Categoría</dt>
+          <dd>Sub 20</dd>
+        </div>
+        <div class="fact">
+          <dt>Formato</dt>
+          <dd>Triangular a una rueda<small>Cada equipo enfrenta una vez a los otros dos</small></dd>
+        </div>
+        <div class="fact">
+          <dt>Horario de los partidos</dt>
+          <dd>19:00 (hora de Daca)<small>10:00 a. m. en la Argentina</small></dd>
+        </div>
+        <div class="fact">
+          <dt>Organización</dt>
+          <dd>AF Boxing Promotion International Limited<small>Con la Federación de Fútbol de Bangladesh (BFF)</small></dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section id="resultados" aria-labelledby="tituloResultados">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloResultados">Resultados</h2>
+      </div>
+
+      <div class="matches">
+        <!-- Fecha 1 -->
+        <article class="panel match reveal">
+          <div class="match-head">
+            <span><strong>Fecha 1</strong> · Vie 5 de diciembre</span>
+            <span class="match-status">Final</span>
+          </div>
+          <div class="match-row" style="padding-top: 14px;">
+            <svg class="flag" aria-hidden="true"><use href="#flag-bd" /></svg>
+            <span class="match-team">Red Green Future Star<small>Bangladesh</small></span>
+            <span class="match-score">0</span>
+          </div>
+          <div class="match-row is-winner">
+            <svg class="flag" aria-hidden="true"><use href="#flag-br" /></svg>
+            <span class="match-team">EC São Bernardo<small>Brasil</small></span>
+            <span class="match-score">4</span>
+          </div>
+          <p class="match-notes"><strong>Goles:</strong> Murilo Oreia, Matheus Miranda, Iuri Viana y Vitinho (São Bernardo).</p>
+        </article>
+
+        <!-- Fecha 2 -->
+        <article class="panel match reveal" style="--d: 120ms">
+          <div class="match-head">
+            <span><strong>Fecha 2</strong> · Lun 8 de diciembre</span>
+            <span class="match-status">Final</span>
+          </div>
+          <div class="match-row" style="padding-top: 14px;">
+            <svg class="flag" aria-hidden="true"><use href="#flag-bd" /></svg>
+            <span class="match-team">Red Green Future Star<small>Bangladesh</small></span>
+            <span class="match-score">1</span>
+          </div>
+          <div class="match-row is-ours">
+            <svg class="flag" aria-hidden="true"><use href="#flag-ar" /></svg>
+            <span class="match-team">Atlético Charlone<small>Argentina</small></span>
+            <span class="match-score">1</span>
+          </div>
+          <p class="match-notes"><strong>Goles:</strong> Ibrahim Nawaz (3', Bangladesh); David Berzoni, de tiro libre en el segundo tiempo (Charlone). Hubo una expulsión por equipo.</p>
+        </article>
+
+        <!-- Fecha 3 -->
+        <article class="panel match reveal" style="--d: 240ms">
+          <div class="match-head">
+            <span><strong>Fecha 3</strong> · Jue 11 de diciembre</span>
+            <span class="match-status match-status--off">No disputado</span>
+          </div>
+          <div class="match-row is-ours" style="padding-top: 14px;">
+            <svg class="flag" aria-hidden="true"><use href="#flag-ar" /></svg>
+            <span class="match-team">Atlético Charlone<small>Argentina</small></span>
+            <span class="match-score">–</span>
+          </div>
+          <div class="match-row">
+            <svg class="flag" aria-hidden="true"><use href="#flag-br" /></svg>
+            <span class="match-team">EC São Bernardo<small>Brasil</small></span>
+            <span class="match-score">–</span>
+          </div>
+          <p class="match-notes">El partido no se jugó: las autoridades deportivas de Bangladesh suspendieron el uso del estadio y el torneo fue cancelado antes de la última fecha.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TABLA -->
+    <section aria-labelledby="tituloTabla">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloTabla">Posiciones</h2>
+      </div>
+      <div class="panel table-wrap reveal">
+        <table class="standings">
+          <caption>Tabla al momento de la cancelación del torneo (9 de diciembre de 2025). La tercera fecha no se disputó. PJ: partidos jugados · G: ganados · E: empatados · P: perdidos · DG: diferencia de gol.</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="team-cell">Equipo</th>
+              <th scope="col">PJ</th>
+              <th scope="col">G</th>
+              <th scope="col">E</th>
+              <th scope="col">P</th>
+              <th scope="col">DG</th>
+              <th scope="col">Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="team-cell"><span class="team-cell-inner"><svg class="flag" aria-hidden="true"><use href="#flag-br" /></svg>EC São Bernardo</span></td>
+              <td>1</td><td>1</td><td>0</td><td>0</td><td>+4</td><td class="pts">3</td>
+            </tr>
+            <tr class="is-ours">
+              <td class="team-cell"><span class="team-cell-inner"><svg class="flag" aria-hidden="true"><use href="#flag-ar" /></svg>Atlético Charlone</span></td>
+              <td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td class="pts">1</td>
+            </tr>
+            <tr>
+              <td class="team-cell"><span class="team-cell-inner"><svg class="flag" aria-hidden="true"><use href="#flag-bd" /></svg>Red Green Future Star</span></td>
+              <td>2</td><td>0</td><td>1</td><td>1</td><td>−4</td><td class="pts">1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PLANTEL Y CUERPO TÉCNICO -->
+    <section aria-labelledby="tituloPlantel">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloPlantel">Plantel argentino</h2>
+        <p class="section-sub">Club Atlético Charlone · Delegación Sub 20</p>
+      </div>
+
+      <div class="panel reveal">
+        <div class="staff">
+          <span class="staff-avatar">
+            <img src="fotoo1.PNG" alt="Hernán Ojeda" width="56" height="56" loading="lazy" decoding="async" onerror="this.remove()" />
+            <span class="staff-avatar-initials" aria-hidden="true">HO</span>
+          </span>
+          <span class="staff-text">
+            <span>Director técnico</span>
+            <strong>Hernán Ojeda</strong>
+            <small>Fundador y director de EPFAR</small>
+          </span>
+        </div>
+
+        <div class="squad-head">
+          <span>Jugadores</span>
+          <span>18</span>
+        </div>
+        <ul class="squad-list">
+          <li class="is-gk">Federico Ibáñez <span class="pos-tag">ARQ</span></li>
+          <li class="is-gk">Maximiliano Wienzbicki <span class="pos-tag">ARQ</span></li>
+          <li>David Berzoni</li>
+          <li>Lighuen Carlino</li>
+          <li>Alex Corvalán</li>
+          <li>Mateo Filipuzzi</li>
+          <li>Carlos Godoy</li>
+          <li>Bruno Idiart</li>
+          <li>César Maldonado</li>
+          <li>Valentín Millarez</li>
+          <li>Álvaro Navarro</li>
+          <li>Tobías Puig</li>
+          <li>Benjamín Rigamonti</li>
+          <li>Matías Rosales</li>
+          <li>Alan Sarmiento</li>
+          <li>Lucas Terenzi</li>
+          <li>Dilan Torres</li>
+          <li>Bautista Tucci</li>
+        </ul>
+        <p class="region-note">
+          Una verdadera selección regional: futbolistas de Coronel Charlone y de localidades de la zona como Buchardo, Cañada Seca, Italó, Larroudé, Melo, Santa Rita y Ameghino, junto a jugadores formados o con paso por clubes como Platense, Acassuso, Independiente, Talleres de Remedios de Escalada y Deportivo Río Cuarto.
+        </p>
+      </div>
+    </section>
+
+    <!-- CÓMO SE ARMÓ EL EQUIPO -->
+    <section aria-labelledby="tituloHistoria">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloHistoria">El camino a Bangladesh</h2>
+      </div>
+      <div class="panel story reveal">
+        <p>La convocatoria surgió por iniciativa de Hernán Ojeda, entonces entrenador de las divisiones formativas de Atlético Charlone, que propuso conformar un equipo regional para aceptar la invitación al torneo. La dirigencia del club respaldó la propuesta y así se armó el plantel que viajó a Daca.</p>
+        <p>El certamen, organizado en el Estadio Nacional de la capital de Bangladesh, reunió a representantes de tres países con el objetivo de promover el fútbol juvenil y estrechar los lazos deportivos entre Latinoamérica y Bangladesh.</p>
+      </div>
+    </section>
+
+    <!-- CRONOLOGÍA -->
+    <section aria-labelledby="tituloCronologia">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloCronologia">Cronología</h2>
+      </div>
+      <ol class="panel timeline reveal">
+        <li>
+          <span class="tl-date">3 de diciembre de 2025</span>
+          <span class="tl-text">La delegación de Atlético Charlone llega a Daca.</span>
+        </li>
+        <li>
+          <span class="tl-date">5 de diciembre</span>
+          <span class="tl-text">Partido inaugural en el Estadio Nacional: Red Green Future Star 0 – 4 EC São Bernardo.</span>
+        </li>
+        <li class="is-key">
+          <span class="tl-date">8 de diciembre</span>
+          <span class="tl-text"><strong>Debut internacional de Charlone:</strong> empate 1 – 1 ante el seleccionado juvenil de Bangladesh, con un gol de tiro libre de David Berzoni.</span>
+        </li>
+        <li>
+          <span class="tl-date">9 de diciembre</span>
+          <span class="tl-text">El Consejo Nacional de Deportes de Bangladesh retira a la empresa organizadora la habilitación del Estadio Nacional por incumplimientos en la organización. El partido final queda suspendido y el torneo, cancelado.</span>
+        </li>
+        <li>
+          <span class="tl-date">Diciembre de 2025</span>
+          <span class="tl-text">Con el acompañamiento de la Cancillería y de la Embajada argentina, la delegación regresa al país tras la reprogramación de los vuelos.</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- DECLARACIONES -->
+    <section aria-labelledby="tituloDeclaraciones">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloDeclaraciones">Declaraciones</h2>
+      </div>
+      <div class="quotes">
+        <figure class="panel quote reveal">
+          <blockquote>“Acá en Bangladesh es una locura, la gente está desbordada de entusiasmo.”</blockquote>
+          <figcaption><strong>Hernán Ojeda</strong>, director técnico, durante el torneo.</figcaption>
+        </figure>
+        <figure class="panel quote reveal" style="--d: 120ms">
+          <blockquote>“Es una experiencia fantástica. Hay muchos ojos mirando estos torneos, y uno nunca sabe dónde puede terminar.”</blockquote>
+          <figcaption><strong>Jorge Remotti</strong>, colaborador de Atlético Charlone, antes del viaje.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section aria-labelledby="tituloVideo">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloVideo">Video</h2>
+      </div>
+      <a class="panel video-card reveal" href="https://www.youtube.com/watch?v=ZMGulIfU6Gs" target="_blank" rel="noopener noreferrer">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/ZMGulIfU6Gs/hqdefault.jpg" alt="Resumen del partido Bangladesh 1-1 Atlético Charlone" loading="lazy" onerror="this.remove()" />
+          <span class="video-play" aria-hidden="true">
+            <span><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          </span>
+        </div>
+        <div class="video-info">
+          <strong>Resumen: Bangladesh 1 – 1 Atlético Charlone</strong>
+          <span>YouTube · Latin Bangla Super Cup 2025</span>
+        </div>
+      </a>
+    </section>
+
+    <!-- COBERTURA DE PRENSA -->
+    <section aria-labelledby="tituloPrensa">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloPrensa">Cobertura de prensa</h2>
+      </div>
+      <ul class="panel press-list reveal">
+        <li>
+          <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/" target="_blank" rel="noopener noreferrer">
+            <span class="press-text">
+              <span class="press-source">Diario Actualidad</span>
+              <span class="press-title">Atlético Charlone, rumbo a Bangladesh: representará a la Argentina en un torneo internacional Sub-20</span>
+              <span class="press-date">1 de diciembre de 2025</span>
+            </span>
+            <span class="custom-arrow-box"><svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.bssnews.net/sports/338228" target="_blank" rel="noopener noreferrer">
+            <span class="press-text">
+              <span class="press-source">BSS · Bangladesh</span>
+              <span class="press-title">Argentine's Atletico Charlone club now in city</span>
+              <span class="press-date">3 de diciembre de 2025</span>
+            </span>
+            <span class="custom-arrow-box"><svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.c5n.com/deportes/arranca-bangladesh-el-torneo-futbol-mas-extrano-2025-argentina-presenta-una-seleccion-un-pueblo-bonaerense-n222926" target="_blank" rel="noopener noreferrer">
+            <span class="press-text">
+              <span class="press-source">C5N</span>
+              <span class="press-title">Argentina presenta una selección de un pueblo bonaerense en Bangladesh</span>
+              <span class="press-date">4 de diciembre de 2025</span>
+            </span>
+            <span class="custom-arrow-box"><svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://deportelauquen.com.ar/atletico-charlone-representa-a-argentina-en-un-torneo-internacional-en-bangladesh/" target="_blank" rel="noopener noreferrer">
+            <span class="press-text">
+              <span class="press-source">Deporte Lauquen</span>
+              <span class="press-title">Atlético Charlone representa a Argentina en un torneo internacional en Bangladesh</span>
+              <span class="press-date">Diciembre de 2025</span>
+            </span>
+            <span class="custom-arrow-box"><svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://diarioactualidad.com/blog/2025/12/08/afb-latin-bangla-super-cup-historico-estreno-para-atletico-charlone-en-el-plano-internacional/" target="_blank" rel="noopener noreferrer">
+            <span class="press-text">
+              <span class="press-source">Diario Actualidad</span>
+              <span class="press-title">AFB Latin-Bangla Super Cup: histórico estreno para Atlético Charlone en el plano internacional</span>
+              <span class="press-date">8 de diciembre de 2025</span>
+            </span>
+            <span class="custom-arrow-box"><svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://villegas.gob.ar/blog/2025/12/09/de-charlone-a-asia-un-sub20-villenguense-juega-la-latin-bangla-super-cup/" target="_blank" rel="noopener noreferrer">
+            <span class="press-text">
+              <span class="press-source">Municipalidad de General Villegas</span>
+              <span class="press-title">De Charlone a Asia: el Sub 20 villeguense que juega la Latin Bangla Super Cup</span>
+              <span class="press-date">9 de diciembre de 2025</span>
+            </span>
+            <span class="custom-arrow-box"><svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://diarioactualidad.com/blog/2025/12/26/tras-la-incertidumbre-en-bangladesh-los-chicos-del-club-atletico-charlone-regresaron-al-pais-sin-inconvenientes/" target="_blank" rel="noopener noreferrer">
+            <span class="press-text">
+              <span class="press-source">Diario Actualidad</span>
+              <span class="press-title">Los chicos del Club Atlético Charlone regresaron al país sin inconvenientes</span>
+              <span class="press-date">26 de diciembre de 2025</span>
+            </span>
+            <span class="custom-arrow-box"><svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg></span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- AGRADECIMIENTOS -->
+    <section aria-labelledby="tituloGracias">
+      <div class="section-header reveal">
+        <h2 class="section-title" id="tituloGracias">Agradecimientos</h2>
+      </div>
+      <div class="panel thanks reveal">
+        <ul>
+          <li><strong>Municipalidad de General Villegas</strong>, por los traslados de la delegación hasta el aeropuerto de Ezeiza y el operativo de regreso.</li>
+          <li><strong>Cancillería Argentina y Embajada argentina en Bangladesh</strong>, por el acompañamiento a la delegación durante su estadía y su regreso.</li>
+          <li><strong>Club Atlético Charlone</strong>, sus dirigentes, colaboradores y las familias de los jugadores.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SUMATE A EPFAR -->
+    <section class="panel join-card reveal" aria-labelledby="tituloSumate">
+      <p class="join-kicker">Sumate</p>
+      <h2 class="join-title" id="tituloSumate">¿Querés entrenar en EPFAR?</h2>
+      <p class="join-text">Centro de Entrenamiento de Alto Rendimiento en Santa Regina (Gral. Villegas), con conexión en Rosario, Santa Fe.</p>
+      <div class="join-actions">
+        <a href="index.html#que-es-epfar" class="join-btn">
+          Conocé EPFAR
+          <span class="custom-arrow-box">
+            <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+          </span>
+        </a>
+        <!-- Aparece solo cuando se completa el número de EPFAR en el script (EPFAR_WHATSAPP) -->
+        <a href="#" id="joinWhatsApp" class="join-btn join-btn--wa" target="_blank" rel="noopener noreferrer" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+
+      <div class="footer-line-1">
+        <span class="footer-brand">EPFAR</span>
+        <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
+      </div>
+      <div class="footer-line-2">
+        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe<br>
+        Dir. Hernán Ojeda
+      </div>
+
+      <!-- Contacto al costado izquierdo y logo byLanzaWebs al derecho -->
+      <div class="footer-side-row">
+        <div class="footer-contact-side">
+          Contacto: <a href="https://wa.me/5493415999728?text=Hola%20Hern%C3%A1n%2C%20vi%20la%20p%C3%A1gina%20de%20EPFAR%20y%20quer%C3%ADa%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> (Hernán Ojeda)<br>
+          E-mail: <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a>
+        </div>
+
+        <a class="lanzawebs-badge" href="https://www.lanzawebs.com" target="_blank" rel="noopener" aria-label="Página hecha por LanzaWebs">
+          <span class="lanzawebs-text">
+            <span class="lanzawebs-by">by</span><span class="lanzawebs-main">LanzaWebs</span>
+          </span>
+          <svg class="lanzawebs-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.8" />
+            <line x1="6.8" y1="28.2" x2="21.5" y2="14.5" stroke="currentColor" stroke-width="2" />
+            <polygon points="26.2,10.2 16.5,13.2 22.8,19.8" fill="currentColor" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>EPFAR © 2026 Todos los derechos reservados.</span>
+        <a class="terms-trigger-link" href="index.html#terminos">Términos y Condiciones de Uso</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =====================================================================
+       CONFIGURACIÓN
+       WhatsApp de EPFAR para el botón "Escribinos por WhatsApp" de "Sumate".
+       Formato internacional, sin "+", espacios ni guiones. Ej.: '5493388123456'
+       Si queda vacío, ese botón no aparece.
+       ===================================================================== */
+    const EPFAR_WHATSAPP = '5493415999728';
+
+    /* 1. Menú de las 3 rayitas */
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    function setMenu(open) {
+      dropdownMenu.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+    }
+
+    function toggleMenu(event) {
+      event.stopPropagation();
+      setMenu(!dropdownMenu.classList.contains('open'));
+    }
+
+    document.addEventListener('click', (event) => {
+      if (!dropdownMenu.contains(event.target)) setMenu(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setMenu(false);
+    });
+
+    /* 2. Botón de WhatsApp de "Sumate" (solo si hay número) */
+    (function initJoinWhatsApp() {
+      const number = EPFAR_WHATSAPP.replace(/\D/g, '');
+      if (!number) return;
+      const button = document.getElementById('joinWhatsApp');
+      const message = 'Hola EPFAR! Vi la página de la Latin-Bangla Super Cup y quiero información para entrenar con ustedes.';
+      button.href = 'https://wa.me/' + number + '?text=' + encodeURIComponent(message);
+      button.hidden = false;
+    })();
+  </script>
+
+  <!-- CRONOLOGÍA: la línea naranja avanza a medida que se baja -->
+  <script>
+    (function () {
+      const timeline = document.querySelector('.timeline');
+      if (!timeline) return;
+      const items = Array.from(timeline.querySelectorAll('li'));
+      if (items.length < 2) return;
+      let lineTop = 0;
+      let lineHeight = 1;
+      let ticking = false;
+
+      function update() {
+        ticking = false;
+        const rect = timeline.getBoundingClientRect();
+        const marker = window.innerHeight * 0.62; // la punta de la línea acompaña al 62% de la pantalla
+        const progress = Math.min(Math.max((marker - (rect.top + lineTop)) / lineHeight, 0), 1);
+        timeline.style.setProperty('--progress', progress.toFixed(4));
+        items.forEach((li) => {
+          li.classList.toggle('is-reached', rect.top + li.offsetTop + 10 <= marker);
+        });
+      }
+
+      function measure() {
+        lineTop = items[0].offsetTop + 10; // centro del primer punto
+        lineHeight = Math.max(1, items[items.length - 1].offsetTop + 10 - lineTop); // hasta el último
+        timeline.style.setProperty('--line-top', lineTop + 'px');
+        timeline.style.setProperty('--line-h', lineHeight + 'px');
+        update();
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }, { passive: true });
+      window.addEventListener('resize', measure);
+      window.addEventListener('load', measure);
+      measure();
+    })();
+  </script>
+
+  <!-- EFECTOS: aparición al bajar, desplazamiento suave y partículas en el aire -->
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* A. Scroll reveal: cada bloque aparece cuando entra en pantalla */
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+        revealEls.forEach((el) => observer.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      /* B. Desplazamiento suave y lento para los botones que bajan dentro de la página */
+      let scrollAnimId = 0;
+      ['wheel', 'touchstart'].forEach((evt) => {
+        window.addEventListener(evt, () => { scrollAnimId++; }, { passive: true }); // si la persona toca la pantalla, se corta
+      });
+
+      function slowScrollTo(target) {
+        const headerOffset = 76;
+        const startY = window.pageYOffset;
+        const targetY = Math.max(0, target.getBoundingClientRect().top + startY - headerOffset);
+        const distance = targetY - startY;
+        if (reduceMotion || Math.abs(distance) < 2) {
+          window.scrollTo(0, targetY);
+          return;
+        }
+        const duration = Math.min(2300, Math.max(1400, Math.abs(distance) * 0.8 + 700));
+        const myId = ++scrollAnimId;
+        let startTime = null;
+        const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+        function step(now) {
+          if (myId !== scrollAnimId) return;
+          if (startTime === null) startTime = now;
+          const progress = Math.min((now - startTime) / duration, 1);
+          window.scrollTo(0, startY + distance * ease(progress));
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      document.addEventListener('click', (event) => {
+        if (event.defaultPrevented) return;
+        const link = event.target.closest('a[href^="#"]');
+        if (!link) return;
+        const id = decodeURIComponent(link.getAttribute('href').slice(1));
+        const target = id ? document.getElementById(id) : null;
+        if (!target) return;
+        event.preventDefault();
+        slowScrollTo(target);
+      });
+
+      /* C. Partículas diminutas gris oscuro flotando en el aire */
+      const canvas = document.getElementById('airParticles');
+      if (!canvas || !canvas.getContext) return;
+      const ctx = canvas.getContext('2d');
+      let width = 0;
+      let height = 0;
+      let particles = [];
+      let rafId = null;
+      let lastScrollY = window.pageYOffset;
+
+      function createParticle() {
+        const depth = Math.random() * 0.8 + 0.2; // 0.2 = lejos, 1 = cerca
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: (0.35 + Math.random() * 0.65) * (0.7 + depth * 0.4),
+          depth: depth,
+          vx: (Math.random() - 0.5) * 0.14 * depth,
+          vy: -(0.02 + Math.random() * 0.09) * depth, // suben muy despacio
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.004 + Math.random() * 0.01,
+          alpha: 0.22 + Math.random() * 0.33
+        };
+      }
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const amount = Math.min(150, Math.round((width * height) / 7500));
+        while (particles.length < amount) particles.push(createParticle());
+        particles.length = amount;
+      }
+
+      function draw(animate) {
+        const scrollY = window.pageYOffset;
+        const scrollDelta = scrollY - lastScrollY;
+        lastScrollY = scrollY;
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#374151';
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          if (animate) {
+            p.phase += p.speed;
+            p.x += p.vx + Math.sin(p.phase) * 0.05 * p.depth;
+            p.y += p.vy - scrollDelta * p.depth * 0.22; // al bajar, se mueven un poco (profundidad)
+            if (p.x < -3) p.x = width + 3; else if (p.x > width + 3) p.x = -3;
+            if (p.y < -3) p.y = height + 3; else if (p.y > height + 3) p.y = -3;
+          }
+          ctx.globalAlpha = p.alpha * (0.7 + Math.sin(p.phase * 1.6) * 0.3);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function loop() {
+        draw(true);
+        rafId = requestAnimationFrame(loop);
+      }
+
+      resize();
+      if (reduceMotion) {
+        draw(false);
+        window.addEventListener('resize', () => { resize(); draw(false); });
+        return;
+      }
+      loop();
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 150);
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        } else if (rafId === null) {
+          lastScrollY = window.pageYOffset;
+          loop();
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
