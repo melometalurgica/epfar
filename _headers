@@ -1,0 +1,6 @@
+# Encabezados de seguridad para todo el sitio (Netlify lee este archivo solo)
+く/*
+×-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
