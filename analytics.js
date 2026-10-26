@@ -6,7 +6,7 @@
    Todas las páginas usan este archivo: se completa una sola vez.
    ===================================================================== */
 (function () {
-  var GA_ID = ''; // ← ej.: 'G-AB12CD34EF'
+  var GA_ID = 'G-YSMJ54MLG2';
   if (!GA_ID) return;
 
   var tag = document.createElement('script');
