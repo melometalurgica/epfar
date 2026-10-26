@@ -428,8 +428,13 @@
       display: block;
     }
 
+    /* Con el logo al lado del texto (tablet y PC), un poco más chico para que entre todo */
+    @media (min-width: 700px) {
+      .hero-logo-card img { width: clamp(220px, 30vw, 360px); }
+    }
+
     /* EN CELULAR: LOGO ARRIBA A LA IZQUIERDA Y TEXTO A TODO EL ANCHO */
-    @media (max-width: 599px) {
+    @media (max-width: 699px) {
       .hero-container {
         flex-direction: column;
         align-items: flex-start;
@@ -439,6 +444,65 @@
       .hero-text-side {
         width: 100%;
       }
+    }
+
+    /* ==================================================== */
+    /* LOGO: BRILLO NARANJA SUAVE + ENTRADA ANIMADA          */
+    /* ==================================================== */
+    .hero-logo-card {
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* Resplandor difuso detrás del logo (no es un recuadro: se desvanece hacia los bordes) */
+    .hero-logo-card::before {
+      content: "";
+      position: absolute;
+      inset: -32% -14%;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(ellipse 50% 50% at 45% 52%,
+        rgba(242, 101, 34, 0.62) 0%,
+        rgba(242, 101, 34, 0.26) 42%,
+        rgba(242, 101, 34, 0) 72%);
+      filter: blur(14px);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .js .hero-logo-card img { opacity: 0; }
+      .js .hero-logo-card.loaded img {
+        animation: logoEntrada 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      .js .hero-logo-card::before { opacity: 0; }
+      .js .hero-logo-card.loaded::before {
+        animation: brilloEntrada 1.4s ease-out 0.25s both, brilloRespira 5s ease-in-out 1.7s infinite;
+      }
+      .js .hero-text-side > * {
+        animation: textoEntrada 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      .js .hero-text-side > :nth-child(1) { animation-delay: 0.45s; }
+      .js .hero-text-side > :nth-child(2) { animation-delay: 0.6s; }
+      .js .hero-text-side > :nth-child(3) { animation-delay: 0.8s; }
+    }
+
+    @keyframes logoEntrada {
+      from { opacity: 0; transform: translateY(12px) scale(0.92); filter: blur(6px); }
+      to { opacity: 1; transform: none; filter: blur(0); }
+    }
+
+    @keyframes brilloEntrada {
+      from { opacity: 0; transform: scale(0.6); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes brilloRespira {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(0.97); }
+    }
+
+    @keyframes textoEntrada {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: none; }
     }
 
     /* SECCIÓN FOTO PRINCIPAL */
