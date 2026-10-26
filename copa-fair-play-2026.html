@@ -4,12 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Copa Fair Play 2026 Brasil | EPFAR</title>
-  
-  <!-- Tipografías: Clash Display, Geist, Space Grotesk e Inter -->
+  <meta name="description" content="EPFAR en la Copa Fair Play 2026 (Florianópolis, Brasil): la Sub 15 salió campeona de la Copa de Oro. Fotos, planteles y videos del torneo." />
+  <meta name="theme-color" content="#071936" />
+
+  <!-- Vista previa al compartir el link (WhatsApp, Instagram, Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="EPFAR" />
+  <meta property="og:title" content="🏆 EPFAR Sub 15, campeón de la Copa de Oro" />
+  <meta property="og:description" content="Copa Fair Play 2026 · Florianópolis, Brasil. Fotos, planteles y videos del torneo." />
+  <meta property="og:url" content="https://epfar.netlify.app/copa-fair-play-2026.html" />
+  <meta property="og:image" content="https://epfar.netlify.app/SUB15.jpg" />
+
+  <!-- Tipografías: Clash Display (títulos) + Inter (textos) -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -17,7 +28,10 @@
       --blue-card: #093170;
       --blue-card-hover: #0d3e8c;
       --orange-accent: #f26522;
+      --gold: #ffd166;
       --text-dark: #111827;
+      --font-display: 'Clash Display', 'Inter', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     * {
@@ -26,19 +40,31 @@
       box-sizing: border-box;
     }
 
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    html.lb-open { overflow: hidden; }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-body);
       color: var(--text-dark);
       background-color: #f9f9fb;
-      background-image: 
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Fondo fijo: va en una capa aparte para que también quede fijo en iPhone */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-color: #f9f9fb;
+      background-image:
         url('image_6.png.PNG'),
         linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(242, 243, 247, 0.4) 48%, rgba(230, 232, 238, 0.7) 48.3%, rgba(252, 252, 254, 0.95) 100%),
         repeating-linear-gradient(-45deg, #fbfbfc 0px, #fbfbfc 4px, #f3f4f7 4px, #f3f4f7 8px);
       background-size: cover, 100% 100%, auto;
-      background-attachment: fixed;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
     /* CABECERA SUPERIOR EN AZUL MARINO */
@@ -55,7 +81,7 @@
     }
 
     .navbar-title {
-      font-family: 'Clash Display', sans-serif;
+      font-family: var(--font-display);
       font-weight: 600;
       font-size: clamp(0.95rem, 2.8vw, 1.2rem);
       color: #ffffff;
@@ -113,9 +139,9 @@
     }
 
     .dropdown-item {
-      font-family: 'Geist', sans-serif;
+      font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: #ffffff;
       text-decoration: none;
       padding: 14px 18px;
@@ -134,7 +160,7 @@
 
     .dropdown-item:hover {
       background-color: var(--blue-card);
-      color: #ffd166;
+      color: var(--gold);
     }
 
     /* CONTENEDOR PRINCIPAL */
@@ -175,10 +201,10 @@
       gap: 10px;
       text-decoration: none;
       color: var(--blue-card);
-      font-family: 'Geist', sans-serif;
+      font-family: var(--font-body);
       font-weight: 600;
       font-size: 0.9rem;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       background: #ffffff;
       padding: 6px 14px 6px 6px;
       border-radius: 12px;
@@ -186,19 +212,167 @@
       border: 1px solid rgba(9, 49, 112, 0.12);
     }
 
-    .section-header {
-      margin-bottom: 14px;
-      margin-top: 26px;
+    /* PORTADA DEL TORNEO */
+    .hero-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange-accent);
     }
 
-    .section-header:first-of-type { margin-top: 4px; }
+    .hero-title {
+      margin-top: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.2rem, 10vw, 3.8rem);
+      line-height: 0.95;
+      letter-spacing: 0.005em;
+      text-transform: uppercase;
+      color: #0b1933;
+    }
+
+    .hero-place {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0b1933;
+    }
+
+    .hero-place svg {
+      width: 18px;
+      height: 18px;
+      color: var(--orange-accent);
+      flex-shrink: 0;
+    }
+
+    .hero-intro {
+      margin-top: 4px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #4b5563;
+    }
+
+    .result-card {
+      position: relative;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      color: #ffffff;
+      background: radial-gradient(120% 140% at 0% 0%, var(--blue-card-hover) 0%, var(--blue-card) 45%, var(--navy-header) 100%);
+      border: 1px solid rgba(255, 209, 102, 0.4);
+      box-shadow: 0 14px 30px rgba(9, 49, 112, 0.28);
+    }
+
+    .result-card::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 209, 102, 0.22) 0%, rgba(255, 209, 102, 0) 70%);
+      pointer-events: none;
+    }
+
+    .result-trophy {
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      background: rgba(255, 209, 102, 0.14);
+      border: 1px solid rgba(255, 209, 102, 0.45);
+    }
+
+    .result-trophy svg { width: 30px; height: 30px; }
+
+    .result-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .result-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .result-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.35rem, 7vw, 2.3rem);
+      line-height: 1;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+
+    .nowrap { white-space: nowrap; }
+
+    @media (max-width: 359px) {
+      .result-card { gap: 12px; padding: 16px 14px; }
+      .result-trophy { width: 46px; height: 46px; border-radius: 12px; }
+      .result-trophy svg { width: 24px; height: 24px; }
+    }
+
+    .result-detail {
+      font-size: 0.88rem;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .share-btn {
+      margin-top: 12px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 14px;
+      background: var(--orange-accent);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(242, 101, 34, 0.28);
+      transition: transform 0.2s ease;
+    }
+
+    .share-btn:active { transform: scale(0.98); }
+    .share-btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+    /* TÍTULOS DE SECCIÓN */
+    .section-header {
+      margin-bottom: 14px;
+      margin-top: 34px;
+    }
 
     .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.25rem, 4vw, 1.65rem);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.3rem, 4.6vw, 1.7rem);
       color: #0b1933;
       text-transform: uppercase;
+      letter-spacing: 0.01em;
       display: inline-block;
     }
 
@@ -212,7 +386,14 @@
       margin-top: 4px;
     }
 
-    /* CARRUSEL */
+    .section-sub {
+      margin-top: 8px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: #4b5563;
+    }
+
+    /* CARRUSEL DE FOTOS (se ven completas, sin recortes) */
     .carousel-wrapper {
       position: relative;
       width: 100%;
@@ -230,21 +411,54 @@
     }
 
     .carousel-slide {
-      min-width: 100%;
-      aspect-ratio: 16 / 10;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      min-width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
       background: #111c33;
+      cursor: zoom-in;
     }
 
-    .carousel-slide img {
+    @media (min-width: 768px) {
+      .carousel-slide { aspect-ratio: 16 / 10; }
+    }
+
+    /* Copia desenfocada de la misma foto para rellenar los costados */
+    .slide-bg {
+      position: absolute;
+      inset: -24px;
+      width: calc(100% + 48px);
+      height: calc(100% + 48px);
+      object-fit: cover;
+      filter: blur(18px) brightness(0.55);
+    }
+
+    .slide-img {
+      position: relative;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
     }
+
+    .carousel-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 99px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .carousel-count svg { width: 13px; height: 13px; }
 
     .carousel-btn {
       position: absolute;
@@ -284,6 +498,8 @@
     .dot {
       width: 8px;
       height: 8px;
+      padding: 0;
+      border: none;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.45);
       cursor: pointer;
@@ -295,12 +511,81 @@
       transform: scale(1.2);
     }
 
-    /* PLANTILLAS SUB15 Y SUB17 */
+    .carousel-hint {
+      margin-top: 8px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    /* VISOR DE FOTOS EN GRANDE */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(4, 10, 22, 0.96);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.25s ease;
+    }
+
+    .lb-stage {
+      position: absolute;
+      inset: 64px 8px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lb-stage img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    .lb-btn {
+      position: absolute;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lb-close { top: 12px; right: 12px; }
+    .lb-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 10px; top: 50%; transform: translateY(-50%); }
+
+    .lb-count {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* PLANTELES SUB15 Y SUB17 */
     .squads-container {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-top: 22px;
     }
 
     .squad-box {
@@ -323,10 +608,46 @@
       gap: 12px;
       cursor: pointer;
       text-align: left;
-      font-family: 'Geist', sans-serif;
+      font-family: var(--font-body);
+    }
+
+    .squad-head {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .squad-name {
+      font-family: var(--font-display);
       font-weight: 600;
-      font-size: clamp(0.9rem, 3.1vw, 1.12rem);
-      letter-spacing: -0.01em;
+      font-size: clamp(1.05rem, 4.4vw, 1.3rem);
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+
+    .squad-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .champ-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: rgba(255, 209, 102, 0.16);
+      border: 1px solid rgba(255, 209, 102, 0.5);
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
 
     .squad-box.open .arrow-down svg { transform: rotate(-90deg); }
@@ -342,9 +663,9 @@
 
     .squad-list {
       list-style: none;
-      padding: 14px 18px;
-      display: flex;
-      flex-direction: column;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 8px;
     }
 
@@ -353,25 +674,16 @@
       border-radius: 10px;
       background: #f4f6fa;
       border-left: 4px solid var(--blue-card);
-      font-family: 'Geist', sans-serif;
-      font-size: clamp(0.8rem, 2.7vw, 0.92rem);
+      font-size: clamp(0.8rem, 2.9vw, 0.92rem);
       font-weight: 600;
-      color: #111827;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      color: #0b1933;
     }
 
-    .player-name { color: #0b1933; font-weight: 600; }
-    .player-country { color: #4b5563; font-weight: 500; font-size: 0.8rem; white-space: nowrap; }
-
-    /* CANALES DE TRANSMISIÓN */
+    /* CANALES PARA REVIVIR EL TORNEO */
     .channels-list {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-top: 12px;
     }
 
     .channel-btn {
@@ -383,9 +695,9 @@
       border-radius: 16px;
       text-decoration: none;
       color: #ffffff;
-      font-family: 'Geist', sans-serif;
+      font-family: var(--font-body);
       font-weight: 600;
-      font-size: clamp(0.95rem, 3.2vw, 1.12rem);
+      font-size: clamp(0.95rem, 3.2vw, 1.08rem);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
     }
 
@@ -399,7 +711,7 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .channel-left { display: flex; align-items: center; gap: 12px; }
+    .channel-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
     .channel-icon {
       width: 38px;
       height: 38px;
@@ -411,15 +723,72 @@
       flex-shrink: 0;
     }
     .channel-icon svg { width: 22px; height: 22px; fill: #ffffff; }
-    .channel-text { display: flex; flex-direction: column; gap: 2px; }
+    .channel-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
     .channel-label-small {
-      font-family: 'Inter', sans-serif;
       font-size: 0.68rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: rgba(255, 255, 255, 0.9);
     }
+
+    /* SUMATE A EPFAR */
+    .join-card {
+      margin-top: 34px;
+      padding: 22px 20px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid rgba(9, 49, 112, 0.12);
+      box-shadow: 0 10px 24px rgba(9, 49, 112, 0.12);
+    }
+
+    .join-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange-accent);
+    }
+
+    .join-title {
+      margin-top: 6px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.4rem, 5.6vw, 1.85rem);
+      line-height: 1.1;
+      color: #0b1933;
+    }
+
+    .join-text {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #4b5563;
+    }
+
+    .join-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .join-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 8px 8px 16px;
+      border-radius: 12px;
+      background: var(--blue-card);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+    }
+
+    .join-btn--wa { background: #25d366; padding: 12px 16px; }
+    .join-btn--wa svg { width: 20px; height: 20px; fill: currentColor; }
+    .join-btn[hidden] { display: none; }
 
     /* PIE DE PÁGINA */
     .footer {
@@ -441,31 +810,28 @@
 
     .footer-line-1 {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      white-space: nowrap;
+      gap: 4px 8px;
       width: 100%;
     }
 
     .footer-brand {
-      font-family: 'Clash Display', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: clamp(0.95rem, 3.8vw, 1.15rem);
       color: #ffffff;
       letter-spacing: 0.03em;
     }
 
-    .footer-dot { color: #8c9bb5; font-size: 0.85rem; }
     .footer-desc {
-      font-family: 'Inter', sans-serif;
       font-weight: 400;
       font-size: clamp(0.72rem, 3.1vw, 0.9rem);
       color: #9ba8bf;
     }
 
     .footer-line-2 {
-      font-family: 'Inter', sans-serif;
       font-weight: 400;
       font-size: clamp(0.7rem, 2.9vw, 0.84rem);
       color: #8c9bb5;
@@ -489,9 +855,12 @@
       color: #ffffff;
       text-decoration: none;
       opacity: 0.92;
+      transition: opacity 0.2s ease;
     }
 
-    .lanzawebs-text { display: inline-flex; align-items: baseline; font-family: 'Inter', sans-serif; line-height: 1; }
+    .lanzawebs-badge:hover { opacity: 1; }
+
+    .lanzawebs-text { display: inline-flex; align-items: baseline; line-height: 1; }
     .lanzawebs-by { font-size: 0.65rem; font-weight: 700; margin-right: 0; letter-spacing: -0.02em; }
     .lanzawebs-main { font-size: 0.95rem; font-weight: 800; letter-spacing: -0.04em; }
     .lanzawebs-icon { width: 22px; height: 22px; display: block; flex-shrink: 0; }
@@ -500,22 +869,32 @@
       width: 100%;
       padding-top: 10px;
       border-top: 1px solid rgba(255, 255, 255, 0.07);
-      font-family: 'Inter', sans-serif;
       font-size: 0.7rem;
       color: rgba(155, 168, 191, 0.75);
       letter-spacing: 0.01em;
+    }
+
+    @media (min-width: 768px) {
+      .share-btn { width: auto; display: inline-flex; padding: 13px 22px; }
+      .result-card { padding: 22px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .carousel-track,
+      .squad-list-wrapper,
+      .lightbox { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- CABECERA SIN LUPA Y CON MENÚ EN LAS 3 RAYITAS -->
+  <!-- CABECERA CON MENÚ EN LAS 3 RAYITAS -->
   <header class="navbar">
     <a href="index.html" class="navbar-title">
-      Pagina Oficial EPFAR
+      Página Oficial EPFAR
     </a>
     <div class="navbar-actions">
-      <button class="icon-btn" type="button" aria-label="Menú" onclick="toggleMenu(event)">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Menú" aria-expanded="false" aria-controls="dropdownMenu" onclick="toggleMenu(event)">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -526,7 +905,7 @@
       <nav class="dropdown-menu" id="dropdownMenu">
         <a class="dropdown-item" href="index.html">INICIO</a>
         <a class="dropdown-item" href="copa-fair-play-2026.html">TORNEOS</a>
-        <a class="dropdown-item" href="index.html#que-es-epfar">QUE ES EPFAR</a>
+        <a class="dropdown-item" href="index.html#que-es-epfar">QUÉ ES EPFAR</a>
       </nav>
     </div>
   </header>
@@ -540,132 +919,225 @@
       <span>Volver al inicio</span>
     </a>
 
-    <div class="section-header">
-      <h2 class="section-title">SECCIÓN FOTOS</h2>
-    </div>
+    <!-- PORTADA DEL TORNEO -->
+    <section class="hero" aria-labelledby="tituloTorneo">
+      <p class="hero-kicker">Torneo internacional · <span class="nowrap">Octubre 2026</span></p>
+      <h1 class="hero-title" id="tituloTorneo">Copa Fair Play 2026</h1>
+      <p class="hero-place">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Florianópolis, Brasil
+      </p>
+      <p class="hero-intro">EPFAR viajó con sus seleccionados Sub 15 y Sub 17.</p>
 
-    <div class="carousel-wrapper" id="photoCarousel">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="SUB17.jpg" alt="Seleccionado Sub 17 EPFAR" /></div>
-        <div class="carousel-slide"><img src="SUB15.jpg" alt="Seleccionado Sub 15 EPFAR" /></div>
-        <div class="carousel-slide"><img src="FOTO10.JPG" alt="Copa Fair Play - Foto 10" /></div>
-        <div class="carousel-slide"><img src="FOTO11.jpg" alt="Copa Fair Play - Foto 11" /></div>
-        <div class="carousel-slide"><img src="FOTO12.JPG" alt="Copa Fair Play - Foto 12" /></div>
+      <div class="result-card">
+        <div class="result-trophy" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        </div>
+        <div class="result-text">
+          <span class="result-label">Sub 15 · Copa de Oro</span>
+          <strong class="result-title">¡Campeones!</strong>
+          <span class="result-detail">Final vs. Florianópolis SP · <span class="nowrap">3 a 2 por penales</span></span>
+        </div>
       </div>
 
-      <button class="carousel-btn prev" type="button" onclick="moveSlide(-1)" aria-label="Foto anterior">❮</button>
-      <button class="carousel-btn next" type="button" onclick="moveSlide(1)" aria-label="Siguiente foto">❯</button>
+      <a href="#reviviTorneo" class="share-btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        Ver videos del torneo
+      </a>
+    </section>
 
-      <div class="carousel-dots" id="carouselDots">
-        <span class="dot active" onclick="goToSlide(0)"></span>
-        <span class="dot" onclick="goToSlide(1)"></span>
-        <span class="dot" onclick="goToSlide(2)"></span>
-        <span class="dot" onclick="goToSlide(3)"></span>
-        <span class="dot" onclick="goToSlide(4)"></span>
+    <!-- FOTOS -->
+    <section aria-labelledby="tituloFotos">
+      <div class="section-header">
+        <h2 class="section-title" id="tituloFotos">Fotos</h2>
       </div>
-    </div>
 
-    <div class="squads-container">
+      <div class="carousel-wrapper" id="photoCarousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img class="slide-bg" src="SUB15.jpg" alt="" aria-hidden="true" decoding="async" />
+            <img class="slide-img" src="SUB15.jpg" alt="Plantel Sub 15 de EPFAR, campeón de la Copa de Oro" fetchpriority="high" decoding="async" />
+          </div>
+          <div class="carousel-slide">
+            <img class="slide-bg" data-src="SUB17.jpg" alt="" aria-hidden="true" decoding="async" />
+            <img class="slide-img" data-src="SUB17.jpg" alt="Plantel Sub 17 de EPFAR" decoding="async" />
+          </div>
+          <div class="carousel-slide">
+            <img class="slide-bg" data-src="FOTO10.JPG" alt="" aria-hidden="true" decoding="async" />
+            <img class="slide-img" data-src="FOTO10.JPG" alt="Copa Fair Play 2026 – foto 3" decoding="async" />
+          </div>
+          <div class="carousel-slide">
+            <img class="slide-bg" data-src="FOTO11.jpg" alt="" aria-hidden="true" decoding="async" />
+            <img class="slide-img" data-src="FOTO11.jpg" alt="Copa Fair Play 2026 – foto 4" decoding="async" />
+          </div>
+          <div class="carousel-slide">
+            <img class="slide-bg" data-src="FOTO12.JPG" alt="" aria-hidden="true" decoding="async" />
+            <img class="slide-img" data-src="FOTO12.JPG" alt="Copa Fair Play 2026 – foto 5" decoding="async" />
+          </div>
+        </div>
 
-      <!-- SUB 15 -->
-      <div class="squad-box" id="sub15Box">
-        <button class="squad-trigger" type="button" onclick="toggleSquad('sub15Box')">
-          <span>PLANTILLA EPFAR SELECCIONADO SUB15🇦🇷:</span>
-          <span class="custom-arrow-box arrow-down">
+        <span class="carousel-count" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          <span id="carouselCount">1 / 5</span>
+        </span>
+
+        <button class="carousel-btn prev" type="button" onclick="moveSlide(-1)" aria-label="Foto anterior">❮</button>
+        <button class="carousel-btn next" type="button" onclick="moveSlide(1)" aria-label="Siguiente foto">❯</button>
+
+        <div class="carousel-dots" id="carouselDots">
+          <button type="button" class="dot active" onclick="goToSlide(0)" aria-label="Foto 1"></button>
+          <button type="button" class="dot" onclick="goToSlide(1)" aria-label="Foto 2"></button>
+          <button type="button" class="dot" onclick="goToSlide(2)" aria-label="Foto 3"></button>
+          <button type="button" class="dot" onclick="goToSlide(3)" aria-label="Foto 4"></button>
+          <button type="button" class="dot" onclick="goToSlide(4)" aria-label="Foto 5"></button>
+        </div>
+      </div>
+      <p class="carousel-hint">Tocá una foto para verla en grande.</p>
+    </section>
+
+    <!-- PLANTELES -->
+    <section aria-labelledby="tituloPlanteles">
+      <div class="section-header">
+        <h2 class="section-title" id="tituloPlanteles">Planteles</h2>
+      </div>
+
+      <div class="squads-container">
+
+        <!-- SUB 15 -->
+        <div class="squad-box" id="sub15Box">
+          <button class="squad-trigger" type="button" aria-expanded="false" aria-controls="sub15List" onclick="toggleSquad('sub15Box')">
+            <span class="squad-head">
+              <span class="squad-name">Plantel Sub 15 🇦🇷</span>
+              <span class="squad-meta">
+                <span>19 jugadores</span>
+                <span class="champ-badge">🏆 Campeón Copa de Oro</span>
+              </span>
+            </span>
+            <span class="custom-arrow-box arrow-down">
+              <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+            </span>
+          </button>
+          <div class="squad-list-wrapper" id="sub15List">
+            <ul class="squad-list">
+              <li>SANTINO P.</li>
+              <li>BENJAMÍN S.</li>
+              <li>ALEXIS M.</li>
+              <li>FERMÍN G.</li>
+              <li>FACUNDO C.</li>
+              <li>JOAQUÍN T.</li>
+              <li>GUIDO D.</li>
+              <li>THIAGO C.</li>
+              <li>SANTINO C.</li>
+              <li>FELIPE B.</li>
+              <li>MATEO B.</li>
+              <li>THIAGO B.</li>
+              <li>FRANCISCO R.</li>
+              <li>GIOVANNI R.</li>
+              <li>JUAN MANUEL M.</li>
+              <li>FABIÁN S.</li>
+              <li>SANTINO S.</li>
+              <li>BAUTISTA G.</li>
+              <li>RENZO M.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- SUB 17 -->
+        <div class="squad-box" id="sub17Box">
+          <button class="squad-trigger" type="button" aria-expanded="false" aria-controls="sub17List" onclick="toggleSquad('sub17Box')">
+            <span class="squad-head">
+              <span class="squad-name">Plantel Sub 17 🇦🇷</span>
+              <span class="squad-meta">
+                <span>15 jugadores</span>
+              </span>
+            </span>
+            <span class="custom-arrow-box arrow-down">
+              <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+            </span>
+          </button>
+          <div class="squad-list-wrapper" id="sub17List">
+            <ul class="squad-list">
+              <li>ENZO C.</li>
+              <li>BENJAMÍN A.</li>
+              <li>ISAÍAS M.</li>
+              <li>MARTÍN T.</li>
+              <li>RODRIGO R.</li>
+              <li>AUGUSTO T.</li>
+              <li>RODRIGO D.</li>
+              <li>SANTIAGO M.</li>
+              <li>JAVIER G.</li>
+              <li>AGUSTÍN B.</li>
+              <li>EZEQUIEL C.</li>
+              <li>EZEQUIEL G.</li>
+              <li>AXEL R.</li>
+              <li>SANTIAGO P.</li>
+              <li>CARLOS G.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REVIVÍ EL TORNEO -->
+    <section id="reviviTorneo" aria-labelledby="tituloCanales">
+      <div class="section-header">
+        <h2 class="section-title" id="tituloCanales">Reviví el torneo</h2>
+        <p class="section-sub">Mirá los partidos y los videos del torneo en estos canales.</p>
+      </div>
+
+      <div class="channels-list">
+        <a href="https://www.instagram.com/lospibesen.brasil" target="_blank" rel="noopener noreferrer" class="channel-btn channel-instagram">
+          <div class="channel-left">
+            <div class="channel-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <div class="channel-text">
+              <span class="channel-label-small">Instagram</span>
+              <span>@lospibesen.brasil</span>
+            </div>
+          </div>
+          <span class="custom-arrow-box">
             <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
           </span>
-        </button>
-        <div class="squad-list-wrapper">
-          <ol class="squad-list">
-            <li><span class="player-name">1. SANTINO PEREZ</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">2. BENJAMIN SOSA</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">3. ALEXIS MARTIN</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">4. FERMIN NICOLAS GALLEGO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">5. FACUNDO CARDINI</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">6. JOAQUIN JAVIER TORRES</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">7. GUIDO DANIA</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">8. THIAGO CHIAPELLO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">9. SANTINO COGNINI</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">10. FELIPE BASSAROTTO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">11. MATEO FERMIN BERTON</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">12. THIAGO BENITEZ SOSA</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">13. FRANCISCO RAVEL</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">14. GIOVANNI ROSSI</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">15. JUAN MANUEL MARTINEZ</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">16. FABIAN SOSA</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">17. SANTINO NICOLAS SANCHEZ</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">18. BAUTISTA EZEQUIEL GARRAZA PASTEN</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">19. RENZO MONS SURBANO</span> <span class="player-country">— Argentino</span></li>
-          </ol>
-        </div>
-      </div>
+        </a>
 
-      <!-- SUB 17 -->
-      <div class="squad-box" id="sub17Box">
-        <button class="squad-trigger" type="button" onclick="toggleSquad('sub17Box')">
-          <span>PLANTILLA EPFAR SELECCIONADO SUB17🇦🇷:</span>
-          <span class="custom-arrow-box arrow-down">
+        <a href="https://www.youtube.com/@tvfairplayfloripa" target="_blank" rel="noopener noreferrer" class="channel-btn channel-youtube">
+          <div class="channel-left">
+            <div class="channel-icon">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </div>
+            <div class="channel-text">
+              <span class="channel-label-small">Canal oficial del torneo</span>
+              <span>TV Fair Play</span>
+            </div>
+          </div>
+          <span class="custom-arrow-box">
             <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
           </span>
-        </button>
-        <div class="squad-list-wrapper">
-          <ol class="squad-list">
-            <li><span class="player-name">1. ENZO URIEL CANO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">2. BENJAMIN ALVAREZ</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">3. ISAIAS IGNACIO MEDINA</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">4. MARTIN ANDRES TOVO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">5. RODRIGO ALEJO ROMAN ANDINO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">6. AUGUSTO TIRONE PROLA</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">7. RODRIGO DANIEL DE ARMAS</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">8. SANTIAGO BENJAMIN MEDERO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">9. JAVIER GAVOTTI</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">10. AGUSTIN BAEZ</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">11. EZEQUIEL CASAS</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">12. EZEQUIEL GIUDICI DOMINGO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">13. AXEL RAUL REPOLLO</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">14. SANTIAGO OSCAR PEREZ CHARIANI</span> <span class="player-country">— Argentino</span></li>
-            <li><span class="player-name">15. CARLOS LEONARDO GIANFRANCESCO</span> <span class="player-country">— Argentino</span></li>
-          </ol>
-        </div>
+        </a>
       </div>
+    </section>
 
-    </div>
-
-    <div class="section-header">
-      <h2 class="section-title">CANALES DE TRANSMISION EN VIVO:</h2>
-    </div>
-
-    <div class="channels-list">
-      <a href="https://www.instagram.com/lospibesen.brasil?psln=ZHZ4d245dXFpNXVn" target="_blank" rel="noopener noreferrer" class="channel-btn channel-instagram">
-        <div class="channel-left">
-          <div class="channel-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </div>
-          <div class="channel-text">
-            <span class="channel-label-small">INSTAGRAM</span>
-            <span>lospibes.enbrasil</span>
-          </div>
-        </div>
-        <span class="custom-arrow-box">
-          <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
-        </span>
-      </a>
-
-      <a href="https://youtube.com/@tvfairplayfloripa?si=66rHUwE2Rk7Tknwe" target="_blank" rel="noopener noreferrer" class="channel-btn channel-youtube">
-        <div class="channel-left">
-          <div class="channel-icon">
-            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </div>
-          <div class="channel-text">
-            <span class="channel-label-small">Canal Oficial del Torneo</span>
-            <span>TV FAIR PLAY (YOUTUBE)</span>
-          </div>
-        </div>
-        <span class="custom-arrow-box">
-          <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
-        </span>
-      </a>
-    </div>
+    <!-- SUMATE A EPFAR -->
+    <section class="join-card" aria-labelledby="tituloSumate">
+      <p class="join-kicker">Sumate</p>
+      <h2 class="join-title" id="tituloSumate">¿Querés entrenar en EPFAR?</h2>
+      <p class="join-text">Centro de Entrenamiento de Alto Rendimiento en Santa Regina (Gral. Villegas), con conexión en Rosario, Santa Fe.</p>
+      <div class="join-actions">
+        <a href="index.html#que-es-epfar" class="join-btn">
+          Conocé EPFAR
+          <span class="custom-arrow-box">
+            <svg viewBox="0 0 24 24"><path d="M4 10.5h11.2l-4.4-4.5h3.7L20.5 12l-6 6h-3.7l4.4-4.5H4v-3z"/></svg>
+          </span>
+        </a>
+        <!-- Aparece solo cuando se completa el número de EPFAR en el script (EPFAR_WHATSAPP) -->
+        <a href="#" id="joinWhatsApp" class="join-btn join-btn--wa" target="_blank" rel="noopener noreferrer" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+    </section>
 
   </main>
 
@@ -676,21 +1148,21 @@
         <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
       </div>
       <div class="footer-line-2">
-        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe |<br>
+        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe<br>
         Dir. Hernán Ojeda
       </div>
 
       <div class="footer-lanzawebs-row">
-        <div class="lanzawebs-badge" aria-label="byLanzaWebs">
+        <a class="lanzawebs-badge" href="https://www.lanzawebs.com" target="_blank" rel="noopener" aria-label="Página hecha por LanzaWebs">
           <span class="lanzawebs-text">
             <span class="lanzawebs-by">by</span><span class="lanzawebs-main">LanzaWebs</span>
           </span>
-          <svg class="lanzawebs-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="lanzawebs-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.8" />
             <line x1="6.8" y1="28.2" x2="21.5" y2="14.5" stroke="currentColor" stroke-width="2" />
             <polygon points="26.2,10.2 16.5,13.2 22.8,19.8" fill="currentColor" />
           </svg>
-        </div>
+        </a>
       </div>
 
       <div class="footer-copyright">
@@ -699,31 +1171,76 @@
     </div>
   </footer>
 
+  <!-- VISOR DE FOTOS EN GRANDE -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" aria-hidden="true">
+    <span class="lb-count" id="lbCount">1 / 5</span>
+    <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+    <button type="button" class="lb-btn lb-prev" aria-label="Foto anterior" onclick="stepLightbox(-1)">❮</button>
+    <div class="lb-stage" id="lbStage">
+      <img id="lbImg" alt="" />
+    </div>
+    <button type="button" class="lb-btn lb-next" aria-label="Siguiente foto" onclick="stepLightbox(1)">❯</button>
+  </div>
+
   <script>
+    /* =====================================================================
+       CONFIGURACIÓN
+       WhatsApp de EPFAR para el botón "Escribinos por WhatsApp" de "Sumate".
+       Formato internacional, sin "+", espacios ni guiones. Ej.: '5493388123456'
+       Si queda vacío, ese botón no aparece.
+       ===================================================================== */
+    const EPFAR_WHATSAPP = '';
+
+    /* 1. Menú de las 3 rayitas */
+    const menuBtn = document.getElementById('menuBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
+
+    function setMenu(open) {
+      dropdownMenu.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+    }
+
     function toggleMenu(event) {
       event.stopPropagation();
-      dropdownMenu.classList.toggle('open');
+      setMenu(!dropdownMenu.classList.contains('open'));
     }
-    document.addEventListener('click', () => {
-      dropdownMenu.classList.remove('open');
+
+    document.addEventListener('click', (event) => {
+      if (!dropdownMenu.contains(event.target)) setMenu(false);
     });
 
+    /* 2. Planteles desplegables */
     function toggleSquad(boxId) {
       const box = document.getElementById(boxId);
-      box.classList.toggle('open');
+      const open = box.classList.toggle('open');
+      box.querySelector('.squad-trigger').setAttribute('aria-expanded', String(open));
     }
 
+    /* 3. Carrusel de fotos (carga cada foto recién cuando hace falta) */
     let currentSlide = 0;
     const track = document.getElementById('carouselTrack');
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
     const dots = document.querySelectorAll('.dot');
-    const totalSlides = dots.length;
+    const carouselCount = document.getElementById('carouselCount');
+    const totalSlides = slides.length;
+
+    function loadSlide(index) {
+      const slide = slides[(index + totalSlides) % totalSlides];
+      slide.querySelectorAll('img[data-src]').forEach((img) => {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      });
+    }
 
     function updateCarousel() {
       track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
       dots.forEach((dot, idx) => {
         dot.classList.toggle('active', idx === currentSlide);
       });
+      carouselCount.textContent = (currentSlide + 1) + ' / ' + totalSlides;
+      loadSlide(currentSlide);
+      loadSlide(currentSlide + 1);
+      loadSlide(currentSlide - 1);
     }
 
     function moveSlide(direction) {
@@ -732,18 +1249,100 @@
     }
 
     function goToSlide(index) {
-      currentSlide = index;
+      currentSlide = (index + totalSlides) % totalSlides;
       updateCarousel();
     }
 
     let startX = 0;
+    let swiped = false;
     const carousel = document.getElementById('photoCarousel');
-    carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
+    carousel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      swiped = false;
+    }, { passive: true });
     carousel.addEventListener('touchend', (e) => {
       const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 40) moveSlide(1);
-      if (endX - startX > 40) moveSlide(-1);
+      if (startX - endX > 40) { moveSlide(1); swiped = true; }
+      if (endX - startX > 40) { moveSlide(-1); swiped = true; }
+    }, { passive: true });
+
+    slides.forEach((slide, idx) => {
+      slide.addEventListener('click', () => {
+        if (!swiped) openLightbox(idx);
+        swiped = false;
+      });
     });
+
+    updateCarousel();
+
+    /* 4. Visor de fotos en grande */
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCount = document.getElementById('lbCount');
+    const lbClose = document.getElementById('lbClose');
+    let lbIndex = 0;
+
+    function showLightboxPhoto(index) {
+      lbIndex = (index + totalSlides) % totalSlides;
+      loadSlide(lbIndex);
+      const img = slides[lbIndex].querySelector('.slide-img');
+      lbImg.src = img.getAttribute('src');
+      lbImg.alt = img.alt;
+      lbCount.textContent = (lbIndex + 1) + ' / ' + totalSlides;
+    }
+
+    function openLightbox(index) {
+      showLightboxPhoto(index);
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('lb-open');
+      lbClose.focus({ preventScroll: true });
+    }
+
+    function closeLightbox() {
+      if (!lightbox.classList.contains('open')) return;
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('lb-open');
+      goToSlide(lbIndex);
+    }
+
+    function stepLightbox(direction) {
+      showLightboxPhoto(lbIndex + direction);
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    document.getElementById('lbStage').addEventListener('click', (event) => {
+      if (event.target !== lbImg) closeLightbox(); // tocar afuera de la foto cierra
+    });
+
+    let lbStartX = 0;
+    lightbox.addEventListener('touchstart', (e) => { lbStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const diff = e.changedTouches[0].clientX - lbStartX;
+      if (Math.abs(diff) > 40) stepLightbox(diff < 0 ? 1 : -1);
+    }, { passive: true });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setMenu(false);
+        closeLightbox();
+      }
+      if (lightbox.classList.contains('open')) {
+        if (event.key === 'ArrowRight') stepLightbox(1);
+        if (event.key === 'ArrowLeft') stepLightbox(-1);
+      }
+    });
+
+    /* 5. Botón de WhatsApp de "Sumate" (solo si hay número) */
+    (function initJoinWhatsApp() {
+      const number = EPFAR_WHATSAPP.replace(/\D/g, '');
+      if (!number) return;
+      const button = document.getElementById('joinWhatsApp');
+      const message = 'Hola EPFAR! Vi la Copa Fair Play 2026 y quiero información para entrenar con ustedes.';
+      button.href = 'https://wa.me/' + number + '?text=' + encodeURIComponent(message);
+      button.hidden = false;
+    })();
   </script>
 
 </body>
