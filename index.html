@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,6 +21,35 @@
   <meta property="og:image" content="https://epfar.netlify.app/FOTO11.jpg" />
   <meta property="og:image:alt" content="Plantel de EPFAR con la bandera del proyecto" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Estadísticas (Google Analytics 4): el código se carga desde analytics.js -->
+  <script src="analytics.js" defer></script>
+
+  <!-- Datos para Google: quién es EPFAR, dónde está y cómo contactarlo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsOrganization",
+    "name": "EPFAR",
+    "alternateName": "EPFAR Centro de Entrenamiento de Alto Rendimiento",
+    "description": "Centro de entrenamiento de alto rendimiento para juveniles de las ligas regionales argentinas. Selectivos Sub-15, Sub-17 y Sub-20.",
+    "sport": "Fútbol",
+    "url": "https://epfar.netlify.app/",
+    "logo": "https://epfar.netlify.app/epfar%20logoo.PNG",
+    "image": "https://epfar.netlify.app/FOTO11.jpg",
+    "foundingDate": "2013",
+    "founder": { "@type": "Person", "name": "Hernán Ojeda" },
+    "email": "epfarfutbol@gmail.com",
+    "telephone": "+5493415999728",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rivadavia 558",
+      "addressLocality": "Santa Regina",
+      "addressRegion": "Buenos Aires",
+      "addressCountry": "AR"
+    }
+  }
+  </script>
 
   <!-- Marca que hay JS: el scroll reveal solo oculta contenido si el script corre -->
   <script>
@@ -186,6 +216,9 @@
       letter-spacing: 0.03em;
       text-transform: uppercase;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
 
     .navbar-actions {
@@ -198,8 +231,8 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.18);
       color: #ffffff;
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -265,8 +298,8 @@
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.22);
       color: #ffffff;
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -338,8 +371,8 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      justify-content: flex-start;
+      gap: clamp(20px, 4vw, 44px);
     }
 
     .hero-text-side {
@@ -395,20 +428,16 @@
       display: block;
     }
 
-    /* EN CELULAR: LOGO ARRIBA Y TEXTO A TODO EL ANCHO */
+    /* EN CELULAR: LOGO ARRIBA A LA IZQUIERDA Y TEXTO A TODO EL ANCHO */
     @media (max-width: 599px) {
       .hero-container {
-        flex-direction: column-reverse;
+        flex-direction: column;
         align-items: flex-start;
         gap: 18px;
       }
 
       .hero-text-side {
         width: 100%;
-      }
-
-      .hero-logo-side {
-        align-self: flex-end;
       }
     }
 
@@ -779,6 +808,7 @@
       color: #ffffff;
       background: linear-gradient(135deg, var(--orange-accent) 0%, #d9460f 100%);
       padding: 10px 18px;
+      min-height: 44px;
       border-radius: 12px;
       border: none;
       letter-spacing: 0.05em;
@@ -855,6 +885,16 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+    }
+
+    /* Logo ya recortado: ocupa toda la cajita, sin margen blanco */
+    .card-logo-box--full {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .card-logo-box--full img {
+      object-fit: cover;
     }
 
     .card-location-pill {
@@ -1023,7 +1063,7 @@
       left: 10px;
       background: rgba(7, 25, 54, 0.85);
       color: #ffffff;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       padding: 4px 10px;
@@ -1212,89 +1252,183 @@
     }
 
     /* ==================================================== */
-    /* SECCIÓN "¿QUÉ ES EPFAR?"                             */
+    /* SECCIÓN "¿QUÉ ES EPFAR?" (ordenada en bloques)       */
     /* ==================================================== */
     #vista-que-es {
       width: 100%;
       flex: 1;
-      padding: 16px 12px 32px;
+      padding: 18px 12px 36px;
       box-sizing: border-box;
     }
 
-    .que-es-card {
+    .que-es-wrap {
       max-width: 960px;
       margin: 0 auto;
+    }
+
+    .que-es-wrap > .back-home-btn {
+      min-height: 44px;
+      background: rgba(4, 18, 48, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .que-es-card {
       background: #ffffff;
       border-radius: 24px;
-      padding: clamp(24px, 5vw, 44px);
+      padding: clamp(22px, 5vw, 44px);
       box-shadow: 0 20px 48px rgba(4, 18, 48, 0.42);
       color: #111827;
     }
 
-    .que-es-logo-top {
+    /* Encabezado: logo + título */
+    .que-es-head {
       display: flex;
-      justify-content: center;
-      margin-bottom: 26px;
+      align-items: center;
+      gap: 18px;
       padding-bottom: 20px;
       border-bottom: 2px solid #f1f5f9;
     }
 
-    .que-es-logo-top img {
-      width: clamp(140px, 38vw, 210px);
+    .que-es-logo {
+      width: clamp(92px, 24vw, 150px);
       height: auto;
       object-fit: contain;
+      flex-shrink: 0;
       display: block;
     }
 
+    .que-es-kicker {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange-accent);
+    }
+
+    .que-es-title {
+      margin-top: 4px;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: clamp(1.6rem, 6vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: var(--navy-header);
+    }
+
     .que-es-lead {
-      font-size: clamp(0.98rem, 2.5vw, 1.1rem);
+      margin-top: 20px;
+      font-size: clamp(1rem, 2.6vw, 1.12rem);
       line-height: 1.68;
       color: #1e293b;
       background: #f8fafc;
       border-left: 4px solid var(--blue-card);
       padding: 16px 18px;
       border-radius: 0 14px 14px 0;
-      margin-bottom: 26px;
     }
 
-    .que-es-content h2 {
+    /* Datos clave */
+    .que-es-facts {
+      list-style: none;
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .que-es-facts li {
+      padding: 14px;
+      border-radius: 14px;
+      background: var(--navy-header);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .que-es-facts strong {
       font-family: var(--font-title);
-      font-size: clamp(1.18rem, 3vw, 1.38rem);
+      font-weight: 600;
+      font-size: clamp(1rem, 3.6vw, 1.18rem);
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    .que-es-facts li > span {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .que-es-facts .nw { white-space: nowrap; }
+
+    @media (min-width: 900px) {
+      .que-es-facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    /* Bloques con título */
+    .que-es-block { margin-top: 30px; }
+
+    .que-es-h {
+      font-family: var(--font-title);
+      font-size: clamp(1.15rem, 3vw, 1.38rem);
       font-weight: 600;
       color: var(--blue-card);
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      margin-top: 28px;
       margin-bottom: 14px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .que-es-content h2::before {
+    .que-es-h::before {
       content: "";
       display: inline-block;
+      flex-shrink: 0;
       width: 6px;
       height: 22px;
       background: var(--orange-accent);
       border-radius: 4px;
     }
 
+    /* Qué hace EPFAR: 4 tarjetas numeradas */
     .que-es-pillars {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 14px;
-      margin-bottom: 18px;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 700px) {
+      .que-es-pillars { grid-template-columns: 1fr 1fr; }
     }
 
     .pillar-item {
+      position: relative;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 16px;
+      border-radius: 16px;
+      padding: 16px 16px 16px 64px;
       font-size: 0.93rem;
       line-height: 1.58;
       color: #1f2937;
+    }
+
+    .pillar-num {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(242, 101, 34, 0.12);
+      color: var(--orange-accent);
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .pillar-item strong {
@@ -1302,36 +1436,167 @@
       font-family: var(--font-title);
       font-weight: 600;
       color: var(--navy-header);
-      font-size: 0.98rem;
+      font-size: 1rem;
       letter-spacing: 0.02em;
       margin-bottom: 4px;
       text-transform: uppercase;
     }
 
-    .que-es-content p {
-      font-size: 0.96rem;
-      line-height: 1.65;
-      color: #1f2937;
-      margin-bottom: 14px;
+    /* Competencias: cada una lleva a la página del torneo */
+    .que-es-tournaments {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
 
-    .que-es-content ul {
-      list-style: none;
-      padding-left: 0;
+    @media (min-width: 700px) {
+      .que-es-tournaments { grid-template-columns: 1fr 1fr; }
+    }
+
+    .tournament-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 76px;
+      padding: 16px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(7, 25, 54, 0.18);
+    }
+
+    .tournament-link--blue { background: var(--blue-card); }
+    .tournament-link--red { background: linear-gradient(145deg, var(--red-card) 0%, var(--red-card-dark) 100%); }
+
+    .tournament-flag {
+      width: 34px;
+      height: 23px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+      display: block;
+    }
+
+    .tournament-text {
+      flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 3px;
     }
 
-    .que-es-content li {
+    .tournament-text strong {
+      font-family: var(--font-title);
+      font-weight: 600;
+      font-size: 1.02rem;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .tournament-text span {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .tournament-text em {
+      font-style: normal;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffd166;
+    }
+
+    .tournament-arrow {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* Quién lo dirige */
+    .director-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border-radius: 16px;
       background: #f8fafc;
-      border-left: 4px solid var(--orange-accent);
-      padding: 12px 16px;
-      border-radius: 0 12px 12px 0;
-      font-size: 0.94rem;
-      line-height: 1.58;
-      color: #1f2937;
+      border: 1px solid #e2e8f0;
+    }
+
+    .director-card .staff-square-photo {
+      width: 80px;
+      height: 80px;
+    }
+
+    .director-name {
+      display: block;
+      font-family: var(--font-title);
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: #0b1933;
+    }
+
+    .director-role {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--orange-accent);
+    }
+
+    .director-card p {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #374151;
+    }
+
+    /* Objetivo */
+    .que-es-goal {
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--navy-header) 0%, var(--blue-card) 100%);
+      color: #ffffff;
+      font-size: clamp(0.98rem, 2.5vw, 1.08rem);
+      line-height: 1.65;
+    }
+
+    /* Botones del final */
+    .que-es-cta {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 2px solid #f1f5f9;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .que-es-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: var(--navy-header);
+      background: #eef2f8;
+    }
+
+    .que-es-btn--primary {
+      background: var(--orange-accent);
+      color: #ffffff;
+      box-shadow: 0 8px 18px rgba(242, 101, 34, 0.3);
     }
 
     /* ==================================================== */
@@ -1402,8 +1667,8 @@
       background: #f3f4f6;
       border: none;
       color: #1f2937;
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       border-radius: 10px;
       font-size: 1.1rem;
       font-weight: 700;
@@ -1489,8 +1754,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      white-space: nowrap;
+      flex-wrap: wrap;
+      gap: 4px 10px;
       width: 100%;
     }
 
@@ -1554,6 +1819,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      min-height: 44px;
       color: #ffffff;
       text-decoration: none;
       opacity: 0.92;
@@ -1609,7 +1875,10 @@
       font-size: 0.72rem;
       text-decoration: underline;
       cursor: pointer;
-      padding: 0;
+      padding: 0 2px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .terms-trigger-link:hover {
@@ -1759,17 +2028,17 @@
     <!-- Tira superior oscura -->
     <section class="hero-strip" aria-labelledby="hero-titulo">
       <div class="hero-container">
+        <div class="hero-logo-side">
+          <div class="hero-logo-card">
+            <img src="epfar%20logoo.PNG" alt="Logo de EPFAR" onload="this.parentElement.classList.add('loaded')" />
+          </div>
+        </div>
         <div class="hero-text-side">
           <span class="badge-ligas-plain">LIGAS REGIONALES ARGENTINAS</span>
           <h1 class="hero-title" id="hero-titulo">Alto rendimiento para los juveniles de la región.</h1>
           <p class="hero-subtitle">
             <strong>EPFAR</strong> es un centro de entrenamiento con sede en <strong>Santa Regina (Gral. Villegas)</strong> y conexión en <strong>Rosario, Santa Fe</strong>. Dirigido por <span class="director-highlight">Hernán Ojeda</span>.
           </p>
-        </div>
-        <div class="hero-logo-side">
-          <div class="hero-logo-card">
-            <img src="epfar%20logoo.PNG" alt="Logo de EPFAR" onload="this.parentElement.classList.add('loaded')" />
-          </div>
         </div>
       </div>
     </section>
@@ -1833,7 +2102,7 @@
                   <div class="staff-member-details">
                     <h3 class="staff-member-name">Cristian Martínez</h3>
                     <p class="staff-member-role">DT · Cnel. Charlone</p>
-                    <p class="staff-member-meta"><span class="staff-highlight-orange">Sub-15</span> · “Dirige a la categoría Sub-15 en entrenamientos y torneos”</p>
+                    <p class="staff-member-meta"><span class="staff-highlight-orange">Sub-15</span> · Dirige Sub-15 en entrenamientos y torneos</p>
                   </div>
                 </div>
               </div>
@@ -1856,7 +2125,7 @@
                   <div class="staff-member-details">
                     <h3 class="staff-member-name">Fabián Millarez</h3>
                     <p class="staff-member-role">DT · Cnel. Charlone</p>
-                    <p class="staff-member-meta"><span class="staff-highlight-orange">Sub-15</span> · “Dirige a la categoría Sub-15 en entrenamientos y torneos”</p>
+                    <p class="staff-member-meta"><span class="staff-highlight-orange">Sub-15</span> · Dirige Sub-15 en entrenamientos y torneos</p>
                   </div>
                 </div>
 
@@ -1880,7 +2149,7 @@
                 <!-- Alex Corvalán -->
                 <div class="staff-member-row">
                   <div class="staff-square-photo skeleton-shimmer">
-                    <img loading="lazy" decoding="async" src="fotoo5.PNG" alt="Alex Corvalán" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+                    <img loading="lazy" decoding="async" src="IMG_2257.jpeg" alt="Alex Corvalán" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
                     <div class="staff-initials-fallback">AC</div>
                   </div>
                   <div class="staff-member-details">
@@ -1957,10 +2226,10 @@
           </a>
 
           <!-- 3. VENTANA ROJA: AFB LATIN-BANGLA SUPER CUP 2025 -->
-          <a href="https://diarioactualidad.com/blog/2025/12/01/atletico-charlone-rumbo-a-bangladesh-representara-a-la-argentina-en-un-torneo-internacional-sub-20/" target="_blank" rel="noopener noreferrer" class="participation-card-vertical card-red-bangla">
+          <a href="afb-latin-bangla-super-cup-2025.html" class="participation-card-vertical card-red-bangla">
             <div>
-              <div class="card-logo-box skeleton-shimmer">
-                <img src="epfar%20logoo.PNG" alt="Logo de EPFAR" onload="this.parentElement.classList.add('loaded')" />
+              <div class="card-logo-box card-logo-box--full skeleton-shimmer">
+                <img src="IMG_2390.jpeg" alt="Logo de la AFB Latin-Bangla Super Cup 2025" onload="var r = this.naturalWidth / this.naturalHeight; if (r > 1.15 || r < 0.87) this.style.objectFit = 'contain'; this.parentElement.classList.add('loaded')" />
               </div>
 
               <div class="card-location-pill">
@@ -1978,7 +2247,7 @@
             </div>
 
             <div class="btn-ingresar">
-              VER PARTICIPACIÓN
+              INGRESAR AL TORNEO
               <div class="btn-icon">➔</div>
             </div>
           </a>
@@ -2149,48 +2418,109 @@
   <!-- VISTA 2: ¿QUÉ ES EPFAR?                              -->
   <!-- ==================================================== -->
   <div id="vista-que-es" hidden>
-    <div class="que-es-card">
-      <div class="que-es-logo-top">
-        <img src="epfar%20logoo.PNG" alt="Logo EPFAR" />
-      </div>
+    <div class="que-es-wrap">
+      <a href="#inicio" class="back-home-btn">⬅ VOLVER AL INICIO</a>
 
-      <div class="que-es-content">
-        <div class="que-es-lead">
+      <article class="que-es-card">
+        <!-- Encabezado -->
+        <header class="que-es-head">
+          <img src="epfar%20logoo.PNG" alt="Logo EPFAR" class="que-es-logo" />
+          <div>
+            <span class="que-es-kicker">Centro de Entrenamiento de Alto Rendimiento</span>
+            <h2 class="que-es-title">¿Qué es EPFAR?</h2>
+          </div>
+        </header>
+
+        <p class="que-es-lead">
           <strong>EPFAR</strong> es un proyecto de formación y entrenamiento futbolístico dirigido por el profesor <strong>Hernán Ojeda</strong>, orientado al desarrollo de jugadores juveniles de la región de General Villegas y localidades cercanas.
-        </div>
+        </p>
 
-        <h2>¿Qué hace EPFAR?</h2>
-        <div class="que-es-pillars">
-          <div class="pillar-item">
-            <strong>FORMACIÓN POR CAPTACIÓN:</strong>
-            Captación de futbolistas y entrenamientos adaptados para el alto rendimiento, en simultáneo al desarrollo deportivo de los futbolistas en sus respectivas instituciones.
-          </div>
-          <div class="pillar-item">
-            <strong>CATEGORÍAS:</strong>
-            Trabajo estructurado y selectivo en las divisiones SUB-15, SUB-17 y SUB-20.
-          </div>
-          <div class="pillar-item">
-            <strong>ENTRENAMIENTOS REGIONALES:</strong>
-            Reúne jugadores de distintas localidades de la región, brindándoles la oportunidad de desarrollarse deportivamente.
-          </div>
-          <div class="pillar-item">
-            <strong>EXPERIENCIA COMPETITIVA INTERNACIONAL:</strong>
-            Participa en torneos que permiten a los futbolistas medirse con equipos de otros países y adquirir experiencia en el ámbito competitivo.
-          </div>
-        </div>
-
-        <h2>Competencias internacionales</h2>
-        <ul>
-          <li><strong>AFB Latin-Bangla Super Cup 2025 — Bangladesh:</strong> participación en una competencia internacional que vincula al fútbol latinoamericano con el de Bangladesh.</li>
-          <li><strong>Copa Fair Play 2026 — Brasil:</strong> participación de los selectivos juveniles regionales en este torneo internacional, disputado en octubre de 2026.</li>
+        <!-- Datos clave -->
+        <ul class="que-es-facts" aria-label="Datos clave de EPFAR">
+          <li><strong>Desde 2013</strong><span>Trayectoria</span></li>
+          <li><strong><span class="nw">Sub-15 ·</span> <span class="nw">Sub-17 ·</span> <span class="nw">Sub-20</span></strong><span>Categorías</span></li>
+          <li><strong><span class="nw">Santa Regina ·</span> <span class="nw">Rosario</span></strong><span>Sede y conexión</span></li>
+          <li><strong><span class="nw">Bangladesh ·</span> <span class="nw">Brasil</span></strong><span>Torneos internacionales</span></li>
         </ul>
 
-        <h2>¿Quién lo dirige?</h2>
-        <p>El profesor <strong>Hernán Ojeda</strong>, referente y responsable del proyecto de formación y de los selectivos juveniles.</p>
+        <!-- Qué hace -->
+        <section class="que-es-block">
+          <h3 class="que-es-h">¿Qué hace EPFAR?</h3>
+          <div class="que-es-pillars">
+            <div class="pillar-item">
+              <span class="pillar-num" aria-hidden="true">01</span>
+              <strong>Formación por captación</strong>
+              Captación de futbolistas y entrenamientos adaptados para el alto rendimiento, en simultáneo al desarrollo deportivo de los futbolistas en sus respectivas instituciones.
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-num" aria-hidden="true">02</span>
+              <strong>Categorías</strong>
+              Trabajo estructurado y selectivo en las divisiones Sub-15, Sub-17 y Sub-20.
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-num" aria-hidden="true">03</span>
+              <strong>Entrenamientos regionales</strong>
+              Reúne jugadores de distintas localidades de la región, brindándoles la oportunidad de desarrollarse deportivamente.
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-num" aria-hidden="true">04</span>
+              <strong>Experiencia competitiva internacional</strong>
+              Participa en torneos que permiten a los futbolistas medirse con equipos de otros países y adquirir experiencia en el ámbito competitivo.
+            </div>
+          </div>
+        </section>
 
-        <h2>¿Cuál es su objetivo?</h2>
-        <p>EPFAR busca potenciar el talento de los futbolistas juveniles, ofrecer oportunidades de crecimiento deportivo y facilitar su participación en competencias nacionales e internacionales.</p>
-      </div>
+        <!-- Competencias -->
+        <section class="que-es-block">
+          <h3 class="que-es-h">Competencias internacionales</h3>
+          <div class="que-es-tournaments">
+            <a href="copa-fair-play-2026.html" class="tournament-link tournament-link--blue">
+              <svg class="tournament-flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#009c3b" /><polygon points="15,2.2 27.6,10 15,17.8 2.4,10" fill="#ffdf00" /><circle cx="15" cy="10" r="4.4" fill="#002776" /></svg>
+              <span class="tournament-text">
+                <strong>Copa Fair Play 2026</strong>
+                <span>Brasil · Octubre de 2026</span>
+                <em>🏆 Sub-15 campeón de la Copa de Oro</em>
+              </span>
+              <span class="tournament-arrow" aria-hidden="true">➔</span>
+            </a>
+            <a href="afb-latin-bangla-super-cup-2025.html" class="tournament-link tournament-link--red">
+              <svg class="tournament-flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#006a4e" /><circle cx="13.5" cy="10" r="6" fill="#f42a41" /></svg>
+              <span class="tournament-text">
+                <strong>AFB Latin-Bangla Super Cup 2025</strong>
+                <span>Bangladesh · Sub-20 · Diciembre de 2025</span>
+              </span>
+              <span class="tournament-arrow" aria-hidden="true">➔</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Quién lo dirige -->
+        <section class="que-es-block">
+          <h3 class="que-es-h">¿Quién lo dirige?</h3>
+          <div class="director-card">
+            <div class="staff-square-photo skeleton-shimmer">
+              <img loading="lazy" decoding="async" src="fotoo1.PNG" alt="Hernán Ojeda" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.classList.add('loaded'); this.nextElementSibling.style.display='flex';" />
+              <div class="staff-initials-fallback">HO</div>
+            </div>
+            <div>
+              <strong class="director-name">Hernán Ojeda</strong>
+              <span class="director-role">Director Técnico · Coordinador General · Fundador</span>
+              <p>Profesor, referente y responsable del proyecto de formación y de los selectivos juveniles.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Objetivo -->
+        <section class="que-es-block">
+          <h3 class="que-es-h">¿Cuál es su objetivo?</h3>
+          <p class="que-es-goal">EPFAR busca potenciar el talento de los futbolistas juveniles, ofrecer oportunidades de crecimiento deportivo y facilitar su participación en competencias nacionales e internacionales.</p>
+        </section>
+
+        <div class="que-es-cta">
+          <a href="#contacto" class="que-es-btn que-es-btn--primary">Contactar a EPFAR ➔</a>
+          <a href="#participaciones" class="que-es-btn">Ver torneos</a>
+        </div>
+      </article>
     </div>
   </div>
 
@@ -2318,7 +2648,7 @@
         <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
       </div>
       <div class="footer-line-2">
-        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe |<br>
+        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe<br>
         Dir. Hernán Ojeda
       </div>
 
@@ -2329,16 +2659,16 @@
           E-mail: <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a>
         </div>
 
-        <div class="lanzawebs-badge" aria-label="byLanzaWebs">
+        <a class="lanzawebs-badge" href="https://www.lanzawebs.com" target="_blank" rel="noopener" aria-label="Página hecha por LanzaWebs">
           <span class="lanzawebs-text">
             <span class="lanzawebs-by">by</span><span class="lanzawebs-main">LanzaWebs</span>
           </span>
-          <svg class="lanzawebs-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="lanzawebs-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.8" />
             <line x1="6.8" y1="28.2" x2="21.5" y2="14.5" stroke="currentColor" stroke-width="2" />
             <polygon points="26.2,10.2 16.5,13.2 22.8,19.8" fill="currentColor" />
           </svg>
-        </div>
+        </a>
       </div>
 
       <div class="footer-bottom-bar">
@@ -2456,11 +2786,45 @@
       '#terminos': ['inicio']
     };
 
+    // Desplazamiento suave y lento (arranca y frena despacito). Si la persona toca la pantalla, se corta.
+    let scrollAnimId = 0;
+    ['wheel', 'touchstart'].forEach((evento) => {
+      window.addEventListener(evento, () => { scrollAnimId++; }, { passive: true });
+    });
+
+    // Salto directo: además corta cualquier desplazamiento suave que siga en curso
+    function saltar(destinoY) {
+      scrollAnimId++;
+      window.scrollTo(0, destinoY);
+    }
+
+    function scrollSuave(destinoY) {
+      const inicioY = window.scrollY;
+      const distancia = destinoY - inicioY;
+      if (reduceMotion || Math.abs(distancia) < 2) {
+        window.scrollTo(0, destinoY);
+        return;
+      }
+      const duracion = Math.min(2300, Math.max(1100, Math.abs(distancia) * 0.6 + 600));
+      const id = ++scrollAnimId;
+      let inicio = null;
+      const curva = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+      function paso(ahora) {
+        if (id !== scrollAnimId) return;
+        if (inicio === null) inicio = ahora;
+        const progreso = Math.min((ahora - inicio) / duracion, 1);
+        window.scrollTo(0, inicioY + distancia * curva(progreso));
+        if (progreso < 1) requestAnimationFrame(paso);
+      }
+      requestAnimationFrame(paso);
+    }
+
     // El scroll al volver lo maneja el script (el navegador no puede, porque la vista estaba oculta)
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
     let vistaActual = 'inicio';
     let navPorClick = false;
+    let primeraCarga = true;
 
     function mostrarVista(nombre) {
       Object.entries(VISTAS).forEach(([clave, el]) => {
@@ -2474,7 +2838,9 @@
 
     function route() {
       const [vista, seccion] = RUTAS[location.hash] || RUTAS[''];
-      const cambioVista = mostrarVista(vista);
+      // Si cambia de vista o recién se abre la página, va directo (sin deslizar)
+      const cambioVista = mostrarVista(vista) || primeraCarga;
+      primeraCarga = false;
 
       if (fullscreenMenu.classList.contains('open')) cerrarMenu(false);
       if (dialogoAbierto && dialogoAbierto !== fullscreenMenu && location.hash !== '#terminos') {
@@ -2485,17 +2851,27 @@
       const guardada = !navPorClick && history.state && typeof history.state.y === 'number' ? history.state.y : null;
       navPorClick = false;
 
-      if (location.hash === '#terminos') abrirModalTerminos();
+      // Términos: abre la ventanita sin mover la página de fondo
+      if (location.hash === '#terminos') {
+        abrirModalTerminos();
+        if (cambioVista) saltar(0);
+        return;
+      }
 
       if (guardada !== null) {
-        requestAnimationFrame(() => window.scrollTo(0, guardada));
+        requestAnimationFrame(() => saltar(guardada));
       } else if (seccion) {
         requestAnimationFrame(() => {
           const el = document.getElementById(seccion);
-          if (el) el.scrollIntoView({ behavior: cambioVista ? 'auto' : comportamiento(), block: 'start' });
+          if (!el) return;
+          const destinoY = el.getBoundingClientRect().top + window.scrollY - 84;
+          if (cambioVista) saltar(destinoY);
+          else scrollSuave(destinoY);
         });
+      } else if (cambioVista) {
+        saltar(0);
       } else {
-        window.scrollTo({ top: 0, behavior: cambioVista ? 'auto' : comportamiento() });
+        scrollSuave(0);
       }
     }
 
