@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página no encontrada | EPFAR</title>
+  <meta name="description" content="La página que buscás no existe o cambió de lugar. Volvé al inicio de EPFAR." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#071936" />
+  <link rel="icon" type="image/png" href="/epfar%20logoo.PNG" />
+  <link rel="apple-touch-icon" href="/epfar%20logoo.PNG" />
+
+  <!-- Estadísticas (Google Analytics 4) -->
+  <script src="/analytics.js" defer></script>
+
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy-header: #071936;
+      --blue-card: #093170;
+      --orange-accent: #f26522;
+      --gold: #ffd166;
+      --font-display: 'Clash Display', 'Inter', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      color: #111827;
+      background-color: #f9f9fb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-color: #f9f9fb;
+      background-image:
+        url('/image_6.png.PNG'),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(242, 243, 247, 0.4) 48%, rgba(230, 232, 238, 0.7) 48.3%, rgba(252, 252, 254, 0.95) 100%),
+        repeating-linear-gradient(-45deg, #fbfbfc 0px, #fbfbfc 4px, #f3f4f7 4px, #f3f4f7 8px);
+      background-size: cover, 100% 100%, auto;
+    }
+
+    #airParticles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* CABECERA */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--navy-header);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .navbar-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(0.95rem, 2.8vw, 1.2rem);
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+
+    .navbar-actions { display: flex; align-items: center; gap: 10px; position: relative; }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .icon-btn svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.2; fill: none; }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background-color: var(--navy-header);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      width: 215px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 2000;
+    }
+
+    .dropdown-menu.open { display: flex; }
+
+    .dropdown-item {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .dropdown-item:last-child { border-bottom: none; }
+    .dropdown-item:hover { background-color: var(--blue-card); color: var(--gold); }
+
+    /* CONTENIDO 404 */
+    .nf {
+      flex: 1;
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 48px 18px 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nf-card {
+      width: 100%;
+      padding: 32px 22px 26px;
+      border-radius: 20px;
+      background: #ffffff;
+      border: 1px solid rgba(9, 49, 112, 0.12);
+      box-shadow: 0 14px 34px rgba(9, 49, 112, 0.12);
+      text-align: center;
+    }
+
+    .nf-code {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(4.5rem, 24vw, 7rem);
+      line-height: 0.9;
+      color: #0b1933;
+      letter-spacing: 0.02em;
+    }
+
+    .nf-code span { color: var(--orange-accent); }
+
+    .nf-title {
+      margin-top: 14px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.35rem, 5.4vw, 1.8rem);
+      text-transform: uppercase;
+      color: #0b1933;
+    }
+
+    .nf-text {
+      margin-top: 10px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #4b5563;
+    }
+
+    .nf-btn {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 24px;
+      border-radius: 14px;
+      background: var(--orange-accent);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 10px 22px rgba(242, 101, 34, 0.28);
+    }
+
+    .nf-btn svg { width: 18px; height: 18px; }
+
+    .nf-links {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(9, 49, 112, 0.12);
+      display: grid;
+      gap: 8px;
+    }
+
+    .nf-links p {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280;
+    }
+
+    .nf-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 12px;
+      background: #f4f6fa;
+      color: #093170;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    /* PIE DE PÁGINA (el mismo de la página principal) */
+    .footer {
+      background-color: #061326;
+      padding: 28px 18px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-line-1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      width: 100%;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+      color: #ffffff;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-desc {
+      font-size: clamp(0.72rem, 3.1vw, 0.9rem);
+      color: #9ba8bf;
+    }
+
+    .footer-line-2 {
+      font-size: clamp(0.7rem, 2.9vw, 0.84rem);
+      color: #8c9bb5;
+      line-height: 1.5;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Contacto a la izquierda y byLanzaWebs a la derecha */
+    .footer-side-row {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .footer-contact-side {
+      font-size: clamp(0.7rem, 2.8vw, 0.82rem);
+      color: #8c9bb5;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    .footer-contact-side a { color: #9ba8bf; text-decoration: none; }
+    .footer-contact-side a:hover { color: #ffffff; text-decoration: underline; }
+
+    .lanzawebs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 44px;
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.92;
+      margin-left: auto;
+    }
+
+    .lanzawebs-badge:hover { opacity: 1; }
+    .lanzawebs-text { display: inline-flex; align-items: baseline; line-height: 1; }
+    .lanzawebs-by { font-size: 0.65rem; font-weight: 700; letter-spacing: -0.02em; }
+    .lanzawebs-main { font-size: 0.95rem; font-weight: 800; letter-spacing: -0.04em; }
+    .lanzawebs-icon { width: 22px; height: 22px; display: block; flex-shrink: 0; }
+
+    .footer-bottom-bar {
+      width: 100%;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: rgba(155, 168, 191, 0.78);
+    }
+
+    .terms-trigger-link {
+      color: #9ba8bf;
+      font-size: 0.72rem;
+      text-decoration: underline;
+      padding: 0 2px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .terms-trigger-link:hover { color: #ffffff; }
+  </style>
+</head>
+<body>
+
+  <!-- Partículas en el aire -->
+  <canvas id="airParticles" aria-hidden="true"></canvas>
+
+  <header class="navbar">
+    <a href="/" class="navbar-title">Página Oficial EPFAR</a>
+    <div class="navbar-actions">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Menú" aria-expanded="false" aria-controls="dropdownMenu" onclick="toggleMenu(event)">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <a class="dropdown-item" href="/">INICIO</a>
+        <a class="dropdown-item" href="/#participaciones">TORNEOS</a>
+        <a class="dropdown-item" href="/#que-es-epfar">QUÉ ES EPFAR</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="nf">
+    <section class="nf-card" aria-labelledby="tituloError">
+      <span class="nf-code" aria-hidden="true">4<span>0</span>4</span>
+      <h1 class="nf-title" id="tituloError">Página no encontrada</h1>
+      <p class="nf-text">La dirección que escribiste no existe o cambió de lugar.</p>
+      <a href="/" class="nf-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al inicio
+      </a>
+      <div class="nf-links">
+        <p>O mirá nuestros torneos</p>
+        <a href="/copa-fair-play-2026.html">Copa Fair Play 2026</a>
+        <a href="/afb-latin-bangla-super-cup-2025.html">AFB Latin-Bangla Super Cup 2025</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+
+      <div class="footer-line-1">
+        <span class="footer-brand">EPFAR</span>
+        <span class="footer-desc">Centro de Entrenamiento de Alto Rendimiento</span>
+      </div>
+      <div class="footer-line-2">
+        Santa Regina (Gral. Villegas) — Conexión Rosario, Santa Fe<br>
+        Dir. Hernán Ojeda
+      </div>
+
+      <!-- Contacto al costado izquierdo y logo byLanzaWebs al derecho -->
+      <div class="footer-side-row">
+        <div class="footer-contact-side">
+          Contacto: <a href="https://wa.me/5493415999728?text=Hola%20Hern%C3%A1n%2C%20vi%20la%20p%C3%A1gina%20de%20EPFAR%20y%20quer%C3%ADa%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer">+54 9 3415 99-9728</a> (Hernán Ojeda)<br>
+          E-mail: <a href="mailto:epfarfutbol@gmail.com">epfarfutbol@gmail.com</a>
+        </div>
+
+        <a class="lanzawebs-badge" href="https://www.lanzawebs.com" target="_blank" rel="noopener" aria-label="Página hecha por LanzaWebs">
+          <span class="lanzawebs-text">
+            <span class="lanzawebs-by">by</span><span class="lanzawebs-main">LanzaWebs</span>
+          </span>
+          <svg class="lanzawebs-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.8" />
+            <line x1="6.8" y1="28.2" x2="21.5" y2="14.5" stroke="currentColor" stroke-width="2" />
+            <polygon points="26.2,10.2 16.5,13.2 22.8,19.8" fill="currentColor" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>EPFAR © 2026 Todos los derechos reservados.</span>
+        <a class="terms-trigger-link" href="/#terminos">Términos y Condiciones de Uso</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Menú de las 3 rayitas */
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    function setMenu(open) {
+      dropdownMenu.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+    }
+    function toggleMenu(event) {
+      event.stopPropagation();
+      setMenu(!dropdownMenu.classList.contains('open'));
+    }
+    document.addEventListener('click', (event) => {
+      if (!dropdownMenu.contains(event.target)) setMenu(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setMenu(false);
+    });
+  </script>
+
+  <!-- EFECTOS: aparición al bajar, desplazamiento suave y partículas en el aire -->
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* A. Scroll reveal: cada bloque aparece cuando entra en pantalla */
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+        revealEls.forEach((el) => observer.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      /* B. Desplazamiento suave y lento para los botones que bajan dentro de la página */
+      let scrollAnimId = 0;
+      ['wheel', 'touchstart'].forEach((evt) => {
+        window.addEventListener(evt, () => { scrollAnimId++; }, { passive: true }); // si la persona toca la pantalla, se corta
+      });
+
+      function slowScrollTo(target) {
+        const headerOffset = 76;
+        const startY = window.pageYOffset;
+        const targetY = Math.max(0, target.getBoundingClientRect().top + startY - headerOffset);
+        const distance = targetY - startY;
+        if (reduceMotion || Math.abs(distance) < 2) {
+          window.scrollTo(0, targetY);
+          return;
+        }
+        const duration = Math.min(2300, Math.max(1400, Math.abs(distance) * 0.8 + 700));
+        const myId = ++scrollAnimId;
+        let startTime = null;
+        const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+        function step(now) {
+          if (myId !== scrollAnimId) return;
+          if (startTime === null) startTime = now;
+          const progress = Math.min((now - startTime) / duration, 1);
+          window.scrollTo(0, startY + distance * ease(progress));
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      document.addEventListener('click', (event) => {
+        if (event.defaultPrevented) return;
+        const link = event.target.closest('a[href^="#"]');
+        if (!link) return;
+        const id = decodeURIComponent(link.getAttribute('href').slice(1));
+        const target = id ? document.getElementById(id) : null;
+        if (!target) return;
+        event.preventDefault();
+        slowScrollTo(target);
+      });
+
+      /* C. Partículas diminutas gris oscuro flotando en el aire */
+      const canvas = document.getElementById('airParticles');
+      if (!canvas || !canvas.getContext) return;
+      const ctx = canvas.getContext('2d');
+      let width = 0;
+      let height = 0;
+      let particles = [];
+      let rafId = null;
+      let lastScrollY = window.pageYOffset;
+
+      function createParticle() {
+        const depth = Math.random() * 0.8 + 0.2; // 0.2 = lejos, 1 = cerca
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: (0.35 + Math.random() * 0.65) * (0.7 + depth * 0.4),
+          depth: depth,
+          vx: (Math.random() - 0.5) * 0.14 * depth,
+          vy: -(0.02 + Math.random() * 0.09) * depth, // suben muy despacio
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.004 + Math.random() * 0.01,
+          alpha: 0.22 + Math.random() * 0.33
+        };
+      }
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const amount = Math.min(150, Math.round((width * height) / 7500));
+        while (particles.length < amount) particles.push(createParticle());
+        particles.length = amount;
+      }
+
+      function draw(animate) {
+        const scrollY = window.pageYOffset;
+        const scrollDelta = scrollY - lastScrollY;
+        lastScrollY = scrollY;
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#374151';
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          if (animate) {
+            p.phase += p.speed;
+            p.x += p.vx + Math.sin(p.phase) * 0.05 * p.depth;
+            p.y += p.vy - scrollDelta * p.depth * 0.22; // al bajar, se mueven un poco (profundidad)
+            if (p.x < -3) p.x = width + 3; else if (p.x > width + 3) p.x = -3;
+            if (p.y < -3) p.y = height + 3; else if (p.y > height + 3) p.y = -3;
+          }
+          ctx.globalAlpha = p.alpha * (0.7 + Math.sin(p.phase * 1.6) * 0.3);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function loop() {
+        draw(true);
+        rafId = requestAnimationFrame(loop);
+      }
+
+      resize();
+      if (reduceMotion) {
+        draw(false);
+        window.addEventListener('resize', () => { resize(); draw(false); });
+        return;
+      }
+      loop();
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 150);
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        } else if (rafId === null) {
+          lastScrollY = window.pageYOffset;
+          loop();
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
